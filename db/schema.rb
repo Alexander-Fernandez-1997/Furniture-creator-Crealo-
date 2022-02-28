@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 2022_02_28_205147) do
   enable_extension "plpgsql"
 
   create_table "furnitures", force: :cascade do |t|
-    t.string "category", default: "Bookshelf"
+    t.string "category", default: "bookshelf"
     t.integer "width", default: 60
     t.integer "length", default: 180
     t.integer "depth", default: 30
     t.integer "shelves", default: 5
-    t.string "material", default: "White"
+    t.string "material", default: "white"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_205147) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "address"
+    t.string "adress"
     t.string "fullname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
