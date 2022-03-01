@@ -1,9 +1,9 @@
-<h1 class= "text-center"> Welcome to <%= @user.fullname %>s profile  </h1>
+<h1 class= "text-center"> Welcome to <%= @user.email %>´s profile  </h1>
 
-<div>
-<h2 class = "text-center">List of creations</h2>
+<div mt-4  >
+<h2 >List of creations</h2>
 
-<% @user.furniture.each do |furniture| %>
+<% @user.furnitures.each do |furniture| %>
 <div>
 <h3> <%= furniture.category %> </h3>
 <h4>Details:</h4>
@@ -19,7 +19,7 @@
 
 </div>
 
-<div>
+<div mt-4>
 <h2>List of transactions</h2>
 
 <%= @user.transactions.each do |transaction| %>
@@ -34,3 +34,6 @@
 <% end %>
 
 </div>
+
+    <%= render 'shared/sliders1' %>
+        <%= render 'shared/sliders2' %>
