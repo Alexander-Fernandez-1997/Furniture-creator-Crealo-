@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :users, only: %i[show]
-  resources :furniture do
-    resources :transaction, only: %i[new create]
+  resources :furnitures do
+    resources :transactions, only: %i[new create]
   end
-  resources :transaction, only: %i[show index destroy edit update]
+  resources :transactions, only: %i[show index destroy edit update]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
