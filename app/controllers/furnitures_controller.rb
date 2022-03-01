@@ -2,7 +2,8 @@ class FurnituresController < ApplicationController
 before_action :set_furniture, only:[:show, :update, :edit, :destroy]
 
   def index
-    @furniture = Furniture.all
+    @user = current_user
+    @furnitures = policy_scope(Furniture).order(created_at: :desc)
   end
 
   def show

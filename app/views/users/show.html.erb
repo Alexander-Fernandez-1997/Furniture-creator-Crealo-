@@ -1,0 +1,36 @@
+<h1 class= "text-center"> Welcome to <%= @user.fullname %>s profile  </h1>
+
+<div>
+<h2 class = "text-center">List of creations</h2>
+
+<% @user.furniture.each do |furniture| %>
+<div>
+<h3> <%= furniture.category %> </h3>
+<h4>Details:</h4>
+<ol>
+<li> Widht:<%= furniture.widht %> </li>
+<li> Lenght:<%= furniture.lenght %> </li>
+<li> Depth:<%= furniture.depth %> </li>
+<li> Shelves:<%= furniture.shelves %> </li>
+<li> Material:<%= furniture.material %> </li>
+</ol>
+</div>
+<% end  %>
+
+</div>
+
+<div>
+<h2>List of transactions</h2>
+
+<%= @user.transactions.each do |transaction| %>
+<div>
+<h3> Date:<%= transaction.created_at %>  </h3>
+<ol>
+<li>Buying : <%= transaction.furniture.category %></li>
+<li>Payment Method: <%= transaction.payment_method %> </li>
+<li>Shipping time: <%= transaction.shipping_time %> </li>
+</ol>
+</div>
+<% end %>
+
+</div>
