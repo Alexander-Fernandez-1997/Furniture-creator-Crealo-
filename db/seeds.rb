@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Texture.create(name: "Light grey", url: "https://www.fimodecor.com/uploads/M9100-4Z.jpg" )
+
+Texture.create(name: "Light brown", url: "https://www.fimodecor.com/uploads/927064ca.jpg" )
+
+Texture.create(name: "Dark brown", url: "https://www.fimodecor.com/uploads/M9101-2.jpg" )
+
+Texture.create(name: "Brown", url: "https://www.fimodecor.com/uploads/M9101-1.jpg" )
+
+Texture.create(name: "Black", url: "https://www.miliashop.com/img/co/105989.jpg" )
+
+Texture.create(name: "Wood", url: "https://sc01.alicdn.com/kf/HTB1_wOuJVXXXXXiaXXXq6xXFXXXy/47811/HTB1_wOuJVXXXXXiaXXXq6xXFXXXy.jpg" )
+
