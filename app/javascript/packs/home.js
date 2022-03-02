@@ -53,6 +53,7 @@ roof.material = new THREE.MeshPhongMaterial( { color: grey } )
 roof.position.y += 20;
 scene.add( roof );
 
+
 // Bookshelf
 
 const bottom = new THREE.Mesh( new THREE.BoxGeometry( 10, 0.3, 5 ), new THREE.MeshPhongMaterial( {color: grey} ) );
@@ -75,7 +76,21 @@ const shelf3 = bottom.clone();
 shelf3.position.y += 15;
 scene.add( shelf3 );
 
+// Bookshelf parameters
 
+let width = document.getElementById("width")
+
+width.addEventListener("input", (ev) => {
+  ev.preventDefault();
+  let x = width.value / 10;
+  bottom.scale.x = x;
+  back.scale.x = x;
+  shelf1.scale.x = x;
+  shelf2.scale.x = x;
+  shelf3.scale.x = x;
+  renderer.render( scene, camera );
+  console.log(width.value);
+});
 
 // Lights
 
@@ -102,7 +117,7 @@ function moveCamera() {
 
   camera.position.x = t * -0.05;
 
-  const x = 15
+  const x = 10
 
   bottom.position.x = t * -0.05 - x;
   shelf1.position.x = t * -0.05 - x;
