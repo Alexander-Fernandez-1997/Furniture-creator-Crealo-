@@ -66,12 +66,12 @@ scene.add(roof);
 // Bookshelf
 
 
-const bottom = new THREE.Mesh( new THREE.BoxGeometry( 10, 0.2, 10 ), new THREE.MeshPhongMaterial( {color: grey} ) );
+const bottom = new THREE.Mesh( new THREE.BoxGeometry( 10, 0.2, 5 ), new THREE.MeshPhongMaterial( {color: grey} ) );
 bottom.position.set(0, -8, -10);
 scene.add(bottom);
 
-const back = new THREE.Mesh( new THREE.BoxGeometry( 10, 10, 0.2 ), new THREE.MeshPhongMaterial( {color: grey} ) );
-back.position.set(0, 0, -15);
+const back = new THREE.Mesh( new THREE.BoxGeometry( 10, 15, 0.2 ), new THREE.MeshPhongMaterial( {color: grey} ) );
+back.position.set(0, -0.5, -12.5);
 scene.add( back );
 
 
@@ -170,10 +170,10 @@ scene.add(torus);
 // Move Camara
 
 function moveCamera() {
-  const t = document.body.getBoundingClientRect().top;
+  const t = document.getElementById("wrapper").getBoundingClientRect().left;
 
   camera.position.x = t * -0.05;
-  
+
   const x = 10
 
   bottom.position.x = t * -0.05 - x;
@@ -184,7 +184,7 @@ function moveCamera() {
   back.position.x = t * -0.05 - x;
 }
 
-document.body.onscroll = moveCamera;
+document.getElementById("outer-wrapper").onscroll = moveCamera;
 moveCamera();
 
 const rotation = false;

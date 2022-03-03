@@ -8,16 +8,16 @@
   width: 400vw;
 }
 .one {
-  background: #efdefe;
+  background: #efdefe38;
 }
 .two {
-  background: #a3f3d3;
+  background: #a3f3d333;
 }
 .three {
-  background: #0bbaa0;
+  background: #0bbaa03b;
 }
 .four {
-  background: #00dfdf;
+  background: #00dfdf33;
 }
 
 .wrapper {
@@ -33,11 +33,12 @@
   overflow-x: hidden;
   position: absolute;
 }
-
+/*
 .outer-wrapper {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+   scrollbar-width: none;
+   -ms-overflow-style: none;
 }
 ::-webkit-scrollbar {
   display: none;
 }
+*/

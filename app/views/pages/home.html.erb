@@ -1,15 +1,14 @@
 <canvas id="home"></canvas>
 
-
-<div class="outer-wrapper">
-  <div class="wrapper">
-    <div class="slide"></div>
-<%= render "shared/sliders1" %>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
+<div class="outer-wrapper" id="outer-wrapper">
+  <div class="wrapper" id="wrapper">
+    <div class="slide one">
+      <%= render "shared/sliders1" %>
+    </div>
+    <div class="slide two"></div>
+    <div class="slide three"></div>
+    <div class="slide four"></div>
   </div>
 </div>
 
 <%= javascript_pack_tag 'home'%>
-
