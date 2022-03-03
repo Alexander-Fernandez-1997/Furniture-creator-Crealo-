@@ -22,6 +22,11 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'stripe_event'
+
+gem 'stripe'
+# gem money-rails para stripe
+gem 'money-rails', '~>1.12'
 # use pundit for policys
 gem 'pundit'
 # Use Active Storage variant
