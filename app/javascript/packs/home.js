@@ -65,15 +65,16 @@ scene.add(roof);
 
 // Bookshelf
 
+const bsx = 10
 
-const bottom = new THREE.Mesh( new THREE.BoxGeometry( 10, 0.2, 5 ), new THREE.MeshPhongMaterial( {color: grey} ) );
+
+const bottom = new THREE.Mesh( new THREE.BoxGeometry( bsx, 0.2, 5 ), new THREE.MeshPhongMaterial( {color: grey} ) );
 bottom.position.set(0, -8, -10);
 scene.add(bottom);
 
-const back = new THREE.Mesh( new THREE.BoxGeometry( 10, 15, 0.2 ), new THREE.MeshPhongMaterial( {color: grey} ) );
+const back = new THREE.Mesh( new THREE.BoxGeometry( bsx, 15, 0.2 ), new THREE.MeshPhongMaterial( {color: grey} ) );
 back.position.set(0, -0.5, -12.5);
 scene.add( back );
-
 
 const shelf1 = bottom.clone();
 shelf1.position.y += 5;
