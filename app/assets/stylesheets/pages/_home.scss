@@ -6,6 +6,22 @@ canvas {
   z-index: -100;
 }
 .imgsize {
-  height: 100px;
-  width: 100px;
+  height: 25px;
+  width: 25px;
+}
+#cajita {
+  width: 50vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#cajitamax {
+  width: 40vh;
+  background: hsl(0, 0%, 100% / 0.1);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(84, 84, 86, 0.2);
+}
+#transparente {
+  background: hsl(0, 0%, 100% / 0.1);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(84, 84, 86, 0.2);
 }
