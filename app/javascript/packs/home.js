@@ -65,32 +65,47 @@ scene.add(roof);
 
 // Bookshelf
 
+// bsx = Bookshelf x dimension
+// bsy = Bookshelf y dimension
+// bsz = Bookshelf z dimension
+
+// bspy = Bookshelf y position
+// bspz = Bookshelf z position
+
+// sh = Shelf height
+
 const bsx = 10
+const bsy = 15
+const bsz = 5
 
+const bspy = -8
+const bspz = -10
 
-const bottom = new THREE.Mesh( new THREE.BoxGeometry( bsx, 0.2, 5 ), new THREE.MeshPhongMaterial( {color: grey} ) );
-bottom.position.set(0, -8, -10);
+const sh = 5
+
+const bottom = new THREE.Mesh( new THREE.BoxGeometry( bsx, 0.2, bsz ), new THREE.MeshPhongMaterial( {color: grey} ) );
+bottom.position.set(0, bspy, bspz);
 scene.add(bottom);
 
-const back = new THREE.Mesh( new THREE.BoxGeometry( bsx, 15, 0.2 ), new THREE.MeshPhongMaterial( {color: grey} ) );
-back.position.set(0, -0.5, -12.5);
+const back = new THREE.Mesh( new THREE.BoxGeometry( bsx, bsy, 0.2 ), new THREE.MeshPhongMaterial( {color: grey} ) );
+back.position.set(0, -0.5, bspz - (bsz / 2));
 scene.add( back );
 
 const shelf1 = bottom.clone();
-shelf1.position.y += 5;
+shelf1.position.y += sh;
 scene.add(shelf1);
 
 const shelf2 = bottom.clone();
-shelf2.position.y += 10;
+shelf2.position.y += (sh * 2);
 scene.add(shelf2);
 
 const shelf3 = bottom.clone();
-shelf3.position.y += 15;
+shelf3.position.y += (sh * 3);
 
 scene.add( shelf3 );
 
 const shelf4 = bottom.clone();
-shelf4.position.y += 20;
+shelf4.position.y += (sh * 4);
 scene.add( shelf4 );
 
 // Bookshelf parameters
@@ -103,7 +118,7 @@ let shelves = document.getElementById("shelves")
 width.addEventListener("input", (ev) => {
   ev.preventDefault();
 
-  let x = width.value / 100;
+  let x = width.value / (bsx * 10);
   bottom.scale.x = x;
   back.scale.x = x;
   shelf1.scale.x = x;
@@ -119,7 +134,7 @@ width.addEventListener("input", (ev) => {
 height.addEventListener("input", (ev) => {
   ev.preventDefault();
 
-  let y = height.value / 100;
+  let y = height.value / (bsy * 10);
   back.scale.y = y;
   back.position.y = -8 + height.value / 20;
 
@@ -127,7 +142,7 @@ height.addEventListener("input", (ev) => {
   shelf1.position.y = -3 - (200 - height.value) / 10 / 4;
   shelf2.position.y = 2 - (200 - height.value) / 10 / 2;
   shelf3.position.y = 7 - (200 - height.value) / 10 / (4 / 3);
-  shelf4.position.y = 12 - (200 - height.value) / 10;
+  shelf4.position.y = 12 - (200 - height.value) / 10 / 1;
 
   renderer.render( scene, camera );
 });
@@ -135,19 +150,27 @@ height.addEventListener("input", (ev) => {
 depth.addEventListener("input", (ev) => {
   ev.preventDefault();
 
-  let z = depth.value / 100;
+  let z = depth.value / (bsz * 10);
   bottom.scale.z = z;
-  bottom.position.z = -15 + (depth.value / 20);
+  bottom.position.z = bspz + (depth.value / 20) - (bsz / 2);
   shelf1.scale.z = z;
-  shelf1.position.z = -15 + (depth.value / 20);
+  shelf1.position.z = bspz + (depth.value / 20) - (bsz / 2);
   shelf2.scale.z = z;
-  shelf2.position.z = -15 + (depth.value / 20);
+  shelf2.position.z = bspz + (depth.value / 20) - (bsz / 2);
   shelf3.scale.z = z;
-  shelf3.position.z = -15 + (depth.value / 20);
+  shelf3.position.z = bspz + (depth.value / 20) - (bsz / 2);
   shelf4.scale.z = z;
-  shelf4.position.z = -15 + (depth.value / 20);
+  shelf4.position.z = bspz + (depth.value / 20) - (bsz / 2);
 
-  console.log(width.value);
+  console.log(z)
+
+  renderer.render( scene, camera );
+});
+
+shelves.addEventListener("input", (ev) => {
+  ev.preventDefault();
+
+  scene.remove(shelf4);
 
   renderer.render( scene, camera );
 });
@@ -175,7 +198,7 @@ function moveCamera() {
 
   camera.position.x = t * -0.05;
 
-  const x = 10
+  const x = 0
 
   bottom.position.x = t * -0.05 - x;
   shelf1.position.x = t * -0.05 - x;
