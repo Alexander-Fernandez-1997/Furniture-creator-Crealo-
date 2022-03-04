@@ -81,11 +81,11 @@ const bsz = 5
 const bspy = -8
 const bspz = -10
 
-const sh = 5
+const sh = 2
 
 const bottom = new THREE.Mesh( new THREE.BoxGeometry( bsx, 0.2, bsz ), new THREE.MeshPhongMaterial( {color: grey} ) );
 bottom.position.set(0, bspy, bspz);
-scene.add(bottom);
+scene.add( bottom );
 
 const back = new THREE.Mesh( new THREE.BoxGeometry( bsx, bsy, 0.2 ), new THREE.MeshPhongMaterial( {color: grey} ) );
 back.position.set(0, -0.5, bspz - (bsz / 2));
@@ -101,12 +101,35 @@ scene.add(shelf2);
 
 const shelf3 = bottom.clone();
 shelf3.position.y += (sh * 3);
-
-scene.add( shelf3 );
+scene.add(shelf3);
 
 const shelf4 = bottom.clone();
 shelf4.position.y += (sh * 4);
-scene.add( shelf4 );
+scene.add(shelf4);
+
+const shelf5 = bottom.clone();
+shelf5.position.y += (sh * 5);
+scene.add(shelf5);
+
+const shelf6 = bottom.clone();
+shelf6.position.y += (sh * 6);
+
+
+const shelf7 = bottom.clone();
+shelf7.position.y += (sh * 7);
+
+
+const shelf8 = bottom.clone();
+shelf8.position.y += (sh * 8);
+
+
+const shelf9 = bottom.clone();
+shelf9.position.y += (sh * 9);
+
+
+const shelf10 = bottom.clone();
+shelf10.position.y += (sh * 10);
+
 
 // Bookshelf parameters
 
@@ -114,6 +137,25 @@ let width = document.getElementById("width")
 let height = document.getElementById("height")
 let depth = document.getElementById("depth")
 let shelves = document.getElementById("shelves")
+
+let osv = parseInt(shelves.value, 10);
+
+shelves.addEventListener("input", (ev) => {
+  ev.preventDefault();
+
+  let nsv = parseInt(shelves.value, 10);
+
+  if (nsv > osv) {
+    console.log("es mas grande");
+    scene.add(eval(`shelf` + `${osv}`))
+  } else {
+    console.log("es mas chico");
+    scene.remove(eval(`shelf` + `${nsv}`))
+  };
+
+  osv = shelves.value;
+  renderer.render( scene, camera );
+});
 
 width.addEventListener("input", (ev) => {
   ev.preventDefault();
@@ -125,10 +167,11 @@ width.addEventListener("input", (ev) => {
   shelf2.scale.x = x;
   shelf3.scale.x = x;
   shelf4.scale.x = x;
-
-  console.log(width.value);
-
-  renderer.render( scene, camera );
+  shelf5.scale.x = x;
+  shelf6.scale.x = x;
+  shelf7.scale.x = x;
+  shelf8.scale.x = x;
+  shelf10.scale.x = x;
 });
 
 height.addEventListener("input", (ev) => {
@@ -136,15 +179,21 @@ height.addEventListener("input", (ev) => {
 
   let y = height.value / (bsy * 10);
   back.scale.y = y;
-  back.position.y = -8 + height.value / 20;
+  back.position.y = bspy + height.value / 20;
 
-  bottom.position.y = -8;
-  shelf1.position.y = -3 - (200 - height.value) / 10 / 4;
-  shelf2.position.y = 2 - (200 - height.value) / 10 / 2;
-  shelf3.position.y = 7 - (200 - height.value) / 10 / (4 / 3);
-  shelf4.position.y = 12 - (200 - height.value) / 10 / 1;
+  let sc = 10
 
-  renderer.render( scene, camera );
+  bottom.position.y = bspy;
+  shelf1.position.y = bspy + sh - (200 - height.value) / 10 / sc;
+  shelf2.position.y = bspy + (sh * 2) - (200 - height.value) / 10 / (sc / 2);
+  shelf3.position.y = bspy + (sh * 3) - (200 - height.value) / 10 / (sc / 3);
+  shelf4.position.y = bspy + (sh * 4) - (200 - height.value) / 10 / (sc / 4);
+  shelf5.position.y = bspy + (sh * 5) - (200 - height.value) / 10 / (sc / 5);
+  shelf6.position.y = bspy + (sh * 6) - (200 - height.value) / 10 / (sc / 6);
+  shelf7.position.y = bspy + (sh * 7) - (200 - height.value) / 10 / (sc / 7);
+  shelf8.position.y = bspy + (sh * 8) - (200 - height.value) / 10 / (sc / 8);
+  shelf9.position.y = bspy + (sh * 9) - (200 - height.value) / 10 / (sc / 9);
+  shelf10.position.y = bspy + (sh * 10) - (200 - height.value) / 10 / (sc / 10);
 });
 
 depth.addEventListener("input", (ev) => {
@@ -161,19 +210,22 @@ depth.addEventListener("input", (ev) => {
   shelf3.position.z = bspz + (depth.value / 20) - (bsz / 2);
   shelf4.scale.z = z;
   shelf4.position.z = bspz + (depth.value / 20) - (bsz / 2);
+  shelf5.scale.z = z;
+  shelf5.position.z = bspz + (depth.value / 20) - (bsz / 2);
+  shelf6.scale.z = z;
+  shelf6.position.z = bspz + (depth.value / 20) - (bsz / 2);
+  shelf7.scale.z = z;
+  shelf7.position.z = bspz + (depth.value / 20) - (bsz / 2);
+  shelf8.scale.z = z;
+  shelf8.position.z = bspz + (depth.value / 20) - (bsz / 2);
+  shelf9.scale.z = z;
+  shelf9.position.z = bspz + (depth.value / 20) - (bsz / 2);
+  shelf10.scale.z = z;
+  shelf10.position.z = bspz + (depth.value / 20) - (bsz / 2);
 
-  console.log(z)
-
-  renderer.render( scene, camera );
 });
 
-shelves.addEventListener("input", (ev) => {
-  ev.preventDefault();
 
-  scene.remove(shelf4);
-
-  renderer.render( scene, camera );
-});
 
 // Lights
 
