@@ -87,7 +87,9 @@ const bottom = new THREE.Mesh( new THREE.BoxGeometry( bsx, 0.2, bsz ), new THREE
 bottom.position.set(0, bspy, bspz);
 scene.add( bottom );
 
-const back = new THREE.Mesh( new THREE.BoxGeometry( bsx, bsy, 0.2 ), new THREE.MeshPhongMaterial( {color: grey} ) );
+const backGeometry = new THREE.BoxGeometry( bsx, bsy, 0.2 );
+backGeometry.translate( 0, 0, 2.5 );
+const back = new THREE.Mesh(backGeometry , new THREE.MeshPhongMaterial( {color: grey} ) );
 back.position.set(0, -0.5, bspz - (bsz / 2));
 scene.add( back );
 
@@ -180,7 +182,9 @@ height.addEventListener("input", (ev) => {
   ev.preventDefault();
 
   let y = height.value / (bsy * 10);
+
   back.scale.y = y;
+
   back.position.y = bspy + height.value / 20;
 
   bottom.position.y = bspy;
@@ -270,7 +274,7 @@ function moveCamera() {
 document.getElementById("outer-wrapper").onscroll = moveCamera;
 moveCamera();
 
-const rotation = true;
+const rotation = false;
 
 // Animation Loop
 function animate() {
