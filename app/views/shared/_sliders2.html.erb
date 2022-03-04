@@ -1,11 +1,12 @@
-<div id="cajitamax" class="mt-5 ms-5">
-<h2>List of textures</h2>
-<div id="cajita">
-<% Texture.all.each do |texture|  %>
-<div>
-<img class="imgsize" src= <%= texture.url %>  alt=" <% texture.url %>">
-<p> <%= texture.name %> </p>
+<div id="cajitamax" class="mt-5 ms-5 round text-center">
+  <h2>List of textures</h2>
+    <div id="cajita">
+      <% Texture.all.each do |texture|  %>
+      <div id="cajitamin">
+        <img id="imgsize" src= <%= texture.url %>  alt=" <% texture.url %>">
+        <p> <%= texture.name %> </p>
+      </div>
+    <% end  %>
+  </div>
 </div>
-<% end  %>
-</div>
-</div>
+
