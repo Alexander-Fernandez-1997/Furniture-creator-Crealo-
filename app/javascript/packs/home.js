@@ -165,11 +165,15 @@ height.addEventListener("input", (ev) => {
   ev.preventDefault();
 
   const sy = height.value / (bsy * 10);
-  // const sp = bspy + (height.value / 20);
-  const spro = (10 - (shelves.value - 1)) / 10;
 
-  back.scale.y = sy - (sy * spro);
-  back.position.y = bspy + (height.value * ((shelves.value - 1) / 10) / 20);
+
+  // ECUACION NO NECESARIA:
+  //const spro = (10 - (shelves.value - 1)) / 10;
+  //back.scale.y = sy - (sy * spro);
+  //back.position.y = bspy + (height.value * ((shelves.value - 1) / 10) / 20);
+
+  back.scale.y = sy
+  back.position.y = bspy + (height.value / 20);
 
   bottom.position.y = bspy;
   shelf1.position.y = bspy + sh - (200 - height.value) / 10 / sc;
@@ -242,7 +246,7 @@ depth.addEventListener("input", (ev) => {
 // Lights
 
 const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(5, 5, 5);
+pointLight.position.set(0, 5, 5);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
