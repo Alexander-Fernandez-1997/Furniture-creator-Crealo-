@@ -257,13 +257,20 @@ function moveCamera() {
   shelf2.position.x = t * -0.05 - x;
   shelf3.position.x = t * -0.05 - x;
   shelf4.position.x = t * -0.05 - x;
+  shelf5.position.x = t * -0.05 - x;
+  shelf6.position.x = t * -0.05 - x;
+  shelf7.position.x = t * -0.05 - x;
+  shelf8.position.x = t * -0.05 - x;
+  shelf9.position.x = t * -0.05 - x;
+  shelf10.position.x = t * -0.05 - x;
+
   back.position.x = t * -0.05 - x;
 }
 
 document.getElementById("outer-wrapper").onscroll = moveCamera;
 moveCamera();
 
-const rotation = false;
+const rotation = true;
 
 // Animation Loop
 function animate() {
@@ -273,12 +280,22 @@ function animate() {
   torus.rotation.y += 0.01;
   torus.rotation.z += 0.01;
 
+  const bsr = 0.005
+
   if (rotation === true) {
-    bottom.rotation.y += 0.01;
-    shelf1.rotation.y += 0.01;
-    shelf2.rotation.y += 0.01;
-    shelf3.rotation.y += 0.01;
-    back.rotation.y += 0.01;
+    bottom.rotation.y += bsr;
+    shelf1.rotation.y += bsr;
+    shelf2.rotation.y += bsr;
+    shelf3.rotation.y += bsr;
+    shelf4.rotation.y += bsr;
+    shelf5.rotation.y += bsr;
+    shelf6.rotation.y += bsr;
+    shelf7.rotation.y += bsr;
+    shelf8.rotation.y += bsr;
+    shelf9.rotation.y += bsr;
+    shelf10.rotation.y += bsr;
+
+    back.rotation.y += bsr;
   }
 
   // controls.update();
