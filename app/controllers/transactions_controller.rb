@@ -13,12 +13,12 @@ class TransactionsController < ApplicationController
   def create
     
       furniture = Furniture.find(params[:furniture_id])
-      transaction = Transaction.create!(furniture: furniture, furniture_sku: furniture.sku, amount: furniture.price, state: 'pending', user: current_user)
+      transaction = Transaction.create!(furniture: furniture,  amount: furniture.price, state: 'pending', user: current_user)
 
       session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
-        name: furniture.sku,
+        name: furniture.category,
         amount: furniture.price_cents,
         currency: 'usd',
         quantity: 1

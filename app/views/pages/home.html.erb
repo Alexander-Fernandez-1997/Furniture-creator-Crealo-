@@ -28,7 +28,13 @@
 </div>
     </div>
     <div class="slide three" id="three">
-   <%# <%= link_to 'Buy', new_furniture_transaction_path  %> 
+      
+      <% if params[:id]  %>
+      <%= simple_form_for [Furniture.find(params[:id]),Transaction.new] do |f| %>
+      <%= f.submit "Buy", class: "btn btn-dark btn-lg" %>
+      <% end  %>
+      <% end  %>
+
     </div>
     <div class="slide four"></div>
   </div>
