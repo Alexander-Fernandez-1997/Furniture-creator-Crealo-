@@ -174,14 +174,14 @@ width.addEventListener("input", (ev) => {
   shelf10.scale.x = x;
 });
 
+let sc = 10
+
 height.addEventListener("input", (ev) => {
   ev.preventDefault();
 
   let y = height.value / (bsy * 10);
   back.scale.y = y;
   back.position.y = bspy + height.value / 20;
-
-  let sc = 10
 
   bottom.position.y = bspy;
   shelf1.position.y = bspy + sh - (200 - height.value) / 10 / sc;
@@ -296,6 +296,10 @@ function animate() {
     shelf10.rotation.y += bsr;
 
     back.rotation.y += bsr;
+  }
+
+  if (camera.position.x > 50) {
+    shelf1.position.y = (bspy + sh - (200 - height.value) / 10 / sc) + (camera.position.x - 50);
   }
 
   // controls.update();
