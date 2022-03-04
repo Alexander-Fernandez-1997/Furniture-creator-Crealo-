@@ -148,15 +148,40 @@ shelves.addEventListener("input", (ev) => {
   let nsv = parseInt(shelves.value, 10);
 
   if (nsv > osv) {
-    console.log("es mas grande");
     scene.add(eval(`shelf` + `${osv}`))
   } else {
-    console.log("es mas chico");
     scene.remove(eval(`shelf` + `${nsv}`))
   };
 
   osv = shelves.value;
   renderer.render( scene, camera );
+});
+
+// sc = shelf count
+
+let sc = 10
+
+height.addEventListener("input", (ev) => {
+  ev.preventDefault();
+
+  const sy = height.value / (bsy * 10);
+  // const sp = bspy + (height.value / 20);
+  const spro = (10 - (shelves.value - 1)) / 10;
+
+  back.scale.y = sy - (sy * spro);
+  back.position.y = bspy + (height.value * ((shelves.value - 1) / 10) / 20);
+
+  bottom.position.y = bspy;
+  shelf1.position.y = bspy + sh - (200 - height.value) / 10 / sc;
+  shelf2.position.y = bspy + (sh * 2) - (200 - height.value) / 10 / (sc / 2);
+  shelf3.position.y = bspy + (sh * 3) - (200 - height.value) / 10 / (sc / 3);
+  shelf4.position.y = bspy + (sh * 4) - (200 - height.value) / 10 / (sc / 4);
+  shelf5.position.y = bspy + (sh * 5) - (200 - height.value) / 10 / (sc / 5);
+  shelf6.position.y = bspy + (sh * 6) - (200 - height.value) / 10 / (sc / 6);
+  shelf7.position.y = bspy + (sh * 7) - (200 - height.value) / 10 / (sc / 7);
+  shelf8.position.y = bspy + (sh * 8) - (200 - height.value) / 10 / (sc / 8);
+  shelf9.position.y = bspy + (sh * 9) - (200 - height.value) / 10 / (sc / 9);
+  shelf10.position.y = bspy + (sh * 10) - (200 - height.value) / 10 / (sc / 10);
 });
 
 width.addEventListener("input", (ev) => {
@@ -173,59 +198,42 @@ width.addEventListener("input", (ev) => {
   shelf6.scale.x = x;
   shelf7.scale.x = x;
   shelf8.scale.x = x;
+  shelf9.scale.x = x;
   shelf10.scale.x = x;
 });
 
-let sc = 10
 
-height.addEventListener("input", (ev) => {
-  ev.preventDefault();
 
-  let y = height.value / (bsy * 10);
 
-  back.scale.y = y;
-
-  back.position.y = bspy + height.value / 20;
-
-  bottom.position.y = bspy;
-  shelf1.position.y = bspy + sh - (200 - height.value) / 10 / sc;
-  shelf2.position.y = bspy + (sh * 2) - (200 - height.value) / 10 / (sc / 2);
-  shelf3.position.y = bspy + (sh * 3) - (200 - height.value) / 10 / (sc / 3);
-  shelf4.position.y = bspy + (sh * 4) - (200 - height.value) / 10 / (sc / 4);
-  shelf5.position.y = bspy + (sh * 5) - (200 - height.value) / 10 / (sc / 5);
-  shelf6.position.y = bspy + (sh * 6) - (200 - height.value) / 10 / (sc / 6);
-  shelf7.position.y = bspy + (sh * 7) - (200 - height.value) / 10 / (sc / 7);
-  shelf8.position.y = bspy + (sh * 8) - (200 - height.value) / 10 / (sc / 8);
-  shelf9.position.y = bspy + (sh * 9) - (200 - height.value) / 10 / (sc / 9);
-  shelf10.position.y = bspy + (sh * 10) - (200 - height.value) / 10 / (sc / 10);
-});
 
 depth.addEventListener("input", (ev) => {
   ev.preventDefault();
 
-  let z = depth.value / (bsz * 10);
-  bottom.scale.z = z;
-  bottom.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf1.scale.z = z;
-  shelf1.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf2.scale.z = z;
-  shelf2.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf3.scale.z = z;
-  shelf3.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf4.scale.z = z;
-  shelf4.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf5.scale.z = z;
-  shelf5.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf6.scale.z = z;
-  shelf6.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf7.scale.z = z;
-  shelf7.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf8.scale.z = z;
-  shelf8.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf9.scale.z = z;
-  shelf9.position.z = bspz + (depth.value / 20) - (bsz / 2);
-  shelf10.scale.z = z;
-  shelf10.position.z = bspz + (depth.value / 20) - (bsz / 2);
+  const zp = bspz + (depth.value / 20) - (bsz / 2);
+
+  let zs = depth.value / (bsz * 10);
+  bottom.scale.z = zs;
+  bottom.position.z = zp;
+  shelf1.scale.z = zs;
+  shelf1.position.z = zp;
+  shelf2.scale.z = zs;
+  shelf2.position.z = zp;
+  shelf3.scale.z = zs;
+  shelf3.position.z = zp;
+  shelf4.scale.z = zs;
+  shelf4.position.z = zp;
+  shelf5.scale.z = zs;
+  shelf5.position.z = zp;
+  shelf6.scale.z = zs;
+  shelf6.position.z = zp;
+  shelf7.scale.z = zs;
+  shelf7.position.z = zp;
+  shelf8.scale.z = zs;
+  shelf8.position.z = zp;
+  shelf9.scale.z = zs;
+  shelf9.position.z = zp;
+  shelf10.scale.z = zs;
+  shelf10.position.z = zp;
 
 });
 
