@@ -310,10 +310,6 @@ function animate() {
     back.rotation.y += bsr;
   }
 
-  if (camera.position.x > 50) {
-    shelf1.position.y = (bspy + sh - (200 - height.value) / 10 / sc) + (camera.position.x - 50);
-  }
-
   // controls.update();
 
   renderer.render(scene, camera);
