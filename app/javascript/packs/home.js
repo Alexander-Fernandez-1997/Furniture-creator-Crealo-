@@ -284,3 +284,27 @@ function animate() {
 }
 
 animate();
+
+// new furniture sliders
+let swidth = document.getElementById("swidth");
+let sheight = document.getElementById("sheight");
+let sdepth = document.getElementById("sdepth");
+let sshelves = document.getElementById("sshelves");
+
+width.addEventListener("input", (e) => {
+  e.preventDefault();
+  swidth.value = width.value;
+});
+height.addEventListener("input", (e) => {
+  e.preventDefault();
+  sheight.value = height.value;
+});
+depth.addEventListener("input", (e) => {
+  e.preventDefault();
+  sdepth.value = depth.value;
+});
+shelves.addEventListener("input", (e) => {
+  e.preventDefault();
+  sshelves.value = shelves.value;
+});
+// // termina aca el slider de new
