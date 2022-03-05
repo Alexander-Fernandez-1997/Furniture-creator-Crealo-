@@ -1,0 +1,33 @@
+#imgsize {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+#cajita {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 8px;
+}
+#cajitamax h2 {
+  margin-bottom: 0px;
+  padding-top: 8px;
+}
+#cajitamax {
+  width: 40vh;
+  background: hsl(0, 0%, 100% / 0.1);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(84, 84, 86, 0.2);
+}
+#transparente {
+  background: hsl(0, 0%, 100% / 0.1);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(84, 84, 86, 0.2);
+}
+#cajitamax:hover h2 {
+  background-color: rgba(209, 209, 209, 0.2);
+}
+#cajitamax:hover #cajita {
+  background-color: rgba(209, 209, 209, 0.2);
+}
+#cajitamin:hover {
+  background-color: rgba(84, 84, 86, 0.2);
+}

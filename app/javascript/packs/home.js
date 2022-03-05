@@ -62,7 +62,6 @@ roof.material = new THREE.MeshPhongMaterial({ color: grey });
 roof.position.y += 20;
 scene.add(roof);
 
-
 // Bookshelf
 
 // bsx = Bookshelf x dimension
@@ -74,18 +73,22 @@ scene.add(roof);
 
 // sh = Shelf height
 
-const bsx = 10
-const bsy = 15
-const bsz = 5
+const bsx = 10;
+const bsy = 15;
+const bsz = 5;
 
-const bspy = -8
-const bspz = -10
+const bspy = -8;
+const bspz = -10;
 
-const sh = 2
+const sh = 2;
 
-const bottom = new THREE.Mesh( new THREE.BoxGeometry( bsx, 0.2, bsz ), new THREE.MeshPhongMaterial( {color: grey} ) );
+const bottom = new THREE.Mesh(
+  new THREE.BoxGeometry(bsx, 0.2, bsz),
+  new THREE.MeshPhongMaterial({ color: grey })
+);
 bottom.position.set(0, bspy, bspz);
-scene.add( bottom );
+scene.add(bottom);
+
 
 const backGeometry = new THREE.BoxGeometry( bsx, bsy, 0.2 );
 backGeometry.translate( 0, 0, 2.5 );
@@ -98,47 +101,42 @@ shelf1.position.y += sh;
 scene.add(shelf1);
 
 const shelf2 = bottom.clone();
-shelf2.position.y += (sh * 2);
+shelf2.position.y += sh * 2;
 scene.add(shelf2);
 
 const shelf3 = bottom.clone();
-shelf3.position.y += (sh * 3);
+shelf3.position.y += sh * 3;
 scene.add(shelf3);
 
 const shelf4 = bottom.clone();
-shelf4.position.y += (sh * 4);
+shelf4.position.y += sh * 4;
 scene.add(shelf4);
 
 const shelf5 = bottom.clone();
-shelf5.position.y += (sh * 5);
+shelf5.position.y += sh * 5;
 scene.add(shelf5);
 
 const shelf6 = bottom.clone();
-shelf6.position.y += (sh * 6);
-
+shelf6.position.y += sh * 6;
 
 const shelf7 = bottom.clone();
-shelf7.position.y += (sh * 7);
-
+shelf7.position.y += sh * 7;
 
 const shelf8 = bottom.clone();
-shelf8.position.y += (sh * 8);
-
+shelf8.position.y += sh * 8;
 
 const shelf9 = bottom.clone();
-shelf9.position.y += (sh * 9);
-
+shelf9.position.y += sh * 9;
 
 const shelf10 = bottom.clone();
-shelf10.position.y += (sh * 10);
-
+shelf10.position.y += sh * 10;
 
 // Bookshelf parameters
 
-let width = document.getElementById("width")
-let height = document.getElementById("height")
-let depth = document.getElementById("depth")
-let shelves = document.getElementById("shelves")
+let width = document.getElementById("width");
+let height = document.getElementById("height");
+let depth = document.getElementById("depth");
+let shelves = document.getElementById("shelves");
 
 let osv = parseInt(shelves.value, 10);
 
@@ -153,8 +151,9 @@ shelves.addEventListener("input", (ev) => {
     scene.remove(eval(`shelf` + `${nsv}`))
   };
 
+
   osv = shelves.value;
-  renderer.render( scene, camera );
+  renderer.render(scene, camera);
 });
 
 // sc = shelf count
@@ -207,9 +206,6 @@ width.addEventListener("input", (ev) => {
 });
 
 
-
-
-
 depth.addEventListener("input", (ev) => {
   ev.preventDefault();
 
@@ -241,8 +237,6 @@ depth.addEventListener("input", (ev) => {
 
 });
 
-
-
 // Lights
 
 const pointLight = new THREE.PointLight(0xffffff);
@@ -266,7 +260,7 @@ function moveCamera() {
 
   camera.position.x = t * -0.05;
 
-  const x = 0
+  const x = 0;
 
   bottom.position.x = t * -0.05 - x;
   shelf1.position.x = t * -0.05 - x;
@@ -320,3 +314,27 @@ function animate() {
 }
 
 animate();
+
+// new furniture sliders
+let swidth = document.getElementById("swidth");
+let sheight = document.getElementById("sheight");
+let sdepth = document.getElementById("sdepth");
+let sshelves = document.getElementById("sshelves");
+
+width.addEventListener("input", (e) => {
+  e.preventDefault();
+  swidth.value = width.value;
+});
+height.addEventListener("input", (e) => {
+  e.preventDefault();
+  sheight.value = height.value;
+});
+depth.addEventListener("input", (e) => {
+  e.preventDefault();
+  sdepth.value = depth.value;
+});
+shelves.addEventListener("input", (e) => {
+  e.preventDefault();
+  sshelves.value = shelves.value;
+});
+// // termina aca el slider de new

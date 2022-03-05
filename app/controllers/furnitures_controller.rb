@@ -7,17 +7,23 @@ before_action :set_furniture, only:[:show, :update, :edit, :destroy]
   end
 
   def show
+    authorize @furniture
   end
 
   def new
     @furniture = Furniture.new
+    authorize @furniture
   end
 
   def create
     @user = current_user
     @furniture = Furniture.new(furniture_params)
+    authorize @furniture
     @furniture.user = @user
     @furniture.save
+    redirect_to controller: "pages", action: "home", id: @furniture.id
+    # redirect_to furniture_transactions_path(@furniture)
+    
   end
 
   def edit
