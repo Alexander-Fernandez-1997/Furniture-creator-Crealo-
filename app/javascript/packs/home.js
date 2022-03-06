@@ -138,54 +138,78 @@ let height = document.getElementById("height");
 let depth = document.getElementById("depth");
 let shelves = document.getElementById("shelves");
 
+// Shelves count
+
 let osv = parseInt(shelves.value, 10);
+
+console.log(height.value);
+height.value = height.value * 2;
+console.log(height.value);
 
 shelves.addEventListener("input", (ev) => {
   ev.preventDefault();
 
-  let nsv = parseInt(shelves.value, 10);
+  let sv = shelves.value;
+  let sc = sv - 1;
+  const sha = ((sh * 10) / sc);
+
+  let nsv = parseInt(sv, 10);
+  const sy = height.value / (bsy * 10);
+
+
 
   if (nsv > osv) {
-    scene.add(eval(`shelf` + `${osv}`))
+    scene.add(eval(`shelf` + `${osv}`));
+    back.scale.y += (back.scale.y * (1 / (osv - 1)));
+    back.position.y += ((height.value / 20) * (1 / (osv - 1)));
+    height.value = height.value * ((nsv - 1) / (osv - 1));
+
+   // height.value += (height.value * (1 / (osv - 1)));
+
   } else {
-    scene.remove(eval(`shelf` + `${nsv}`))
+    scene.remove(eval(`shelf` + `${nsv}`));
+    back.scale.y -= (back.scale.y * (1 / (osv - 1)));
+    back.position.y -= ((height.value / 20) * (1 / (osv - 1)));
+    height.value -= (height.value * (1 / (osv - 1)));
+
   };
 
-
   osv = shelves.value;
-  renderer.render(scene, camera);
 });
 
-// sc = shelf count
+// Height
 
-let sc = 10
 
 height.addEventListener("input", (ev) => {
   ev.preventDefault();
 
   const sy = height.value / (bsy * 10);
 
-
-  // ECUACION NO NECESARIA:
-  //const spro = (10 - (shelves.value - 1)) / 10;
-  //back.scale.y = sy - (sy * spro);
-  //back.position.y = bspy + (height.value * ((shelves.value - 1) / 10) / 20);
+  let sv = shelves.value
+  // sv = shelves value
+  let sc = sv - 1
+  // sc = shelf count
+  const sha = ((sh * 10) / sc);
+  // sha = shelf height actualized
 
   back.scale.y = sy
   back.position.y = bspy + (height.value / 20);
 
+
   bottom.position.y = bspy;
-  shelf1.position.y = bspy + sh - (200 - height.value) / 10 / sc;
-  shelf2.position.y = bspy + (sh * 2) - (200 - height.value) / 10 / (sc / 2);
-  shelf3.position.y = bspy + (sh * 3) - (200 - height.value) / 10 / (sc / 3);
-  shelf4.position.y = bspy + (sh * 4) - (200 - height.value) / 10 / (sc / 4);
-  shelf5.position.y = bspy + (sh * 5) - (200 - height.value) / 10 / (sc / 5);
-  shelf6.position.y = bspy + (sh * 6) - (200 - height.value) / 10 / (sc / 6);
-  shelf7.position.y = bspy + (sh * 7) - (200 - height.value) / 10 / (sc / 7);
-  shelf8.position.y = bspy + (sh * 8) - (200 - height.value) / 10 / (sc / 8);
-  shelf9.position.y = bspy + (sh * 9) - (200 - height.value) / 10 / (sc / 9);
-  shelf10.position.y = bspy + (sh * 10) - (200 - height.value) / 10 / (sc / 10);
+  shelf1.position.y = bspy + (sha * 1) - (200 - height.value) / 10 * (1 / sc);
+  shelf2.position.y = bspy + (sha * 2) - (200 - height.value) / 10 * (2 / sc);
+  shelf3.position.y = bspy + (sha * 3) - (200 - height.value) / 10 * (3 / sc);
+  shelf4.position.y = bspy + (sha * 4) - (200 - height.value) / 10 * (4 / sc);
+  shelf5.position.y = bspy + (sha * 5) - (200 - height.value) / 10 * (5 / sc);
+  shelf6.position.y = bspy + (sha * 6) - (200 - height.value) / 10 * (6 / sc);
+  shelf7.position.y = bspy + (sha * 7) - (200 - height.value) / 10 * (7 / sc);
+  shelf8.position.y = bspy + (sha * 8) - (200 - height.value) / 10 * (8 / sc);
+  shelf9.position.y = bspy + (sha * 9) - (200 - height.value) / 10 * (9 / sc);
+  shelf10.position.y = bspy + (sha * 10) - (200 - height.value) / 10 * (10 / sc);
 });
+
+// Width
 
 width.addEventListener("input", (ev) => {
   ev.preventDefault();
@@ -205,6 +229,7 @@ width.addEventListener("input", (ev) => {
   shelf10.scale.x = x;
 });
 
+// Depth
 
 depth.addEventListener("input", (ev) => {
   ev.preventDefault();
