@@ -14,3 +14,6 @@ ActiveStorage.start();
 
 import "controllers";
 import "bootstrap";
+// import { renderFurniture } from "../plugins/three";
+
+// renderFurniture();

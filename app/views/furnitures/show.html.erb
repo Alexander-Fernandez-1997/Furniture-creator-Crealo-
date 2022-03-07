@@ -1,6 +1,8 @@
 <h1> <%= @furniture.category %> </h1>
 
-<div class="container">
+<div class = "showbox">
+
+<div class="container" id="tablero">
 
 <div>
 <h2>Category:</h2>
@@ -32,10 +34,17 @@
 <p> <%= @furniture.material %> </p>
 </div>
 
-</div>
-
-
 <%= form_tag transactions_path do %>
   <%= hidden_field_tag 'furniture_id', @furniture.id %>
   <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
 <% end %>
+
+</div>
+
+  <canvas id="furniture"></canvas>
+<div class="canvasbox">
+</div>
+
+</div>
+
+
