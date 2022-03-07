@@ -1,14 +1,17 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-// Colors
+//______________________________________________________________________________ COLORS
+
 const white = new THREE.Color(0xffffff);
 const black = new THREE.Color(0x000000);
 const grey = new THREE.Color(0x808080);
 
-// Scene Camara Renderer
+//______________________________________________________________________________ SCENE
+
 const scene = new THREE.Scene();
 scene.background = white;
+
+//______________________________________________________________________________ CAMARA
 
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -18,6 +21,8 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 13;
 
+//______________________________________________________________________________ RENDERER
+
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#home"),
 });
@@ -25,11 +30,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Orbit controls
-
-// const controls = new OrbitControls( camera, renderer.domElement );
-
-// Room
+//______________________________________________________________________________ ROOM
 
 const roomTexture = new THREE.TextureLoader().load(
   "https://media.istockphoto.com/photos/laminate-wooden-floor-texture-background-picture-id1083302826?k=20&m=1083302826&s=170667a&w=0&h=bSRz2bpnwImMIWa1qPOw7pRIW4EWd_j1zE3zHrdoDtc="
@@ -62,13 +63,12 @@ roof.material = new THREE.MeshPhongMaterial({ color: grey });
 roof.position.y += 25;
 scene.add(roof);
 
-// BOOKSHELF TEXTURE
+//______________________________________________________________________________ BOOKSHELF TEXTURE
 
 //const bookshelfTexture = new THREE.TextureLoader().load(
-//  ...
 //);
 
-// BOOKSHELF
+//______________________________________________________________________________ BOOKSHELF MODEL
 
 const bsx = 10; // Bookshelf x dimension
 const bsy = 15; // Bookshelf y dimension
@@ -130,7 +130,7 @@ shelf9.position.y += sh * 9;
 const shelf10 = bottom.clone();
 shelf10.position.y += sh * 10;
 
-// Bookshelf parameters
+// Bookshelf parameters input __________________________________________________
 
 let width = document.getElementById("width");
 let height = document.getElementById("height");
