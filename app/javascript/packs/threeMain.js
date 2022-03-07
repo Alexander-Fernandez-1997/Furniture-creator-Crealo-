@@ -1,17 +1,17 @@
 import * as THREE from "three";
 
-//______________________________________________________________________________ COLORS
+//______________________________________________________________________________ COLORS ________________________________
 
 const white = new THREE.Color(0xffffff);
 const black = new THREE.Color(0x000000);
 const grey = new THREE.Color(0x808080);
 
-//______________________________________________________________________________ SCENE
+//______________________________________________________________________________ SCENE _________________________________
 
 const scene = new THREE.Scene();
 scene.background = white;
 
-//______________________________________________________________________________ CAMARA
+//______________________________________________________________________________ CAMARA ________________________________
 
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -21,7 +21,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 13;
 
-//______________________________________________________________________________ RENDERER
+//______________________________________________________________________________ RENDERER ______________________________
 
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#home"),
@@ -30,7 +30,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-//______________________________________________________________________________ ROOM
+//______________________________________________________________________________ ROOM __________________________________
 
 const roomTexture = new THREE.TextureLoader().load(
   "https://media.istockphoto.com/photos/laminate-wooden-floor-texture-background-picture-id1083302826?k=20&m=1083302826&s=170667a&w=0&h=bSRz2bpnwImMIWa1qPOw7pRIW4EWd_j1zE3zHrdoDtc="
@@ -63,12 +63,14 @@ roof.material = new THREE.MeshPhongMaterial({ color: grey });
 roof.position.y += 25;
 scene.add(roof);
 
-//______________________________________________________________________________ BOOKSHELF TEXTURE
+//______________________________________________________________________________ BOOKSHELF MODEL _______________________
+
+//______________________________________________________________________________ TEXTURES
 
 //const bookshelfTexture = new THREE.TextureLoader().load(
 //);
 
-//______________________________________________________________________________ BOOKSHELF MODEL
+//______________________________________________________________________________ MESH CREATION
 
 const bsx = 10; // Bookshelf x dimension
 const bsy = 15; // Bookshelf y dimension
@@ -77,20 +79,17 @@ const bsz = 5; // Bookshelf z dimension
 const bspy = -8; // Bookshelf y position
 const bspz = -10; // Bookshelf z position
 
-const sh = 2; // sh = Shelf height
+const bt = 0.2; // Back thickness
+
+const sh = 2; // Shelf height
+const st = 0.2; // Shelf thickness
 
 const bottom = new THREE.Mesh(
-  new THREE.BoxGeometry(bsx, 0.2, bsz),
+  new THREE.BoxGeometry(bsx, st, bsz),
   new THREE.MeshPhongMaterial({ color: grey })
 );
 bottom.position.set(0, bspy, bspz);
 scene.add(bottom);
-
-const backGeometry = new THREE.BoxGeometry( bsx, bsy, 0.2 );
-backGeometry.translate( 0, 0, 2.5 );
-const back = new THREE.Mesh(backGeometry , new THREE.MeshPhongMaterial( {color: grey} ) );
-back.position.set(0, -0.5, bspz - (bsz / 2));
-scene.add( back );
 
 const shelf1 = bottom.clone();
 shelf1.position.y += sh;
@@ -127,14 +126,20 @@ shelf9.position.y += sh * 9;
 const shelf10 = bottom.clone();
 shelf10.position.y += sh * 10;
 
-// Bookshelf parameters input __________________________________________________
+const backGeometry = new THREE.BoxGeometry( bsx, bsy, bt );
+backGeometry.translate( 0, 0, 2.5 );
+const back = new THREE.Mesh(backGeometry , new THREE.MeshPhongMaterial( {color: grey} ) );
+back.position.set(0, -0.5, bspz - (bsz / 2));
+scene.add( back );
+
+//______________________________________________________________________________ INPUT VARIABLES
 
 let width = document.getElementById("width");
 let height = document.getElementById("height");
 let depth = document.getElementById("depth");
 let shelves = document.getElementById("shelves");
 
-// Shelves count
+//______________________________________________________________________________ SHELVES LISTENER
 
 let osv = parseInt(shelves.value, 10);
 
@@ -165,8 +170,7 @@ shelves.addEventListener("input", (ev) => {
   osv = shelves.value;
 });
 
-// Height
-
+//______________________________________________________________________________ HEIGHT LISTENER
 
 height.addEventListener("input", (ev) => {
   ev.preventDefault();
@@ -197,7 +201,7 @@ height.addEventListener("input", (ev) => {
   shelf10.position.y = bspy + (sha * 10) - (200 - height.value) / 10 * (10 / sc);
 });
 
-// Width
+//______________________________________________________________________________ WIDTH LISTENER
 
 width.addEventListener("input", (ev) => {
   ev.preventDefault();
@@ -217,7 +221,7 @@ width.addEventListener("input", (ev) => {
   shelf10.scale.x = x;
 });
 
-// Depth
+//______________________________________________________________________________ DEPTH LISTENER
 
 depth.addEventListener("input", (ev) => {
   ev.preventDefault();
@@ -250,7 +254,7 @@ depth.addEventListener("input", (ev) => {
 
 });
 
-// Lights
+//______________________________________________________________________________ LIGHTS ________________________________
 
 const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(0, 5, 5);
@@ -258,7 +262,7 @@ pointLight.position.set(0, 5, 5);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
 
-// Torus
+//______________________________________________________________________________ TORUS _________________________________
 
 const geometry = new THREE.TorusGeometry(0.5, 0.1, 16, 200);
 const material = new THREE.MeshStandardMaterial({ color: 0x7f00ff });
@@ -266,7 +270,7 @@ const torus = new THREE.Mesh(geometry, material);
 torus.position.set(30, 8, -10);
 scene.add(torus);
 
-// Move Camara
+//______________________________________________________________________________ CAMERA ANIMATION ______________________
 
 function moveCamera() {
   const t = document.getElementById("wrapper").getBoundingClientRect().left;
@@ -295,7 +299,8 @@ moveCamera();
 
 const rotation = false;
 
-// Animation Loop
+//______________________________________________________________________________ ANIMATION LOOP ________________________
+
 function animate() {
   requestAnimationFrame(animate);
 
@@ -321,14 +326,13 @@ function animate() {
     back.rotation.y += bsr;
   }
 
-  // controls.update();
-
   renderer.render(scene, camera);
 }
 
 animate();
 
-// new furniture sliders
+//______________________________________________________________________________ NEW FURNITURE INPUT ___________________
+
 let swidth = document.getElementById("swidth");
 let sheight = document.getElementById("sheight");
 let sdepth = document.getElementById("sdepth");
@@ -350,4 +354,5 @@ shelves.addEventListener("input", (e) => {
   e.preventDefault();
   sshelves.value = shelves.value;
 });
-// // termina aca el slider de new
+
+//______________________________________________________________________________ END ___________________________________
