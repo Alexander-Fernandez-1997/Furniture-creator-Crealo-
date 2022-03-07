@@ -5,3 +5,8 @@ canvas {
   left: 0;
   z-index: -100;
 }
+.positionorder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

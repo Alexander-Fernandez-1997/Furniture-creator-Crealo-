@@ -8,8 +8,8 @@
 <h3> <%= furniture.category %> </h3>
 <h4>Details:</h4>
 <ol>
-<li> Widht:<%= furniture.widht %> </li>
-<li> Lenght:<%= furniture.lenght %> </li>
+<li> Widht:<%= furniture.width %> </li>
+<li> Lenght:<%= furniture.length %> </li>
 <li> Depth:<%= furniture.depth %> </li>
 <li> Shelves:<%= furniture.shelves %> </li>
 <li> Material:<%= furniture.material %> </li>
@@ -22,7 +22,7 @@
 <div mt-4>
 <h2>List of transactions</h2>
 
-<%= @user.transactions.each do |transaction| %>
+<% @user.transactions.each do |transaction| %>
 <div>
 <h3> Date:<%= transaction.created_at %>  </h3>
 <ol>
@@ -34,6 +34,3 @@
 <% end %>
 
 </div>
-
-    <%= render 'shared/sliders1' %>
-        <%= render 'shared/sliders2' %>
