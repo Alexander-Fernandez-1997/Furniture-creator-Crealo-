@@ -21,7 +21,7 @@ before_action :set_furniture, only:[:show, :update, :edit, :destroy]
     authorize @furniture
     @furniture.user = @user
     @furniture.save
-    redirect_to controller: "pages", action: "home", id: @furniture.id
+    redirect_to furniture_path(@furniture)
     # redirect_to furniture_transactions_path(@furniture)
     
   end
