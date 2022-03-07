@@ -1,0 +1,37 @@
+<div class="container" id="tablero">
+
+<div>
+<h3>Category:</h3>
+<h4> <%=  @furniture.category %></h4>
+</div>
+
+<div>
+<h3>Width:</h3>
+<h4> <%= @furniture.width %> </h4>
+</div>
+
+<div>
+<h3>Lenght:</h3>
+<h4> <%= @furniture.length %> </h4>
+</div>
+
+<div>
+<h3>Depth:</h3>
+<h4> <%= @furniture.depth %> </h4>
+</div>
+
+<div>
+<h3>Shelves:</h3>
+<h4> <%= @furniture.shelves %> </h4>
+</div>
+
+<div>
+<h3>Material:</h3>
+<h4> <%= @furniture.material %> </h4>
+</div>
+
+<%= form_tag transactions_path do %>
+  <%= hidden_field_tag 'furniture_id', @furniture.id %>
+  <%= submit_tag 'Purchase', class: 'btn btn-dark mb-3' %>
+<% end %>
+</div>

@@ -1,50 +1,8 @@
 <h1> <%= @furniture.category %> </h1>
 
-<div class = "showbox">
+<%= render 'shared/fdetails' %>
 
-<div class="container" id="tablero">
 
-<div>
-<h2>Category:</h2>
-<p> <%=  @furniture.category %></p>
-</div>
 
-<div>
-<h2>Width:</h2>
-<p> <%= @furniture.width %> </p>
-</div>
-
-<div>
-<h2>Lenght:</h2>
-<p> <%= @furniture.length %> </p>
-</div>
-
-<div>
-<h2>Depth:</h2>
-<p> <%= @furniture.depth %> </p>
-</div>
-
-<div>
-<h2>Shelves:</h2>
-<p> <%= @furniture.shelves %> </p>
-</div>
-
-<div>
-<h2>Material:</h2>
-<p> <%= @furniture.material %> </p>
-</div>
-
-<%= form_tag transactions_path do %>
-  <%= hidden_field_tag 'furniture_id', @furniture.id %>
-  <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
-<% end %>
-
-</div>
-
-  <canvas id="furniture"></canvas>
-<div class="canvasbox">
-</div>
-
-</div>
 
 
