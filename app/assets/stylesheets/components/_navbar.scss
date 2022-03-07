@@ -7,6 +7,50 @@
   flex-grow: 0;
 }
 
+.nav-item {
+  text-shadow: 0.5px 0 0 #fff, -0.5px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+  color: white;
+}
+
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+/* From cssbuttons.io by @ShadowShahriar */
+.button {
+  background: linear-gradient(-45deg, #673d23, #84240c, #da6d42, #746c60);
+  background-size: 800% 400%;
+  padding: 1em 2em;
+  display: inline-block;
+  border: none;
+  font-size: 17px;
+  font-weight: 70;
+  color: white;
+  transition: all .5s ease-in-out;
+  animation: gradient 30s infinite cubic-bezier(.62, .28, .23, .99) both;
+  opacity: 0.5;
+ }
+
+ .button:hover {
+  animation: gradient 3s infinite;
+  transform: scale(1.05);
+  opacity: 1;
+ }
+
+ .button:active {
+  animation: gradient 3s infinite;
+  transform: scale(0.8);
+ }
+
+ @keyframes gradient {
+  0% {
+   background-position: 0% 50%;
+  }
+
+  50% {
+   background-position: 100% 50%;
+  }
+
+  100% {
+   background-position: 0% 50%;
+  }
+ }
