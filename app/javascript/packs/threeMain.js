@@ -70,19 +70,21 @@ scene.add(roof);
 //const bookshelfTexture = new THREE.TextureLoader().load(
 //);
 
-//______________________________________________________________________________ MESH CREATION
+//______________________________________________________________________________ VARIABLES
 
-const bsx = 10; // Bookshelf x dimension
-const bsy = 15; // Bookshelf y dimension
-const bsz = 5; // Bookshelf z dimension
+const bsx = 6; // Bookshelf x dimension
+const bsy = 18; // Bookshelf y dimension
+const bsz = 3; // Bookshelf z dimension
 
-const bspy = -8; // Bookshelf y position
+const bspy = -(bsy / 2); // Bookshelf y position
 const bspz = -10; // Bookshelf z position
 
 const bt = 0.2; // Back thickness
 
-const sh = 2; // Shelf height
+const sh = (bsy / 5); // Shelf height
 const st = 0.2; // Shelf thickness
+
+//______________________________________________________________________________ MESH CREATION
 
 const bottom = new THREE.Mesh(
   new THREE.BoxGeometry(bsx, st, bsz),
@@ -127,9 +129,8 @@ const shelf10 = bottom.clone();
 shelf10.position.y += sh * 10;
 
 const backGeometry = new THREE.BoxGeometry( bsx, bsy, bt );
-backGeometry.translate( 0, 0, 2.5 );
 const back = new THREE.Mesh(backGeometry , new THREE.MeshPhongMaterial( {color: grey} ) );
-back.position.set(0, -0.5, bspz - (bsz / 2));
+back.position.set(0, 0, bspz - (bsz / 2));
 scene.add( back );
 
 //______________________________________________________________________________ INPUT VARIABLES
@@ -146,12 +147,7 @@ let osv = parseInt(shelves.value, 10);
 shelves.addEventListener("input", (ev) => {
   ev.preventDefault();
 
-  let sv = shelves.value;
-  let sc = sv - 1;
-  const sha = (sh * 10) / sc;
-
-  let nsv = parseInt(sv, 10);
-  const sy = height.value / (bsy * 10);
+  let nsv = parseInt(shelves.value, 10);
 
   if (nsv > osv) {
     scene.add(eval(`shelf` + `${osv}`));
@@ -173,14 +169,10 @@ shelves.addEventListener("input", (ev) => {
 height.addEventListener("input", (ev) => {
   ev.preventDefault();
 
-  const sy = height.value / (bsy * 10);
-
-  let sv = shelves.value;
-  // sv = shelves value
-  let sc = sv - 1;
-  // sc = shelf count
-  const sha = (sh * 10) / sc;
-  // sha = shelf height actualized
+  const sy = height.value / (bsy * 10); // Scale y
+  let sv = shelves.value; // Shelves value
+  let sc = sv - 1; // Shelf count
+  const sha = 20 / sc; // Shelf height actualized
 
   back.scale.y = sy;
   back.position.y = bspy + height.value / 20;
@@ -195,8 +187,7 @@ height.addEventListener("input", (ev) => {
   shelf7.position.y = bspy + sha * 7 - ((200 - height.value) / 10) * (7 / sc);
   shelf8.position.y = bspy + sha * 8 - ((200 - height.value) / 10) * (8 / sc);
   shelf9.position.y = bspy + sha * 9 - ((200 - height.value) / 10) * (9 / sc);
-  shelf10.position.y =
-    bspy + sha * 10 - ((200 - height.value) / 10) * (10 / sc);
+  shelf10.position.y = bspy + sha * 10 - ((200 - height.value) / 10) * (10 / sc);
 });
 
 //______________________________________________________________________________ WIDTH LISTENER
@@ -259,14 +250,6 @@ pointLight.position.set(0, 5, 5);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
 
-//______________________________________________________________________________ TORUS _________________________________
-
-const geometry = new THREE.TorusGeometry(0.5, 0.1, 16, 200);
-const material = new THREE.MeshStandardMaterial({ color: 0x7f00ff });
-const torus = new THREE.Mesh(geometry, material);
-torus.position.set(30, 8, -10);
-scene.add(torus);
-
 //______________________________________________________________________________ CAMERA ANIMATION ______________________
 
 function moveCamera() {
@@ -300,10 +283,6 @@ const rotation = false;
 
 function animate() {
   requestAnimationFrame(animate);
-
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.01;
-  torus.rotation.z += 0.01;
 
   const bsr = 0.005;
 
