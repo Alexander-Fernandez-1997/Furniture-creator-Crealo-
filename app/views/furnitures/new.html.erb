@@ -1,2 +1,44 @@
-<h1>Build your furniture</h1>
-<%= render 'shared/form' %>
+<canvas id="home"></canvas>
+
+<%= render "shared/navbar" %>
+
+<div class="outer-wrapper" id="outer-wrapper">
+
+  <div class="wrapper" id="wrapper">
+    <div class="slide one">
+      <%= render "shared/sliders1" %>
+      <%= render "shared/sliders2" %>
+
+      <% if params[:id]  %>
+      <%= simple_form_for [Furniture.find(params[:id]),Transaction.new] do |f| %>
+      <%= f.submit "Buy", class: "btn btn-dark btn-lg" %>
+      <% end %>
+      <% end %>
+
+      <div class = "mb-5 ms-5">
+      <%= simple_form_for [@furniture] do |f| %>
+      <%= f.input :category, as: :hidden
+      %>
+      <%= f.input :width, input_html:{ id: "swidth"}, as: :hidden
+      %>
+      <%= f.input :length, input_html:{ id: "slength"}, as: :hidden
+      %>
+      <%= f.input :depth, input_html:{ id: "sdepth"}, as: :hidden
+      %>
+      <%= f.input :shelves, input_html:{ id: "sshelves"}, as: :hidden
+      %>
+      <%= f.input :material, as: :hidden
+      %>
+      <div>
+      <%= f.submit class: "btn btn-dark btn-lg" %>
+      </div>
+      <% end  %>
+      </div>
+    </div>
+    <div class="slide"></div>
+    <div class="slide three" id="three"></div>
+    <div class="slide four"></div>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'home'%>

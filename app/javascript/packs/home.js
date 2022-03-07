@@ -31,27 +31,27 @@ document.body.appendChild(renderer.domElement);
 
 // Room
 
-const texture = new THREE.TextureLoader().load(
+const roomTexture = new THREE.TextureLoader().load(
   "https://media.istockphoto.com/photos/laminate-wooden-floor-texture-background-picture-id1083302826?k=20&m=1083302826&s=170667a&w=0&h=bSRz2bpnwImMIWa1qPOw7pRIW4EWd_j1zE3zHrdoDtc="
 );
-texture.wrapS = THREE.RepeatWrapping;
-texture.wrapT = THREE.RepeatWrapping;
-texture.repeat.x = 10;
-texture.repeat.y = 1;
+roomTexture.wrapS = THREE.RepeatWrapping;
+roomTexture.wrapT = THREE.RepeatWrapping;
+roomTexture.repeat.x = 1;
+roomTexture.repeat.y = 1;
 
-const roomLength = 500;
+const roomLength = 80;
 
 const floor = new THREE.Mesh(
   new THREE.BoxGeometry(roomLength, 0.2, 30),
   new THREE.MeshPhongMaterial({ color: grey })
 );
-floor.material = new THREE.MeshPhongMaterial({ map: texture });
+floor.material = new THREE.MeshPhongMaterial({ map: roomTexture });
 floor.position.set(0, -10, -10);
 floor.position.x += roomLength / 2 - 40;
 scene.add(floor);
 
 const backwall = floor.clone();
-backwall.material = new THREE.MeshPhongMaterial({ map: texture });
+backwall.material = new THREE.MeshPhongMaterial({ map: roomTexture });
 backwall.position.z -= 10;
 backwall.position.y += 10;
 backwall.rotation.x += 1.57;
@@ -61,6 +61,14 @@ const roof = floor.clone();
 roof.material = new THREE.MeshPhongMaterial({ color: grey });
 roof.position.y += 25;
 scene.add(roof);
+
+// BOOKSHELF TEXTURE
+
+
+
+//const bookshelfTexture = new THREE.TextureLoader().load(
+//  ...
+//);
 
 // BOOKSHELF
 
