@@ -91,18 +91,6 @@ const bottom = new THREE.Mesh(
 bottom.position.set(0, bspy, bspz);
 scene.add(bottom);
 
-<<<<<<< HEAD
-=======
-const backGeometry = new THREE.BoxGeometry(bsx, bsy, 0.2);
-backGeometry.translate(0, 0, 2.5);
-const back = new THREE.Mesh(
-  backGeometry,
-  new THREE.MeshPhongMaterial({ color: grey })
-);
-back.position.set(0, -0.5, bspz - bsz / 2);
-scene.add(back);
-
->>>>>>> 1039edee36daed812a69644c0c8e1dd19ce38ba5
 const shelf1 = bottom.clone();
 shelf1.position.y += sh;
 scene.add(shelf1);
@@ -180,11 +168,7 @@ shelves.addEventListener("input", (ev) => {
   osv = shelves.value;
 });
 
-<<<<<<< HEAD
 //______________________________________________________________________________ HEIGHT LISTENER
-=======
-// Height
->>>>>>> 1039edee36daed812a69644c0c8e1dd19ce38ba5
 
 height.addEventListener("input", (ev) => {
   ev.preventDefault();
