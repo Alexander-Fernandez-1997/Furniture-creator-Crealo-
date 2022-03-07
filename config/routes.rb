@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
- # mount StripeEvent::Engine, at: '/stripe-webhooks'
+# mount StripeEvent::Engine, at: '/stripe-webhooks'
 
   resources :users, only: %i[show]
   resources :furnitures do

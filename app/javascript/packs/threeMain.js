@@ -86,11 +86,14 @@ const bottom = new THREE.Mesh(
 bottom.position.set(0, bspy, bspz);
 scene.add(bottom);
 
-const backGeometry = new THREE.BoxGeometry( bsx, bsy, 0.2 );
-backGeometry.translate( 0, 0, 2.5 );
-const back = new THREE.Mesh(backGeometry , new THREE.MeshPhongMaterial( {color: grey} ) );
-back.position.set(0, -0.5, bspz - (bsz / 2));
-scene.add( back );
+const backGeometry = new THREE.BoxGeometry(bsx, bsy, 0.2);
+backGeometry.translate(0, 0, 2.5);
+const back = new THREE.Mesh(
+  backGeometry,
+  new THREE.MeshPhongMaterial({ color: grey })
+);
+back.position.set(0, -0.5, bspz - bsz / 2);
+scene.add(back);
 
 const shelf1 = bottom.clone();
 shelf1.position.y += sh;
@@ -143,58 +146,55 @@ shelves.addEventListener("input", (ev) => {
 
   let sv = shelves.value;
   let sc = sv - 1;
-  const sha = ((sh * 10) / sc);
+  const sha = (sh * 10) / sc;
 
   let nsv = parseInt(sv, 10);
   const sy = height.value / (bsy * 10);
 
   if (nsv > osv) {
     scene.add(eval(`shelf` + `${osv}`));
-    back.scale.y += (back.scale.y * (1 / (osv - 1)));
-    back.position.y += ((height.value / 20) * (1 / (osv - 1)));
+    back.scale.y += back.scale.y * (1 / (osv - 1));
+    back.position.y += (height.value / 20) * (1 / (osv - 1));
     height.value = height.value * ((nsv - 1) / (osv - 1));
-
   } else {
     scene.remove(eval(`shelf` + `${nsv}`));
-    back.scale.y -= (back.scale.y * (1 / (osv - 1)));
-    back.position.y -= ((height.value / 20) * (1 / (osv - 1)));
-    height.value -= (height.value * (1 / (osv - 1)));
-
-  };
+    back.scale.y -= back.scale.y * (1 / (osv - 1));
+    back.position.y -= (height.value / 20) * (1 / (osv - 1));
+    height.value -= height.value * (1 / (osv - 1));
+  }
 
   osv = shelves.value;
 });
 
 // Height
 
-
 height.addEventListener("input", (ev) => {
   ev.preventDefault();
 
   const sy = height.value / (bsy * 10);
 
-  let sv = shelves.value
+  let sv = shelves.value;
   // sv = shelves value
-  let sc = sv - 1
+  let sc = sv - 1;
   // sc = shelf count
-  const sha = ((sh * 10) / sc);
+  const sha = (sh * 10) / sc;
   // sha = shelf height actualized
 
-  back.scale.y = sy
-  back.position.y = bspy + (height.value / 20);
-
+  back.scale.y = sy;
+  back.position.y = bspy + height.value / 20;
 
   bottom.position.y = bspy;
-  shelf1.position.y = bspy + (sha * 1) - (200 - height.value) / 10 * (1 / sc);
-  shelf2.position.y = bspy + (sha * 2) - (200 - height.value) / 10 * (2 / sc);
-  shelf3.position.y = bspy + (sha * 3) - (200 - height.value) / 10 * (3 / sc);
-  shelf4.position.y = bspy + (sha * 4) - (200 - height.value) / 10 * (4 / sc);
-  shelf5.position.y = bspy + (sha * 5) - (200 - height.value) / 10 * (5 / sc);
-  shelf6.position.y = bspy + (sha * 6) - (200 - height.value) / 10 * (6 / sc);
-  shelf7.position.y = bspy + (sha * 7) - (200 - height.value) / 10 * (7 / sc);
-  shelf8.position.y = bspy + (sha * 8) - (200 - height.value) / 10 * (8 / sc);
-  shelf9.position.y = bspy + (sha * 9) - (200 - height.value) / 10 * (9 / sc);
-  shelf10.position.y = bspy + (sha * 10) - (200 - height.value) / 10 * (10 / sc);
+  shelf1.position.y = bspy + sha * 1 - ((200 - height.value) / 10) * (1 / sc);
+  shelf2.position.y = bspy + sha * 2 - ((200 - height.value) / 10) * (2 / sc);
+  shelf3.position.y = bspy + sha * 3 - ((200 - height.value) / 10) * (3 / sc);
+  shelf4.position.y = bspy + sha * 4 - ((200 - height.value) / 10) * (4 / sc);
+  shelf5.position.y = bspy + sha * 5 - ((200 - height.value) / 10) * (5 / sc);
+  shelf6.position.y = bspy + sha * 6 - ((200 - height.value) / 10) * (6 / sc);
+  shelf7.position.y = bspy + sha * 7 - ((200 - height.value) / 10) * (7 / sc);
+  shelf8.position.y = bspy + sha * 8 - ((200 - height.value) / 10) * (8 / sc);
+  shelf9.position.y = bspy + sha * 9 - ((200 - height.value) / 10) * (9 / sc);
+  shelf10.position.y =
+    bspy + sha * 10 - ((200 - height.value) / 10) * (10 / sc);
 });
 
 // Width
@@ -222,7 +222,7 @@ width.addEventListener("input", (ev) => {
 depth.addEventListener("input", (ev) => {
   ev.preventDefault();
 
-  const zp = bspz + (depth.value / 20) - (bsz / 2);
+  const zp = bspz + depth.value / 20 - bsz / 2;
 
   let zs = depth.value / (bsz * 10);
   bottom.scale.z = zs;
@@ -247,7 +247,6 @@ depth.addEventListener("input", (ev) => {
   shelf9.position.z = zp;
   shelf10.scale.z = zs;
   shelf10.position.z = zp;
-
 });
 
 // Lights
@@ -290,8 +289,8 @@ function moveCamera() {
   back.position.x = t * -0.05 - x;
 }
 
-document.getElementById("outer-wrapper").onscroll = moveCamera;
-moveCamera();
+// document.getElementById("outer-wrapper").onscroll = moveCamera;
+// moveCamera();
 
 const rotation = false;
 
@@ -303,7 +302,7 @@ function animate() {
   torus.rotation.y += 0.01;
   torus.rotation.z += 0.01;
 
-  const bsr = 0.005
+  const bsr = 0.005;
 
   if (rotation === true) {
     bottom.rotation.y += bsr;
