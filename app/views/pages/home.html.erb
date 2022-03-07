@@ -1,6 +1,3 @@
-
-<%= render 'shared/navbar' %>
-
 <canvas id="home"></canvas>
 
 <div class="outer-wrapper" id="outer-wrapper">
@@ -32,7 +29,7 @@
 </div>
     </div>
     <div class="slide three" id="three">
-      
+
       <% if params[:id]  %>
       <%= simple_form_for [Furniture.find(params[:id]),Transaction.new] do |f| %>
       <%= f.submit "Buy", class: "btn btn-dark btn-lg" %>

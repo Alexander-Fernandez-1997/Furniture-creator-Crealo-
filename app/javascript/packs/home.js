@@ -42,7 +42,7 @@ texture.repeat.y = 1;
 const roomLength = 500;
 
 const floor = new THREE.Mesh(
-  new THREE.BoxGeometry(roomLength, 0.2, 20),
+  new THREE.BoxGeometry(roomLength, 0.2, 30),
   new THREE.MeshPhongMaterial({ color: grey })
 );
 floor.material = new THREE.MeshPhongMaterial({ map: texture });
@@ -59,28 +59,19 @@ scene.add(backwall);
 
 const roof = floor.clone();
 roof.material = new THREE.MeshPhongMaterial({ color: grey });
-roof.position.y += 20;
+roof.position.y += 25;
 scene.add(roof);
 
-// Bookshelf
+// BOOKSHELF
 
-// bsx = Bookshelf x dimension
-// bsy = Bookshelf y dimension
-// bsz = Bookshelf z dimension
+const bsx = 10; // Bookshelf x dimension
+const bsy = 15; // Bookshelf y dimension
+const bsz = 5; // Bookshelf z dimension
 
-// bspy = Bookshelf y position
-// bspz = Bookshelf z position
+const bspy = -8; // Bookshelf y position
+const bspz = -10; // Bookshelf z position
 
-// sh = Shelf height
-
-const bsx = 10;
-const bsy = 15;
-const bsz = 5;
-
-const bspy = -8;
-const bspz = -10;
-
-const sh = 2;
+const sh = 2; // sh = Shelf height
 
 const bottom = new THREE.Mesh(
   new THREE.BoxGeometry(bsx, 0.2, bsz),
@@ -88,7 +79,6 @@ const bottom = new THREE.Mesh(
 );
 bottom.position.set(0, bspy, bspz);
 scene.add(bottom);
-
 
 const backGeometry = new THREE.BoxGeometry( bsx, bsy, 0.2 );
 backGeometry.translate( 0, 0, 2.5 );
@@ -142,10 +132,6 @@ let shelves = document.getElementById("shelves");
 
 let osv = parseInt(shelves.value, 10);
 
-console.log(height.value);
-height.value = height.value * 2;
-console.log(height.value);
-
 shelves.addEventListener("input", (ev) => {
   ev.preventDefault();
 
@@ -156,15 +142,11 @@ shelves.addEventListener("input", (ev) => {
   let nsv = parseInt(sv, 10);
   const sy = height.value / (bsy * 10);
 
-
-
   if (nsv > osv) {
     scene.add(eval(`shelf` + `${osv}`));
     back.scale.y += (back.scale.y * (1 / (osv - 1)));
     back.position.y += ((height.value / 20) * (1 / (osv - 1)));
     height.value = height.value * ((nsv - 1) / (osv - 1));
-
-   // height.value += (height.value * (1 / (osv - 1)));
 
   } else {
     scene.remove(eval(`shelf` + `${nsv}`));
