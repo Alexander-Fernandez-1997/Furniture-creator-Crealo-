@@ -13,4 +13,8 @@ canvas {
 #tablero {
   letter-spacing: 2px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background: hsl(0, 0%, 100% / 0.1);
+  backdrop-filter: blur(0.2rem);
+  background-color: rgba(84, 84, 86, 0.2);
+  width: fit-content;
 }
