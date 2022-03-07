@@ -10,3 +10,16 @@ canvas {
   flex-direction: row;
   justify-content: space-between;
 }
+.showbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+.canvasbox {
+  border: 1px solid black;
+}
+// #tablero {
+//   background-image: url("https://img.pixers.pics/pho_wat(s3:700/FO/61/03/12/39/700_FO61031239_37f8adeded5dfe2ca5a914e5a1998f7a.jpg,700,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,650,jpg)/posters-wood-wall-and-plank-background.jpg.jpg");
+// }
