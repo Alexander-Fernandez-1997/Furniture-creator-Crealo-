@@ -11,15 +11,15 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    
-      furniture = Furniture.find(params[:furniture_id])
-      transaction = Transaction.create!(furniture: furniture,  amount: furniture.price, state: 'pending', user: current_user)
+    furniture = Furniture.find(params[:furniture_id])
+    transaction = Transaction.create!(furniture: furniture, amount: 10000, state: 'pending', user: current_user)
+    authorize transaction
 
-      session = Stripe::Checkout::Session.create(
+    session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
         name: furniture.category,
-        amount: furniture.price_cents,
+        amount: 10000,
         currency: 'usd',
         quantity: 1
       }],
@@ -30,7 +30,6 @@ class TransactionsController < ApplicationController
     transaction.update(checkout_session_id: session.id)
     redirect_to new_transaction_payment_path(transaction)
 
-    
   end
 
   private
