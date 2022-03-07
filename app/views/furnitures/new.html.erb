@@ -1,21 +1,16 @@
 <canvas id="home"></canvas>
 
 <%= render "shared/navbar" %>
-
-<div class="outer-wrapper" id="outer-wrapper">
-
-  <div class="wrapper" id="wrapper">
-    <div class="slide one">
+<div class="positionorder">
+<div >
       <%= render "shared/sliders1" %>
-      <%= render "shared/sliders2" %>
-
-      <% if params[:id]  %>
-      <%= simple_form_for [Furniture.find(params[:id]),Transaction.new] do |f| %>
+ <% if params[:id]  %>
+      <%= simple_form_for @furniture do |f| %>
       <%= f.submit "Buy", class: "btn btn-dark btn-lg" %>
       <% end %>
       <% end %>
 
-      <div class = "mb-5 ms-5">
+      <div class = "ms-5">
       <%= simple_form_for [@furniture] do |f| %>
       <%= f.input :category, as: :hidden
       %>
@@ -34,11 +29,13 @@
       </div>
       <% end  %>
       </div>
-    </div>
-    <div class="slide"></div>
-    <div class="slide three" id="three"></div>
-    <div class="slide four"></div>
-  </div>
+    
+
+      </div>
+      <div>
+      <%= render "shared/sliders2" %>
 </div>
+</div>
+     
 
 <%= javascript_pack_tag 'threeMain'%>
