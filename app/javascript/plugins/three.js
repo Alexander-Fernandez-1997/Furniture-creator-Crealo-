@@ -40,6 +40,14 @@ const renderFurniture = (
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
+    //__________________________________________________________________________ LIGHTS ________________________________
+
+    const pointLight = new THREE.PointLight(0xffffff);
+    pointLight.position.set(70, 8, 0);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff);
+    scene.add(pointLight, ambientLight);
+
     //__________________________________________________________________________ ROOM __________________________________
 
     const roomTexture = new THREE.TextureLoader().load(
@@ -77,8 +85,6 @@ const renderFurniture = (
 
     // TEXTURES
 
-    console.log(textures);
-
     let bookshelfTexture = new THREE.TextureLoader().load(
       "https://www.fimodecor.com/uploads/M9101-1.jpg"
     );
@@ -94,7 +100,6 @@ const renderFurniture = (
     function createBookshelf() {
 
       // Variables______________________________________________________________
-
 
       let mh = 200; // Bookshelf max height
       const bt = 0.2; // Back thickness
@@ -152,7 +157,7 @@ const renderFurniture = (
     let meshArray = [];
     createBookshelf();
 
-    //__________________________________________________________________________ EVENT LISTENER ________________________
+    //__________________________________________________________________________ RECREATE FURNITURE ____________________
 
     function recreateBookshelf() {
       meshArray.forEach((element) => {
@@ -172,15 +177,7 @@ const renderFurniture = (
       recreateBookshelf();
     })
 
-    //__________________________________________________________________________ LIGHTS ________________________________
-
-    const pointLight = new THREE.PointLight(0xffffff);
-    pointLight.position.set(70, 8, 0);
-
-    const ambientLight = new THREE.AmbientLight(0xffffff);
-    scene.add(pointLight, ambientLight);
-
-    // MOVE CAMERA
+    //__________________________________________________________________________ MOVE CAMERA ___________________________
 
     function moveCamera() {
       // const t = document.scrollTop;
