@@ -172,7 +172,7 @@ height.addEventListener("input", (ev) => {
   const sy = height.value / (bsy * 10); // Scale y
   let sv = shelves.value; // Shelves value
   let sc = sv - 1; // Shelf count
-  const sha = 20 / sc; // Shelf height actualized
+  const sha = (2 * 10) / sc; // Shelf height actualized
 
   back.scale.y = sy;
   back.position.y = bspy + height.value / 20;

@@ -1,16 +1,16 @@
 import * as THREE from "three";
 
 const renderFurniture = (
-  height = 180,
-  width = 60,
-  depth = 30,
-  shelves = 5,
-  texture = ""
+  height = document.getElementById("height"),
+  width = document.getElementById("width"),
+  depth = document.getElementById("depth"),
+  shelves = document.getElementById("shelves"),
+  textures = document.querySelectorAll("#cajitamin"),
 ) => {
-  const canvasElement = document.querySelector("canvas#furniture");
-  if (canvasElement) {
+  const canvasFurniture = document.querySelector("canvas#furniture");
+  if (canvasFurniture) {
 
-    console.log("Hello from canvas js");
+    console.log();
 
     //__________________________________________________________________________ COLORS ________________________________
 
@@ -36,7 +36,7 @@ const renderFurniture = (
     //__________________________________________________________________________ RENDERER ______________________________
 
     const renderer = new THREE.WebGLRenderer({
-      canvas: canvasElement,
+      canvas: canvasFurniture,
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -77,38 +77,98 @@ const renderFurniture = (
 
     //__________________________________________________________________________ BOOKSHELF MODEL _______________________
 
-    //________________________________________________________________  TEXTURES
+    // TEXTURES
 
-    //const bookshelfTexture = new THREE.TextureLoader().load(
-    //);
+    console.log(textures);
 
-    //________________________________________________________________ VARIABLES
+    let bookshelfTexture = ""
 
-    const bsx = 6; // Bookshelf x dimension
-    const bsy = 18; // Bookshelf y dimension
-    const bsz = 3; // Bookshelf z dimension
+    textures.forEach((texture) => {
+      texture.addEventListener("click", (ev) => {
+        bookshelfTexture = new THREE.TextureLoader().load(
+          `${texture.querySelector("#imgsize").src}`
+        );
+      })
+    })
 
-    const bspy = -(bsy / 2); // Bookshelf y position
-    const bspz = -10; // Bookshelf z position
+    function createBookshelf() {
 
-    const bt = 0.2; // Back thickness
+      // Variables______________________________________________________________
 
-    const sh = (bsy / 5); // Shelf height
-    const st = 0.2; // Shelf thickness
+      let mh = 200; // Bookshelf max height
+      const bt = 0.2; // Back thickness
+      const st = 0.2; // Shelf thickness
+      const bspz = -10; // Bookshelf z position
 
-    //____________________________________________________________ MESH CREATION
+      let bsx = width.value / 10; // Bookshelf x dimension
+      let bsy = height.value / 10; // Bookshelf y dimension
+      let bsz = depth.value / 10; // Bookshelf z dimension
 
-    const bottom = new THREE.Mesh(
-      new THREE.BoxGeometry(bsx, st, bsz),
-      new THREE.MeshPhongMaterial({ color: grey })
-    );
-    bottom.position.set(0, bspy, bspz);
-    scene.add(bottom);
+      const bspy = -(bsy / 2); // Bookshelf y position
+      let hd = (mh - height.value) / 10; // Height difference
 
-    const backGeometry = new THREE.BoxGeometry( bsx, bsy, bt );
-    const back = new THREE.Mesh(backGeometry , new THREE.MeshPhongMaterial( {color: grey} ) );
-    back.position.set(0, 0, bspz - (bsz / 2));
-    scene.add( back );
+      // Back___________________________________________________________________
+
+      const backMesh = new THREE.Mesh(
+        new THREE.BoxGeometry( bsx, bsy, bt ),
+        new THREE.MeshPhongMaterial({ map: bookshelfTexture })
+      );
+
+      const back = backMesh.clone()
+      back.position.set(0, -(hd / 2), bspz);
+      meshArray.push(back);
+      scene.add(back);
+
+      // Sides__________________________________________________________________
+
+      const sideMesh = new THREE.Mesh(
+        new THREE.BoxGeometry( bsx, bsy, bt ),
+        new THREE.MeshPhongMaterial({ color: grey })
+      );
+
+      // Shelves________________________________________________________________
+
+      const shelfMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(bsx, st, bsz),
+        new THREE.MeshPhongMaterial({ map: bookshelfTexture })
+      );
+
+      shelfMesh.position.set(0, bspy - (hd / 2), bspz);
+      let shelfPosition = bspy - (hd / 2);
+
+      for (let step = 0; step < shelves.value; step++) {
+        const shelf = shelfMesh.clone();
+        shelf.position.y = shelfPosition;
+        meshArray.push(shelf);
+        scene.add(shelf);
+        shelfPosition += (bsy / (shelves.value - 1));
+      }
+
+      // _______________________________________________________________________
+    }
+
+    let meshArray = [];
+    createBookshelf();
+
+    //__________________________________________________________________________ EVENT LISTENER ________________________
+
+    function recreateBookshelf() {
+      meshArray.forEach((element) => {
+        scene.remove(element);
+      })
+      meshArray = [];
+      createBookshelf();
+    }
+
+    document.addEventListener("input", (ev) => {
+      ev.preventDefault();
+      recreateBookshelf();
+    })
+
+    document.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      recreateBookshelf();
+    })
 
     //__________________________________________________________________________ LIGHTS ________________________________
 
@@ -118,7 +178,7 @@ const renderFurniture = (
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(pointLight, ambientLight);
 
-    //__________________________________________________________________________ MOVE CAMERA ___________________________
+    // MOVE CAMERA
 
     function moveCamera() {
       const t = document.getElementById("wrapper").getBoundingClientRect().left;
@@ -127,7 +187,7 @@ const renderFurniture = (
     // document.getElementById("outer-wrapper").onscroll = moveCamera;
     // moveCamera();
 
-    //__________________________________________________________________________ ANIMATION LOOP_________________________
+    // ANIMATION LOOP
 
     function animate() {
       requestAnimationFrame(animate);
@@ -136,7 +196,7 @@ const renderFurniture = (
 
     animate();
 
-    //__________________________________________________________________________ ANIMATION LOOP_________________________
+    //__________________________________________________________________________ END____________________________________
   }
 };
 
