@@ -1,16 +1,11 @@
+
 <canvas id="furniture"></canvas>
 
 <%= render "shared/navbar" %>
 <div class="positionorder">
-<div >
-      <%= render "shared/sliders1" %>
- <% if params[:id]  %>
-      <%= simple_form_for @furniture do |f| %>
-      <%= f.submit "Buy", class: "btn btn-dark btn-lg" %>
-      <% end %>
-      <% end %>
-
-      <div class = "ms-5">
+  <div>
+    <%= render "shared/sliders1" %>
+    <div class="ms-5">
       <%= simple_form_for [@furniture] do |f| %>
       <%= f.input :category, as: :hidden
       %>
@@ -25,7 +20,7 @@
       <%= f.input :material, as: :hidden
       %>
       <div>
-      <%= f.submit class: "btn btn-dark btn-lg" %>
+        <%= f.submit class: "btn btn-dark btn-lg" %>
       </div>
       <% end  %>
       </div>
