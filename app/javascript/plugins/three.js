@@ -29,7 +29,7 @@ const renderFurniture = (
       0.1,
       1000
     );
-    camera.position.z = 13;
+    camera.position.z = 10;
 
     //__________________________________________________________________________ RENDERER ______________________________
 
@@ -129,9 +129,19 @@ const renderFurniture = (
       // Sides__________________________________________________________________
 
       const sideMesh = new THREE.Mesh(
-        new THREE.BoxGeometry( bsx, bsy, bt ),
-        new THREE.MeshPhongMaterial({ color: grey })
+        new THREE.BoxGeometry( st, bsy, bsz ),
+        new THREE.MeshPhongMaterial({ map: bookshelfTexture })
       );
+
+      const rightSide = sideMesh.clone()
+      rightSide.position.set((bsx / 2), -(hd / 2) + sht, bspz);
+      meshArray.push(rightSide);
+      scene.add(rightSide);
+
+      const leftSide = sideMesh.clone()
+      leftSide.position.set(-(bsx / 2), -(hd / 2) + sht, bspz);
+      meshArray.push(leftSide);
+      scene.add(leftSide);
 
       // Shelves________________________________________________________________
 
