@@ -81,7 +81,9 @@ const renderFurniture = (
 
     console.log(textures);
 
-    let bookshelfTexture = ""
+    let bookshelfTexture = new THREE.TextureLoader().load(
+      "https://www.fimodecor.com/uploads/M9101-1.jpg"
+    );
 
     textures.forEach((texture) => {
       texture.addEventListener("click", (ev) => {
