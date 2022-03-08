@@ -18,12 +18,24 @@
   <div>
     <input
       type="range"
+      name="amountRange"
       class="form-range"
       min="20"
       max="200"
       step="1"
       id="height"
       value="180"
+      oninput="this.form.amountInput.value=this.value"
+    />
+    <input
+      type="number"
+      name="amountInput"
+      class="form-range"
+      min="20"
+      max="200"
+      step="1"
+      value="180"
+      oninput="this.form.amountRange.value=this.value"
     />
   </div>
 

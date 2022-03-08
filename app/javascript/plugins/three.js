@@ -15,6 +15,7 @@ const renderFurniture = () => {
     const white = new THREE.Color(0xffffff);
     const black = new THREE.Color(0x000000);
     const grey = new THREE.Color(0x808080);
+    const salmon = new THREE.Color(0xFA8072);
     const darkGrey = new THREE.Color(0xa9a9a9);
 
     //__________________________________________________________________________ SCENE _________________________________
@@ -30,7 +31,7 @@ const renderFurniture = () => {
       0.1,
       1000
     );
-    camera.position.z = 10;
+    camera.position.z = 5;
 
     //__________________________________________________________________________ RENDERER ______________________________
 
@@ -56,10 +57,10 @@ const renderFurniture = () => {
     );
     roomTexture.wrapS = THREE.RepeatWrapping;
     roomTexture.wrapT = THREE.RepeatWrapping;
-    roomTexture.repeat.x = 1;
-    roomTexture.repeat.y = 1;
+    roomTexture.repeat.x = 16;
+    roomTexture.repeat.y = 6;
 
-    const roomLength = 80;
+    const roomLength = 60;
 
     const floor = new THREE.Mesh(
       new THREE.BoxGeometry(roomLength, 0.2, 30),
@@ -67,20 +68,20 @@ const renderFurniture = () => {
     );
     floor.material = new THREE.MeshPhongMaterial({ map: roomTexture });
     floor.position.set(0, -10, -10);
-    floor.position.x += roomLength / 2 - 40;
+    floor.position.x += roomLength / 2 - 30;
     scene.add(floor);
 
     const backTexture = new THREE.TextureLoader().load(
-      "https://i.pinimg.com/736x/f6/7e/4e/f67e4efd42f1ae3590a2834857a36840--background-patterns-stripe-pattern.jpg"
+      "https://3docean.img.customer.envatousercontent.com/files/143861565/preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=590&s=107ab7891e3d8698b2fcbf20cd0f873c"
     );
 
     backTexture.wrapS = THREE.RepeatWrapping;
     backTexture.wrapT = THREE.RepeatWrapping;
-    backTexture.repeat.x = 5;
+    backTexture.repeat.x = 4;
     backTexture.repeat.y = 2;
 
     const backwall = floor.clone();
-    backwall.material = new THREE.MeshPhongMaterial({ map: backTexture });
+    backwall.material = new THREE.MeshPhongMaterial({ color: white });
     backwall.position.z -= 10;
     backwall.position.y += 10;
     backwall.rotation.x += 1.57;
@@ -105,10 +106,10 @@ const renderFurniture = () => {
     // lSideWall.rotation.y += 1.57 * 2;
     // scene.add(lSideWall);
 
-    const roof = floor.clone();
-    roof.material = new THREE.MeshPhongMaterial({ color: grey });
-    roof.position.y += 25;
-    scene.add(roof);
+    // const roof = floor.clone();
+    // roof.material = new THREE.MeshPhongMaterial({ color: grey });
+    // roof.position.y += 25;
+    // scene.add(roof);
 
     //__________________________________________________________________________ BOOKSHELF MODEL _______________________
 
@@ -134,7 +135,7 @@ const renderFurniture = () => {
       const bt = 0.2; // Back thickness
       const sht = 0.2; // Shelf thickness
       const st = 0.2 // Side thickness
-      const bspz = -10; // Bookshelf z position
+      const bspz = -15; // Bookshelf z position
 
       let bsx = width.value / 10; // Bookshelf x dimension
       let bsy = height.value / 10; // Bookshelf y dimension
