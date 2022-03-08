@@ -1,10 +1,21 @@
 <h1 class= "text-center"> Welcome to <%= @user.email %>´s profile  </h1>
+<ul class="nav nav-tabs ms-3 profiles" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Furnitures</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Transactions</button>
+  </li>
+</ul>
+<div class="tab-content ms-3" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+ 
 
-<div mt-4  >
 <h2 >List of creations</h2>
+<div class=" profilel"  >
 
 <% @user.furnitures.each do |furniture| %>
-<div>
+<div class="card mt-4" >
 <h3> <%= furniture.category %> </h3>
 <h4>Details:</h4>
 <ol>
@@ -14,16 +25,18 @@
 <li> Shelves:<%= furniture.shelves %> </li>
 <li> Material:<%= furniture.material %> </li>
 </ol>
+
 </div>
 <% end  %>
-
 </div>
 
-<div mt-4>
+</div>
+ <div class="tab-pane fade ms-3 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
 <h2>List of transactions</h2>
+<div class=" profilel">
 
 <% @user.transactions.each do |transaction| %>
-<div>
+<div class="card mt-4">
 <h3> Date:<%= transaction.created_at %>  </h3>
 <ol>
 <li>Buying : <%= transaction.furniture.category %></li>
@@ -34,3 +47,5 @@
 <% end %>
 
 </div>
+</div>
+
