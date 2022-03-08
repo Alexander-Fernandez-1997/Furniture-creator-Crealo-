@@ -15,6 +15,7 @@ const renderFurniture = (
     const white = new THREE.Color(0xffffff);
     const black = new THREE.Color(0x000000);
     const grey = new THREE.Color(0x808080);
+    const darkGrey = new THREE.Color(0xa9a9a9);
 
     //__________________________________________________________________________ SCENE _________________________________
 
@@ -75,6 +76,25 @@ const renderFurniture = (
     backwall.position.y += 10;
     backwall.rotation.x += 1.57;
     scene.add(backwall);
+
+    const rSideWall = floor.clone();
+    rSideWall.material = new THREE.MeshPhongMaterial({ color: darkGrey });
+    rSideWall.position.x += roomLength / 2;
+    rSideWall.position.z -= 10;
+    rSideWall.position.y += 10;
+    rSideWall.rotation.x += 1.57;
+    rSideWall.rotation.z += 1.57;
+    scene.add(rSideWall);
+
+    // const lSideWall = floor.clone();
+    // lSideWall.material = new THREE.MeshPhongMaterial({ color: grey });
+    // lSideWall.position.x -= roomLength / 2;
+    // lSideWall.position.z -= 10;
+    // lSideWall.position.y += 10;
+    // lSideWall.rotation.x += 1.57;
+    // lSideWall.rotation.z += 1.57;
+    // lSideWall.rotation.y += 1.57 * 2;
+    // scene.add(lSideWall);
 
     const roof = floor.clone();
     roof.material = new THREE.MeshPhongMaterial({ color: grey });
