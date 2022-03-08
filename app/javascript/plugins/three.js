@@ -203,7 +203,6 @@ const renderFurniture = (
     })
 
     document.addEventListener("click", (ev) => {
-      ev.preventDefault();
       recreateBookshelf();
     })
 
