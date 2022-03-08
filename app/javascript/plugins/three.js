@@ -7,7 +7,7 @@ const renderFurniture = (
   shelves = document.getElementById("shelves"),
   textures = document.querySelectorAll("#cajitamin"),
 ) => {
-  
+
   const canvasFurniture = document.querySelector("canvas#furniture");
   if (canvasFurniture) {
     //________________________________________________________________________ COLORS ________________________________
@@ -62,7 +62,7 @@ const renderFurniture = (
     scene.add(floor);
 
     const backwall = floor.clone();
-    backwall.material = new THREE.MeshPhongMaterial({ map: roomTexture });
+    backwall.material = new THREE.MeshPhongMaterial({ color: grey });
     backwall.position.z -= 10;
     backwall.position.y += 10;
     backwall.rotation.x += 1.57;
@@ -98,14 +98,15 @@ const renderFurniture = (
 
       let mh = 200; // Bookshelf max height
       const bt = 0.2; // Back thickness
-      const st = 0.2; // Shelf thickness
+      const sht = 0.2; // Shelf thickness
+      const st = 0.2 // Side thickness
       const bspz = -10; // Bookshelf z position
 
       let bsx = width.value / 10; // Bookshelf x dimension
       let bsy = height.value / 10; // Bookshelf y dimension
       let bsz = depth.value / 10; // Bookshelf z dimension
 
-      const bspy = -(bsy / 2); // Bookshelf y position
+      const bspy = -(bsy / 2) + sht; // Bookshelf y position
       let hd = (mh - height.value) / 10; // Height difference
 
       // Back___________________________________________________________________
@@ -116,7 +117,7 @@ const renderFurniture = (
       );
 
       const back = backMesh.clone()
-      back.position.set(0, -(hd / 2), bspz);
+      back.position.set(0, -(hd / 2) + sht, bspz);
       meshArray.push(back);
       scene.add(back);
 
@@ -130,7 +131,7 @@ const renderFurniture = (
       // Shelves________________________________________________________________
 
       const shelfMesh = new THREE.Mesh(
-        new THREE.BoxGeometry(bsx, st, bsz),
+        new THREE.BoxGeometry(bsx, sht, bsz),
         new THREE.MeshPhongMaterial({ map: bookshelfTexture })
       );
 
@@ -174,7 +175,7 @@ const renderFurniture = (
     //__________________________________________________________________________ LIGHTS ________________________________
 
     const pointLight = new THREE.PointLight(0xffffff);
-    pointLight.position.set(0, 5, 5);
+    pointLight.position.set(70, 8, 0);
 
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(pointLight, ambientLight);
@@ -182,13 +183,13 @@ const renderFurniture = (
     // MOVE CAMERA
 
     function moveCamera() {
-      const t = document.getElementById("wrapper").getBoundingClientRect().left;
+      // const t = document.scrollTop;
     }
 
     // document.getElementById("outer-wrapper").onscroll = moveCamera;
     // moveCamera();
 
-    // ANIMATION LOOP
+    //__________________________________________________________________________ ANIMATION LOOP ________________________
 
     function animate() {
       requestAnimationFrame(animate);
