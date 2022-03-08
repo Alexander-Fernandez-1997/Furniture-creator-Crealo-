@@ -225,6 +225,29 @@ const renderFurniture = (
     animate();
 
     //__________________________________________________________________________ END____________________________________
+
+    let swidth = document.getElementById("swidth");
+    let sheight = document.getElementById("sheight");
+    let sdepth = document.getElementById("sdepth");
+    let sshelves = document.getElementById("sshelves");
+
+    width.addEventListener("input", (e) => {
+      e.preventDefault();
+      swidth.value = width.value;
+    });
+    height.addEventListener("input", (e) => {
+      e.preventDefault();
+      slength.value = height.value;
+    });
+    depth.addEventListener("input", (e) => {
+      e.preventDefault();
+      sdepth.value = depth.value;
+    });
+    shelves.addEventListener("input", (e) => {
+      e.preventDefault();
+      sshelves.value = shelves.value;
+    });
+
   }
 };
 
