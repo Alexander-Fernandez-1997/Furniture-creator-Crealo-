@@ -1,12 +1,12 @@
 import * as THREE from "three";
 
-const renderFurniture = (
-    height = document.getElementById("height"),
-    width = document.getElementById("width"),
-    depth = document.getElementById("depth"),
-    shelves = document.getElementById("shelves"),
-    textures = document.querySelectorAll("#cajitamin"),
-) => {
+const renderFurniture = () => {
+
+  let height = document.getElementById("height");
+  let width = document.getElementById("width");
+  let depth = document.getElementById("depth");
+  let shelves = document.getElementById("shelves");
+  let textures = document.querySelectorAll("#cajitamin");
 
   const canvasFurniture = document.querySelector("canvas#furniture");
   if (canvasFurniture) {
@@ -70,8 +70,17 @@ const renderFurniture = (
     floor.position.x += roomLength / 2 - 40;
     scene.add(floor);
 
+    const backTexture = new THREE.TextureLoader().load(
+      "https://i.pinimg.com/736x/f6/7e/4e/f67e4efd42f1ae3590a2834857a36840--background-patterns-stripe-pattern.jpg"
+    );
+
+    backTexture.wrapS = THREE.RepeatWrapping;
+    backTexture.wrapT = THREE.RepeatWrapping;
+    backTexture.repeat.x = 5;
+    backTexture.repeat.y = 2;
+
     const backwall = floor.clone();
-    backwall.material = new THREE.MeshPhongMaterial({ color: grey });
+    backwall.material = new THREE.MeshPhongMaterial({ map: backTexture });
     backwall.position.z -= 10;
     backwall.position.y += 10;
     backwall.rotation.x += 1.57;
