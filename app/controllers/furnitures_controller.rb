@@ -20,9 +20,9 @@ before_action :set_furniture, only:[:show, :update, :edit, :destroy]
     @furniture = Furniture.new(furniture_params)
     authorize @furniture
     @furniture.user = @user
+    @furniture.price_cents = (@furniture.width + @furniture.length + @furniture.depth) * @furniture.shelves * 5 * 100
     @furniture.save
     redirect_to furniture_path(@furniture)
-    # redirect_to furniture_transactions_path(@furniture)
     
   end
 

@@ -7,12 +7,10 @@ const renderFurniture = (
   shelves = document.getElementById("shelves"),
   textures = document.querySelectorAll("#cajitamin"),
 ) => {
+  
   const canvasFurniture = document.querySelector("canvas#furniture");
   if (canvasFurniture) {
-
-    console.log();
-
-    //__________________________________________________________________________ COLORS ________________________________
+    //________________________________________________________________________ COLORS ________________________________
 
     const white = new THREE.Color(0xffffff);
     const black = new THREE.Color(0x000000);
@@ -96,6 +94,7 @@ const renderFurniture = (
     function createBookshelf() {
 
       // Variables______________________________________________________________
+
 
       let mh = 200; // Bookshelf max height
       const bt = 0.2; // Back thickness
