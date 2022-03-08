@@ -224,7 +224,6 @@ const renderFurniture = (
 
     animate();
 
-    //__________________________________________________________________________ END____________________________________
 
     let swidth = document.getElementById("swidth");
     let sheight = document.getElementById("sheight");
@@ -247,6 +246,9 @@ const renderFurniture = (
       e.preventDefault();
       sshelves.value = shelves.value;
     });
+
+    //__________________________________________________________________________ END____________________________________
+
 
   }
 };
