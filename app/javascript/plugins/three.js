@@ -1,12 +1,12 @@
 import * as THREE from "three";
 
-const renderFurniture = (
-    height = document.getElementById("height"),
-    width = document.getElementById("width"),
-    depth = document.getElementById("depth"),
-    shelves = document.getElementById("shelves"),
-    textures = document.querySelectorAll("#cajitamin"),
-) => {
+const renderFurniture = () => {
+
+  let height = document.getElementById("height");
+  let width = document.getElementById("width");
+  let depth = document.getElementById("depth");
+  let shelves = document.getElementById("shelves");
+  let textures = document.querySelectorAll("#cajitamin");
 
   const canvasFurniture = document.querySelector("canvas#furniture");
   if (canvasFurniture) {
