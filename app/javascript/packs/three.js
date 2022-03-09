@@ -218,7 +218,7 @@ const renderFurniture = () => {
       shelfMesh.position.set(0, bspy - hd / 2, bspz);
       let shelfPosition = bspy - hd / 2;
 
-      for (let step = 0; step < shelves.value; step++) {
+      for (let step = 0; step < (shelves.value); step++) {
         const shelf = shelfMesh.clone();
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
@@ -371,22 +371,22 @@ const renderFurniture = () => {
     width.addEventListener("input", (e) => {
       e.preventDefault();
       swidth.value = width.value;
-      lwidth.innerText = `Width:${width.value} cm`;
+      lwidth.innerText = `Width:${width.value}cm`;
     });
     height.addEventListener("input", (e) => {
       e.preventDefault();
       slength.value = height.value;
-      lheight.innerText = `Height:${height.value} cm`;
+      lheight.innerText = `Height:${height.value}cm`;
     });
     depth.addEventListener("input", (e) => {
       e.preventDefault();
       sdepth.value = depth.value;
-      ldepth.innerText = `Depth:${depth.value} cm`;
+      ldepth.innerText = `Depth:${depth.value}cm`;
     });
     shelves.addEventListener("input", (e) => {
       e.preventDefault();
       sshelves.value = shelves.value;
-      lshelves.innerText = `Shelves:${shelves.value}`;
+      lshelves.innerText = `Shelves:${shelves.value - 1}`;
     });
     //__________________________________________________________________________ END____________________________________
   }
