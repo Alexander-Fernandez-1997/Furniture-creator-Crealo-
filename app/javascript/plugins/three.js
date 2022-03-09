@@ -7,6 +7,7 @@ const renderFurniture = () => {
   let depth = document.getElementById("depth");
   let shelves = document.getElementById("shelves");
   let textures = document.querySelectorAll("#cajitamin");
+  let category = document.getElementById("furniture");
 
   const canvasFurniture = document.querySelector("canvas#furniture");
   if (canvasFurniture) {
@@ -115,13 +116,13 @@ const renderFurniture = () => {
 
     // TEXTURES
 
-    let bookshelfTexture = new THREE.TextureLoader().load(
+    let furnitureTexture = new THREE.TextureLoader().load(
       "https://www.fimodecor.com/uploads/M9101-1.jpg"
     );
 
     textures.forEach((texture) => {
       texture.addEventListener("click", (ev) => {
-        bookshelfTexture = new THREE.TextureLoader().load(
+        furnitureTexture = new THREE.TextureLoader().load(
           `${texture.querySelector("#imgsize").src}`
         );
       })
@@ -148,7 +149,7 @@ const renderFurniture = () => {
 
       const backMesh = new THREE.Mesh(
         new THREE.BoxGeometry( bsx, bsy, bt ),
-        new THREE.MeshPhongMaterial({ map: bookshelfTexture })
+        new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
       const back = backMesh.clone()
@@ -160,7 +161,7 @@ const renderFurniture = () => {
 
       const sideMesh = new THREE.Mesh(
         new THREE.BoxGeometry( st, bsy, bsz ),
-        new THREE.MeshPhongMaterial({ map: bookshelfTexture })
+        new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
       const rightSide = sideMesh.clone()
@@ -177,7 +178,7 @@ const renderFurniture = () => {
 
       const shelfMesh = new THREE.Mesh(
         new THREE.BoxGeometry(bsx, sht, bsz),
-        new THREE.MeshPhongMaterial({ map: bookshelfTexture })
+        new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
       shelfMesh.position.set(0, bspy - (hd / 2), bspz);
@@ -194,26 +195,68 @@ const renderFurniture = () => {
       // _______________________________________________________________________
     }
 
+    //__________________________________________________________________________ TABLE MODEL ___________________________
+
+    function createTable() {
+
+      // Variables______________________________________________________________
+
+      let mh = 200; // Table max height
+      const tt = 0.2; // Table thickness
+      const tpz = -15; // Table z position
+
+      let tsx = width.value / 10; // Table x dimension
+      let tsy = height.value / 10; // Table y dimension
+      let tsz = depth.value / 10; // Table z dimension
+
+      const tpy = -(tsy / 2); // Table y position
+
+      // Back___________________________________________________________________
+
+      const tableMesh = new THREE.Mesh(
+        new THREE.BoxGeometry( tsx, tsz, tt ),
+        new THREE.MeshPhongMaterial({ map: furnitureTexture })
+      );
+
+      const table = tableMesh.clone()
+      table.rotation.x += 1.57;
+      table.position.set(0, tpy + tsy - 8, tpz);
+      meshArray.push(table);
+      scene.add(table);
+
+      // _______________________________________________________________________
+    }
+
+    //__________________________________________________________________________ CREATE FURNITURE ______________________
+
+    // <label for="cars">Furniture:</label>
+    // <select name="furniture" id="furniture">
+    //   <option value="Bookshelf">Bookshelf</option>
+    //   <option value="Table">Table</option>
+    // </select>
+
     let meshArray = [];
     createBookshelf();
+    createTable();
 
     //__________________________________________________________________________ RECREATE FURNITURE ____________________
 
-    function recreateBookshelf() {
+    function recreateFurniture() {
       meshArray.forEach((element) => {
         scene.remove(element);
       })
       meshArray = [];
       createBookshelf();
+      createTable();
     }
 
     document.addEventListener("input", (ev) => {
       ev.preventDefault();
-      recreateBookshelf();
+      recreateFurniture();
     })
 
     document.addEventListener("click", (ev) => {
-      recreateBookshelf();
+      recreateFurniture();
     })
 
     //__________________________________________________________________________ MOVE CAMERA ___________________________

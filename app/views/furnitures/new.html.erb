@@ -1,34 +1,26 @@
-
 <canvas id="furniture"></canvas>
 
 <%= render "shared/navbar" %>
+
 <div class="positionorder">
   <div>
     <%= render "shared/sliders1" %>
     <div class="ms-5">
       <%= simple_form_for [@furniture] do |f| %>
-      <%= f.input :category, as: :hidden
-      %>
-      <%= f.input :width, input_html:{ id: "swidth"}, as: :hidden
-      %>
-      <%= f.input :length, input_html:{ id: "slength"}, as: :hidden
-      %>
-      <%= f.input :depth, input_html:{ id: "sdepth"}, as: :hidden
-      %>
-      <%= f.input :shelves, input_html:{ id: "sshelves"}, as: :hidden
-      %>
-      <%= f.input :material, as: :hidden
-      %>
+      <%= f.input :category, as: :hidden %>
+      <%= f.input :width, input_html:{ id: "swidth"}, as: :hidden %>
+      <%= f.input :length, input_html:{ id: "slength"}, as: :hidden %>
+      <%= f.input :depth, input_html:{ id: "sdepth"}, as: :hidden %>
+      <%= f.input :shelves, input_html:{ id: "sshelves"}, as: :hidden %>
+      <%= f.input :material, as: :hidden %>
       <div>
         <%= f.submit class: "btn btn-dark btn-lg" %>
       </div>
-      <% end  %>
-      </div>
-
-
-      </div>
-      <div>
-      <%= render "shared/sliders2" %>
-</div>
+    <% end %>
+    </div>
+  </div>
+  <div>
+    <%= render "shared/sliders2" %>
+  </div>
 </div>
 <%= render "shared/footer" %>
