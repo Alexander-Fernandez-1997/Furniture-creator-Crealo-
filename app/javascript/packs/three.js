@@ -6,7 +6,7 @@ const renderFurniture = () => {
   let depth = document.getElementById("depth");
   let shelves = document.getElementById("shelves");
   let textures = document.querySelectorAll("#cajitamin");
-  let category = document.getElementById("furniture");
+  let category = document.getElementById("select");
 
   const canvasFurniture = document.querySelector("canvas#furniture");
   if (canvasFurniture) {
@@ -57,16 +57,24 @@ const renderFurniture = () => {
     );
     roomTexture.wrapS = THREE.RepeatWrapping;
     roomTexture.wrapT = THREE.RepeatWrapping;
-    roomTexture.repeat.x = 16;
-    roomTexture.repeat.y = 6;
+    roomTexture.repeat.x = 1;
+    roomTexture.repeat.y = 1;
 
     const roomLength = 60;
 
-    const floor = new THREE.Mesh(
+    const roomMesh = new THREE.Mesh(
       new THREE.BoxGeometry(roomLength, 0.2, 30),
       new THREE.MeshPhongMaterial({ color: grey })
     );
-    floor.material = new THREE.MeshPhongMaterial({ map: roomTexture });
+
+    const roof = roomMesh.clone();
+    roof.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
+    roof.position.y += 15;
+    roof.position.z -= 10;
+    scene.add(roof);
+
+    const floor = roomMesh.clone();
+    floor.material = new THREE.MeshPhongMaterial({ color: white });
     floor.position.set(0, -10, -10);
     floor.position.x += roomLength / 2 - 30;
     scene.add(floor);
@@ -80,36 +88,27 @@ const renderFurniture = () => {
     backTexture.repeat.x = 4;
     backTexture.repeat.y = 2;
 
-    const backwall = floor.clone();
-    backwall.material = new THREE.MeshPhongMaterial({ color: white });
-    backwall.position.z -= 10;
-    backwall.position.y += 10;
+    const backwall = roomMesh.clone();
+    backwall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
+    backwall.position.z -= 20;
     backwall.rotation.x += 1.57;
     scene.add(backwall);
 
-    const rSideWall = floor.clone();
-    rSideWall.material = new THREE.MeshPhongMaterial({ color: darkGrey });
+    const rSideWall = roomMesh.clone();
+    rSideWall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
     rSideWall.position.x += roomLength / 2;
     rSideWall.position.z -= 10;
-    rSideWall.position.y += 10;
     rSideWall.rotation.x += 1.57;
     rSideWall.rotation.z += 1.57;
     scene.add(rSideWall);
 
-    // const lSideWall = floor.clone();
-    // lSideWall.material = new THREE.MeshPhongMaterial({ color: grey });
-    // lSideWall.position.x -= roomLength / 2;
-    // lSideWall.position.z -= 10;
-    // lSideWall.position.y += 10;
-    // lSideWall.rotation.x += 1.57;
-    // lSideWall.rotation.z += 1.57;
-    // lSideWall.rotation.y += 1.57 * 2;
-    // scene.add(lSideWall);
-
-    // const roof = floor.clone();
-    // roof.material = new THREE.MeshPhongMaterial({ color: grey });
-    // roof.position.y += 25;
-    // scene.add(roof);
+    const lSideWall = roomMesh.clone();
+    lSideWall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
+    lSideWall.position.x -= roomLength / 2;
+    lSideWall.position.z -= 10;
+    lSideWall.rotation.x += 1.57;
+    lSideWall.rotation.z += 1.57;
+    scene.add(lSideWall);
 
     //__________________________________________________________________________ BOOKSHELF MODEL _______________________
 
@@ -212,6 +211,8 @@ const renderFurniture = () => {
 
       const tpy = -(tsy / 2); // Table y position
 
+      const lt = 0.5 // Leg thickness
+
       // Back___________________________________________________________________
 
       const tableMesh = new THREE.Mesh(
@@ -225,6 +226,16 @@ const renderFurniture = () => {
       meshArray.push(table);
       scene.add(table);
 
+      const legMesh = new THREE.Mesh(
+        new THREE.BoxGeometry( lt, tsz, lt ),
+        new THREE.MeshPhongMaterial({ map: furnitureTexture })
+      );
+
+      const leg = legMesh.clone();
+      leg.position.set(0, tpy + tsy - 8, tpz);
+      meshArray.push(leg);
+      scene.add(leg);
+
       // _______________________________________________________________________
     }
 
@@ -236,20 +247,43 @@ const renderFurniture = () => {
     //   <option value="Table">Table</option>
     // </select>
 
+    let categoryValue = select.options[select.selectedIndex].value;
     let meshArray = [];
-    createBookshelf();
-    createTable();
+
+    if (categoryValue === "Bookshelf") {
+      createBookshelf();
+    }
+
+    if (categoryValue === "Table") {
+      createTable();
+    }
 
     //__________________________________________________________________________ RECREATE FURNITURE ____________________
 
     function recreateFurniture() {
+
+      categoryValue = select.options[select.selectedIndex].value;
+
       meshArray.forEach((element) => {
         scene.remove(element);
       });
       meshArray = [];
-      createBookshelf();
-      createTable();
+
+      console.log(categoryValue)
+
+      if (categoryValue === "Bookshelf") {
+        createBookshelf();
+      }
+
+      if (categoryValue === "Table") {
+        createTable();
+      }
+
     }
+
+    category.addEventListener("change", (ev) => {
+      recreateFurniture();
+    })
 
     document.addEventListener("input", (ev) => {
       ev.preventDefault();
@@ -259,6 +293,8 @@ const renderFurniture = () => {
     document.addEventListener("click", (ev) => {
       recreateFurniture();
     })
+
+
 
     //__________________________________________________________________________ MOVE CAMERA ___________________________
 
@@ -313,5 +349,7 @@ const renderFurniture = () => {
     //__________________________________________________________________________ END____________________________________
   }
 };
+
+renderFurniture();
 
 export { renderFurniture };
