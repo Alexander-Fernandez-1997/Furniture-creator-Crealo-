@@ -7,15 +7,20 @@ const renderFurniture = () => {
   let shelves = document.getElementById("shelves");
   let textures = document.querySelectorAll("#cajitamin");
   let category = document.getElementById("furniture");
+  const canvasFurniture = document.getElementById("furniture");
+  console.log(canvasFurniture);
+  if (canvasFurniture == null) {
+    setTimeout("location.reload(true);", 5000);
+  }
 
-  const canvasFurniture = document.querySelector("canvas#furniture");
   if (canvasFurniture) {
+    console.log("running");
     //________________________________________________________________________ COLORS ________________________________
 
     const white = new THREE.Color(0xffffff);
     const black = new THREE.Color(0x000000);
     const grey = new THREE.Color(0x808080);
-    const salmon = new THREE.Color(0xFA8072);
+    const salmon = new THREE.Color(0xfa8072);
     const darkGrey = new THREE.Color(0xa9a9a9);
 
     //__________________________________________________________________________ SCENE _________________________________
@@ -134,7 +139,7 @@ const renderFurniture = () => {
       const bt = 0.2; // Back thickness
       const sht = 0.2; // Shelf thickness
 
-      const st = 0.2 // Side thickness
+      const st = 0.2; // Side thickness
       const bspz = -15; // Bookshelf z position
 
       let bsx = width.value / 10; // Bookshelf x dimension
@@ -147,8 +152,7 @@ const renderFurniture = () => {
       // Back___________________________________________________________________
 
       const backMesh = new THREE.Mesh(
-
-        new THREE.BoxGeometry( bsx, bsy, bt ),
+        new THREE.BoxGeometry(bsx, bsy, bt),
         new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
@@ -160,9 +164,8 @@ const renderFurniture = () => {
       // Sides__________________________________________________________________
 
       const sideMesh = new THREE.Mesh(
-        new THREE.BoxGeometry( st, bsy, bsz ),
+        new THREE.BoxGeometry(st, bsy, bsz),
         new THREE.MeshPhongMaterial({ map: furnitureTexture })
-
       );
 
       const rightSide = sideMesh.clone();
@@ -199,7 +202,6 @@ const renderFurniture = () => {
     //__________________________________________________________________________ TABLE MODEL ___________________________
 
     function createTable() {
-
       // Variables______________________________________________________________
 
       let mh = 200; // Table max height
@@ -215,11 +217,11 @@ const renderFurniture = () => {
       // Back___________________________________________________________________
 
       const tableMesh = new THREE.Mesh(
-        new THREE.BoxGeometry( tsx, tsz, tt ),
+        new THREE.BoxGeometry(tsx, tsz, tt),
         new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
-      const table = tableMesh.clone()
+      const table = tableMesh.clone();
       table.rotation.x += 1.57;
       table.position.set(0, tpy + tsy - 8, tpz);
       meshArray.push(table);
@@ -254,11 +256,11 @@ const renderFurniture = () => {
     document.addEventListener("input", (ev) => {
       ev.preventDefault();
       recreateFurniture();
-    })
+    });
 
     document.addEventListener("click", (ev) => {
       recreateFurniture();
-    })
+    });
 
     //__________________________________________________________________________ MOVE CAMERA ___________________________
 
