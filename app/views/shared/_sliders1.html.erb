@@ -1,7 +1,12 @@
 <div>
 <form action="·" class="ms-5 mt-5">
 <div id="cajitamax" class="p-5">
-  <label for="width" class="form-label col-3 id="lwidth"">Width</label >
+    <label for="cars">Furniture:</label>
+    <select name="furniture" id="furniture">
+      <option value="Bookshelf">Bookshelf</option>
+      <option value="Table">Table</option>
+    </select>
+  <label for="width" class="form-label col-3">Width</label>
       <div>
         <input
           type="range"
@@ -18,12 +23,24 @@
   <div>
     <input
       type="range"
+      name="amountRange"
       class="form-range"
       min="20"
       max="200"
       step="1"
       id="height"
       value="180"
+      oninput="this.form.amountInput.value=this.value"
+    />
+    <input
+      type="number"
+      name="amountInput"
+      class="form-range"
+      min="20"
+      max="200"
+      step="1"
+      value="180"
+      oninput="this.form.amountRange.value=this.value"
     />
   </div>
 
