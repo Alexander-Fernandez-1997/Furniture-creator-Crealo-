@@ -1,12 +1,38 @@
 import * as THREE from "three";
 
 const renderFurniture = () => {
-  let height = document.getElementById("height");
-  let width = document.getElementById("width");
-  let depth = document.getElementById("depth");
-  let shelves = document.getElementById("shelves");
-  let textures = document.querySelectorAll("#cajitamin");
-  let category = document.getElementById("select");
+
+  let create = document.getElementById("create");
+  let show = document.getElementById("show");
+
+  let height;
+  let width;
+  let depth;
+  let shelves;
+  let textures;
+  let material;
+  let category;
+
+  if (create) {
+    height = document.getElementById("height");
+    width = document.getElementById("width");
+    depth = document.getElementById("depth");
+    shelves = document.getElementById("shelves");
+    textures = document.querySelectorAll("#cajitamin");
+    category = document.getElementById("select");
+  };
+
+  if (show) {
+    height = document.getElementById("showHeight");
+    width = document.getElementById("showWidth");
+    depth = document.getElementById("showDepth");
+    shelves = document.getElementById("showShelves");
+    material = document.getElementById("showMaterial").innerText;
+    material = "https://www.fimodecor.com/uploads/M9101-1.jpg"
+    category = document.getElementById("showCategory").innerText;
+
+    console.log(height, width, depth, shelves, material, category);
+  };
 
   const canvasFurniture = document.querySelector("canvas#furniture");
 
@@ -120,13 +146,21 @@ const renderFurniture = () => {
       "https://www.fimodecor.com/uploads/M9101-1.jpg"
     );
 
-    textures.forEach((texture) => {
-      texture.addEventListener("click", (ev) => {
-        furnitureTexture = new THREE.TextureLoader().load(
-          `${texture.querySelector("#imgsize").src}`
-        );
+    if (create) {
+      textures.forEach((texture) => {
+        texture.addEventListener("click", (ev) => {
+          furnitureTexture = new THREE.TextureLoader().load(
+            `${texture.querySelector("#imgsize").src}`
+          );
+        });
       });
-    });
+    }
+
+    if (show) {
+      furnitureTexture = new THREE.TextureLoader().load(
+        material
+      );
+    }
 
     function createBookshelf() {
       // Variables______________________________________________________________
@@ -246,14 +280,24 @@ const renderFurniture = () => {
     //   <option value="Table">Table</option>
     // </select>
 
-    let categoryValue = select.options[select.selectedIndex].value;
+    let categoryValue;
+
+    if (create) {
+      categoryValue = select.options[select.selectedIndex].value;
+    }
+
+    if (show) {
+      categoryValue = category;
+    }
+
+
     let meshArray = [];
 
-    if (categoryValue === "Bookshelf") {
+    if (categoryValue === "bookshelf") {
       createBookshelf();
     }
 
-    if (categoryValue === "Table") {
+    if (categoryValue === "table") {
       createTable();
     }
 
@@ -269,27 +313,30 @@ const renderFurniture = () => {
 
       console.log(categoryValue);
 
-      if (categoryValue === "Bookshelf") {
+      if (categoryValue === "bookshelf") {
         createBookshelf();
       }
 
-      if (categoryValue === "Table") {
+      if (categoryValue === "table") {
         createTable();
       }
     }
+    if (create) {
 
-    category.addEventListener("change", (ev) => {
-      recreateFurniture();
-    });
+      category.addEventListener("change", (ev) => {
+        recreateFurniture();
+      });
 
-    document.addEventListener("input", (ev) => {
-      ev.preventDefault();
-      recreateFurniture();
-    });
+      document.addEventListener("input", (ev) => {
+        ev.preventDefault();
+        recreateFurniture();
+      });
 
-    document.addEventListener("click", (ev) => {
-      recreateFurniture();
-    });
+      document.addEventListener("click", (ev) => {
+        recreateFurniture();
+      });
+
+    };
 
     //__________________________________________________________________________ MOVE CAMERA ___________________________
 
