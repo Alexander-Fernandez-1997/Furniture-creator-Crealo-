@@ -31,7 +31,7 @@ const renderFurniture = () => {
     material = "https://www.fimodecor.com/uploads/M9101-1.jpg"
     category = document.getElementById("showCategory").innerText;
 
-    console.log(height, width, depth, shelves, material, category);
+    console.log(height.value, width, depth, shelves, material, category);
   };
 
   const canvasFurniture = document.querySelector("canvas#furniture");
@@ -371,17 +371,17 @@ const renderFurniture = () => {
     width.addEventListener("input", (e) => {
       e.preventDefault();
       swidth.value = width.value;
-      lwidth.innerText = `Widht:${width.value}`;
+      lwidth.innerText = `Width:${width.value} cm`;
     });
     height.addEventListener("input", (e) => {
       e.preventDefault();
       slength.value = height.value;
-      lheight.innerText = `Height:${height.value}`;
+      lheight.innerText = `Height:${height.value} cm`;
     });
     depth.addEventListener("input", (e) => {
       e.preventDefault();
       sdepth.value = depth.value;
-      ldepth.innerText = `Depth:${depth.value}`;
+      ldepth.innerText = `Depth:${depth.value} cm`;
     });
     shelves.addEventListener("input", (e) => {
       e.preventDefault();
