@@ -8,6 +8,8 @@ const renderFurniture = () => {
   let textures = document.querySelectorAll("#cajitamin");
   let category = document.getElementById("select");
 
+  const canvasFurniture = document.querySelector("canvas#furniture");
+
   if (canvasFurniture) {
     console.log("running");
     //________________________________________________________________________ COLORS ________________________________
