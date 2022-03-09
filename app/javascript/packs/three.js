@@ -31,7 +31,11 @@ const renderFurniture = () => {
     material = "https://www.fimodecor.com/uploads/M9101-1.jpg"
     category = document.getElementById("showCategory").innerText;
 
-    console.log(height.value, width, depth, shelves, material, category);
+    console.log(document.getElementById("showHeight"));
+    console.log(height.value);
+
+    console.log(document.getElementById("showDepth"));
+    console.log(depth.value);
   };
 
   const canvasFurniture = document.querySelector("canvas#furniture");
@@ -130,6 +134,14 @@ const renderFurniture = () => {
     rSideWall.rotation.z += 1.57;
     scene.add(rSideWall);
 
+    const rSideWallWindow = roomMesh.clone();
+    rSideWallWindow.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
+    rSideWallWindow.position.x += roomLength / 2;
+    rSideWallWindow.position.z -= 10;
+    rSideWallWindow.rotation.x += 1.57;
+    rSideWallWindow.rotation.z += 1.57;
+    scene.add(rSideWallWindow);
+
     const lSideWall = roomMesh.clone();
     lSideWall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
     lSideWall.position.x -= roomLength / 2;
@@ -137,6 +149,8 @@ const renderFurniture = () => {
     lSideWall.rotation.x += 1.57;
     lSideWall.rotation.z += 1.57;
     scene.add(lSideWall);
+
+
 
     //__________________________________________________________________________ BOOKSHELF MODEL _______________________
 
@@ -255,19 +269,34 @@ const renderFurniture = () => {
 
       const table = tableMesh.clone();
       table.rotation.x += 1.57;
-      table.position.set(0, tpy + tsy - 8, tpz);
+      table.position.set(0, tpy + tsy - 10, tpz);
       meshArray.push(table);
       scene.add(table);
 
       const legMesh = new THREE.Mesh(
-        new THREE.BoxGeometry(lt, tsz, lt),
+        new THREE.BoxGeometry(lt, tsy, lt),
         new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
-      const leg = legMesh.clone();
-      leg.position.set(0, tpy + tsy - 8, tpz);
-      meshArray.push(leg);
-      scene.add(leg);
+      const legrf = legMesh.clone();
+      legrf.position.set((tsx / 2) - (lt / 2), (tpy + tsy - 10) - (tsy / 2), tpz + (tsz / 2) - (lt / 2));
+      meshArray.push(legrf);
+      scene.add(legrf);
+
+      const legrb = legMesh.clone();
+      legrb.position.set((tsx / 2) - (lt / 2), (tpy + tsy - 10) - (tsy / 2), tpz - (tsz / 2) + (lt / 2));
+      meshArray.push(legrb);
+      scene.add(legrb);
+
+      const leglf = legMesh.clone();
+      leglf.position.set(-(tsx / 2) + (lt / 2), (tpy + tsy - 10) - (tsy / 2), tpz + (tsz / 2) - (lt / 2));
+      meshArray.push(leglf);
+      scene.add(leglf);
+
+      const leglb = legMesh.clone();
+      leglb.position.set(-(tsx / 2) + (lt / 2), (tpy + tsy - 10) - (tsy / 2), tpz - (tsz / 2) + (lt / 2));
+      meshArray.push(leglb);
+      scene.add(leglb);
 
       // _______________________________________________________________________
     }
