@@ -24,3 +24,4 @@ if (menuToggle) {
     showcase.classList.toggle("active");
   });
 }
+
