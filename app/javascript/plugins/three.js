@@ -227,7 +227,7 @@ const renderFurniture = () => {
       scene.add(table);
 
       const legMesh = new THREE.Mesh(
-        new THREE.BoxGeometry( lt, tsy, lt ),
+        new THREE.BoxGeometry( lt, tsz, lt ),
         new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
