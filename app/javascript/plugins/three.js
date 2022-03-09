@@ -1,7 +1,6 @@
 import * as THREE from "three";
 
 const renderFurniture = () => {
-
   let height = document.getElementById("height");
   let width = document.getElementById("width");
   let depth = document.getElementById("depth");
@@ -125,16 +124,16 @@ const renderFurniture = () => {
         furnitureTexture = new THREE.TextureLoader().load(
           `${texture.querySelector("#imgsize").src}`
         );
-      })
-    })
+      });
+    });
 
     function createBookshelf() {
-
       // Variables______________________________________________________________
 
       let mh = 200; // Bookshelf max height
       const bt = 0.2; // Back thickness
       const sht = 0.2; // Shelf thickness
+
       const st = 0.2 // Side thickness
       const bspz = -15; // Bookshelf z position
 
@@ -148,11 +147,12 @@ const renderFurniture = () => {
       // Back___________________________________________________________________
 
       const backMesh = new THREE.Mesh(
+
         new THREE.BoxGeometry( bsx, bsy, bt ),
         new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
-      const back = backMesh.clone()
+      const back = backMesh.clone();
       back.position.set(0, -(hd / 2) + sht, bspz);
       meshArray.push(back);
       scene.add(back);
@@ -162,14 +162,15 @@ const renderFurniture = () => {
       const sideMesh = new THREE.Mesh(
         new THREE.BoxGeometry( st, bsy, bsz ),
         new THREE.MeshPhongMaterial({ map: furnitureTexture })
+
       );
 
-      const rightSide = sideMesh.clone()
-      rightSide.position.set((bsx / 2), -(hd / 2) + sht, bspz);
+      const rightSide = sideMesh.clone();
+      rightSide.position.set(bsx / 2, -(hd / 2) + sht, bspz);
       meshArray.push(rightSide);
       scene.add(rightSide);
 
-      const leftSide = sideMesh.clone()
+      const leftSide = sideMesh.clone();
       leftSide.position.set(-(bsx / 2), -(hd / 2) + sht, bspz);
       meshArray.push(leftSide);
       scene.add(leftSide);
@@ -181,15 +182,15 @@ const renderFurniture = () => {
         new THREE.MeshPhongMaterial({ map: furnitureTexture })
       );
 
-      shelfMesh.position.set(0, bspy - (hd / 2), bspz);
-      let shelfPosition = bspy - (hd / 2);
+      shelfMesh.position.set(0, bspy - hd / 2, bspz);
+      let shelfPosition = bspy - hd / 2;
 
       for (let step = 0; step < shelves.value; step++) {
         const shelf = shelfMesh.clone();
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
         scene.add(shelf);
-        shelfPosition += (bsy / (shelves.value - 1));
+        shelfPosition += bsy / (shelves.value - 1);
       }
 
       // _______________________________________________________________________
@@ -244,7 +245,7 @@ const renderFurniture = () => {
     function recreateFurniture() {
       meshArray.forEach((element) => {
         scene.remove(element);
-      })
+      });
       meshArray = [];
       createBookshelf();
       createTable();
@@ -284,23 +285,31 @@ const renderFurniture = () => {
     let sdepth = document.getElementById("sdepth");
     let sshelves = document.getElementById("sshelves");
 
+    let lwidth = document.getElementById("lwidth");
+    let lheight = document.getElementById("lheight");
+    let ldepth = document.getElementById("ldepth");
+    let lshelves = document.getElementById("lshelves");
+
     width.addEventListener("input", (e) => {
       e.preventDefault();
       swidth.value = width.value;
+      lwidth.innerText = `Widht:${width.value}`;
     });
     height.addEventListener("input", (e) => {
       e.preventDefault();
       slength.value = height.value;
+      lheight.innerText = `Height:${height.value}`;
     });
     depth.addEventListener("input", (e) => {
       e.preventDefault();
       sdepth.value = depth.value;
+      ldepth.innerText = `Depth:${depth.value}`;
     });
     shelves.addEventListener("input", (e) => {
       e.preventDefault();
       sshelves.value = shelves.value;
+      lshelves.innerText = `Shelves:${shelves.value}`;
     });
-
     //__________________________________________________________________________ END____________________________________
   }
 };

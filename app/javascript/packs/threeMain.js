@@ -81,7 +81,7 @@ const bspz = -10; // Bookshelf z position
 
 const bt = 0.2; // Back thickness
 
-const sh = (bsy / 5); // Shelf height
+const sh = bsy / 5; // Shelf height
 const st = 0.2; // Shelf thickness
 
 //______________________________________________________________________________ MESH CREATION
@@ -128,10 +128,13 @@ shelf9.position.y += sh * 9;
 const shelf10 = bottom.clone();
 shelf10.position.y += sh * 10;
 
-const backGeometry = new THREE.BoxGeometry( bsx, bsy, bt );
-const back = new THREE.Mesh(backGeometry , new THREE.MeshPhongMaterial( {color: grey} ) );
-back.position.set(0, 0, bspz - (bsz / 2));
-scene.add( back );
+const backGeometry = new THREE.BoxGeometry(bsx, bsy, bt);
+const back = new THREE.Mesh(
+  backGeometry,
+  new THREE.MeshPhongMaterial({ color: grey })
+);
+back.position.set(0, 0, bspz - bsz / 2);
+scene.add(back);
 
 //______________________________________________________________________________ INPUT VARIABLES
 
@@ -187,7 +190,8 @@ height.addEventListener("input", (ev) => {
   shelf7.position.y = bspy + sha * 7 - ((200 - height.value) / 10) * (7 / sc);
   shelf8.position.y = bspy + sha * 8 - ((200 - height.value) / 10) * (8 / sc);
   shelf9.position.y = bspy + sha * 9 - ((200 - height.value) / 10) * (9 / sc);
-  shelf10.position.y = bspy + sha * 10 - ((200 - height.value) / 10) * (10 / sc);
+  shelf10.position.y =
+    bspy + sha * 10 - ((200 - height.value) / 10) * (10 / sc);
 });
 
 //______________________________________________________________________________ WIDTH LISTENER
@@ -314,21 +318,31 @@ let sheight = document.getElementById("sheight");
 let sdepth = document.getElementById("sdepth");
 let sshelves = document.getElementById("sshelves");
 
+let lwidth = document.getElementById("lwidth");
+let lheight = document.getElementById("lheight");
+let ldepth = document.getElementById("ldepth");
+let lshelves = document.getElementById("lshelves");
+
 width.addEventListener("input", (e) => {
   e.preventDefault();
   swidth.value = width.value;
+  lwidth.insertAdjacentText("beforeend", width.value);
 });
 height.addEventListener("input", (e) => {
   e.preventDefault();
   sheight.value = height.value;
+  lheight.insertAdjacentText("beforeend", height.value);
 });
 depth.addEventListener("input", (e) => {
   e.preventDefault();
   sdepth.value = depth.value;
+  ldepth.insertAdjacentText("beforeend", depth.value);
 });
 shelves.addEventListener("input", (e) => {
   e.preventDefault();
   sshelves.value = shelves.value;
+  lshelves.innerText = shelves.value;
+  console.log("sup");
 });
 
 //______________________________________________________________________________ END ___________________________________
