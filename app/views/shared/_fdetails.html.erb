@@ -1,42 +1,98 @@
-<div class="sticky-start m-5 pt-3 pb-3 ps-5 pe-5" id="tablero">
+<div class="container">
+  <div class="row m-0">
+    <div class="col-lg-7 pb-5 pe-lg-5">
+      <div class="row">
+        <div class="col-12 p-5"> <img
+            src="https://woodfurniturestore.co.uk/wp-content/uploads/2020/12/large-bookcase-1.jpg" alt=""> </div>
+        <div class="row m-0">
+          <div class="col-md-4 col-6 ps-30 pe-0 my-4">
+            <p class="text-muted">Width</p>
+            <p class="h5"><%= @furniture.width %><span class="ps-1">Cm</span></p>
+          </div>
+          <div class="col-md-4 col-6 ps-30 my-4">
+            <p class="text-muted">Heigth</p>
+            <p class="h5 m-0"><%= @furniture.length %><span class="ps-1">Cm</span></p>
+          </div>
+          <div class="col-md-4 col-6 ps-30 my-4">
+            <p class="text-muted">Depth</p>
+            <p class="h5 m-0"><%= @furniture.depth %><span class="ps-1">Cm</span></p>
+          </div>
+          <div class="col-md-4 col-6 ps-30 my-4">
+            <p class="text-muted">Area</p>
+            <p class="h5 m-0">1<span class="ps-1">m2</span></p>
+          </div>
+          <div class="col-md-4 col-6 ps-30 my-4">
+            <p class="text-muted">Shelves</p>
+            <p class="h5 m-0"><%= @furniture.shelves %></p>
+          </div>
+          <div class="col-md-4 col-6 ps-30 my-4">
+            <p class="text-muted">Material</p>
+            <p class="h5 m-0"><%= @furniture.material %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 p-0 ps-lg-4">
+      <div class="row m-0">
+        <div class="col-12 px-4">
+          <div class="d-flex align-items-end mt-4 mb-2">
+            <p class="h4 m-0"><span class="pe-1"><%=  @furniture.category.capitalize %></span><span
+                class="pe-1">966</span><span class="pe-1">B</span></p>
+            <P class="ps-3 textmuted">Lvl Up</P>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <p class="textmuted">Qty</p>
+            <p class="fs-14 fw-bold">1</p>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <p class="textmuted">Subtotal</p>
+            <p class="fs-14 fw-bold"><span
+                class="fas fa-dollar-sign pe-1"></span><%= humanized_money_with_symbol(@furniture.price)  %></p>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <p class="textmuted">Shipping</p>
+            <p class="fs-14 fw-bold"> <i class="fas fa-dollar-sign pe-1"></i> 100</p>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <p class="textmuted">Promo code</p>
+            <p class="fs-14 fw-bold">-<span class="fas fa-dollar-sign px-1"></span>100</p>
+          </div>
+          <div class="d-flex justify-content-between mb-3">
+            <p class="textmuted fw-bold">Total</p>
+            <div class="d-flex align-text-top "> <span class="fas fa-dollar-sign mt-1 pe-1 fs-14 "></span><span
+                class="h4"><%= humanized_money_with_symbol(@furniture.price) %></span> </div>
+          </div>
+        </div>
+        <div class="col-12 px-0">
 
-<div>
-<h3>Category:</h3>
-<h4 id="hcategory"> <%=  @furniture.category %></h4>
+          <div class="row m-0">
+            <div class="col-12 mb-4 p-0">
+              <div class="btn btn-primary">Update<span class="fas fa-recycle ps-2"></span> </div>
+            </div>
+          </div>
+          <div class="row m-0">
+            <div class="col-12 mb-4 p-0">
+              <div class="btn btn-primary">Delete<span class="fas fa-trash-alt ps-2"></span> </div>
+            </div>
+          </div>
+          <div class="row m-0">
+            <div class="col-12 mb-4 p-0">
+              <div class="btn btn-primary">New<span class="fas fa-plus ps-2"></span> </div>
+            </div>
+          </div>
+          <div class="row m-0">
+            <div class="col-12 mb-4 p-0">
+
+              <%= form_tag transactions_path do %>
+              <%= hidden_field_tag 'furniture_id', @furniture.id %>
+              <div class="btn btn-primary"> <%= submit_tag 'Checkout', class: "fondo" %> <span
+                  class="fas fa-cart-arrow-down ps-2"></span> </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div>
-<h3>Width:</h3>
-<h4 id="hwidth"> <%= @furniture.width %> </h4>
-</div>
-
-<div>
-<h3>Lenght:</h3>
-<h4 id="hlength"> <%= @furniture.length %> </h4>
-</div>
-
-<div>
-<h3>Depth:</h3>
-<h4 id="hdepth"> <%= @furniture.depth %> </h4>
-</div>
-
-<div>
-<h3>Shelves:</h3>
-<h4 id="hshelves"> <%= @furniture.shelves %> </h4>
-</div>
-
-<div>
-<h3>Material:</h3>
-<h4 id="htexture"> <%= @furniture.material %> </h4>
-</div>
-
-<div>
-<h3>Price:</h3>
-<h4><%= humanized_money_with_symbol(@furniture.price) %></h4>
-</div>
-
-<%= form_tag transactions_path do %>
-  <%= hidden_field_tag 'furniture_id', @furniture.id %>
-  <%= submit_tag 'Purchase', class: 'btn btn-dark mb-3' %>
-<% end %>
 </div>

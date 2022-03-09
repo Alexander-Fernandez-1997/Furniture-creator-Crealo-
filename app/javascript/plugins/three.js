@@ -1,12 +1,11 @@
 import * as THREE from "three";
 
-const renderFurniture = (
-    height = document.getElementById("height"),
-    width = document.getElementById("width"),
-    depth = document.getElementById("depth"),
-    shelves = document.getElementById("shelves"),
-    textures = document.querySelectorAll("#cajitamin"),
-) => {
+const renderFurniture = () => {
+  let height = document.getElementById("height");
+  let width = document.getElementById("width");
+  let depth = document.getElementById("depth");
+  let shelves = document.getElementById("shelves");
+  let textures = document.querySelectorAll("#cajitamin");
 
   const canvasFurniture = document.querySelector("canvas#furniture");
   if (canvasFurniture) {
@@ -70,8 +69,17 @@ const renderFurniture = (
     floor.position.x += roomLength / 2 - 40;
     scene.add(floor);
 
+    const backTexture = new THREE.TextureLoader().load(
+      "https://i.pinimg.com/736x/f6/7e/4e/f67e4efd42f1ae3590a2834857a36840--background-patterns-stripe-pattern.jpg"
+    );
+
+    backTexture.wrapS = THREE.RepeatWrapping;
+    backTexture.wrapT = THREE.RepeatWrapping;
+    backTexture.repeat.x = 5;
+    backTexture.repeat.y = 2;
+
     const backwall = floor.clone();
-    backwall.material = new THREE.MeshPhongMaterial({ color: grey });
+    backwall.material = new THREE.MeshPhongMaterial({ map: backTexture });
     backwall.position.z -= 10;
     backwall.position.y += 10;
     backwall.rotation.x += 1.57;
@@ -114,17 +122,16 @@ const renderFurniture = (
         bookshelfTexture = new THREE.TextureLoader().load(
           `${texture.querySelector("#imgsize").src}`
         );
-      })
-    })
+      });
+    });
 
     function createBookshelf() {
-
       // Variables______________________________________________________________
 
       let mh = 200; // Bookshelf max height
       const bt = 0.2; // Back thickness
       const sht = 0.2; // Shelf thickness
-      const st = 0.2 // Side thickness
+      const st = 0.2; // Side thickness
       const bspz = -10; // Bookshelf z position
 
       let bsx = width.value / 10; // Bookshelf x dimension
@@ -137,11 +144,11 @@ const renderFurniture = (
       // Back___________________________________________________________________
 
       const backMesh = new THREE.Mesh(
-        new THREE.BoxGeometry( bsx, bsy, bt ),
+        new THREE.BoxGeometry(bsx, bsy, bt),
         new THREE.MeshPhongMaterial({ map: bookshelfTexture })
       );
 
-      const back = backMesh.clone()
+      const back = backMesh.clone();
       back.position.set(0, -(hd / 2) + sht, bspz);
       meshArray.push(back);
       scene.add(back);
@@ -149,16 +156,16 @@ const renderFurniture = (
       // Sides__________________________________________________________________
 
       const sideMesh = new THREE.Mesh(
-        new THREE.BoxGeometry( st, bsy, bsz ),
+        new THREE.BoxGeometry(st, bsy, bsz),
         new THREE.MeshPhongMaterial({ map: bookshelfTexture })
       );
 
-      const rightSide = sideMesh.clone()
-      rightSide.position.set((bsx / 2), -(hd / 2) + sht, bspz);
+      const rightSide = sideMesh.clone();
+      rightSide.position.set(bsx / 2, -(hd / 2) + sht, bspz);
       meshArray.push(rightSide);
       scene.add(rightSide);
 
-      const leftSide = sideMesh.clone()
+      const leftSide = sideMesh.clone();
       leftSide.position.set(-(bsx / 2), -(hd / 2) + sht, bspz);
       meshArray.push(leftSide);
       scene.add(leftSide);
@@ -170,15 +177,15 @@ const renderFurniture = (
         new THREE.MeshPhongMaterial({ map: bookshelfTexture })
       );
 
-      shelfMesh.position.set(0, bspy - (hd / 2), bspz);
-      let shelfPosition = bspy - (hd / 2);
+      shelfMesh.position.set(0, bspy - hd / 2, bspz);
+      let shelfPosition = bspy - hd / 2;
 
       for (let step = 0; step < shelves.value; step++) {
         const shelf = shelfMesh.clone();
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
         scene.add(shelf);
-        shelfPosition += (bsy / (shelves.value - 1));
+        shelfPosition += bsy / (shelves.value - 1);
       }
 
       // _______________________________________________________________________
@@ -192,7 +199,7 @@ const renderFurniture = (
     function recreateBookshelf() {
       meshArray.forEach((element) => {
         scene.remove(element);
-      })
+      });
       meshArray = [];
       createBookshelf();
     }
@@ -200,11 +207,11 @@ const renderFurniture = (
     document.addEventListener("input", (ev) => {
       ev.preventDefault();
       recreateBookshelf();
-    })
+    });
 
     document.addEventListener("click", (ev) => {
       recreateBookshelf();
-    })
+    });
 
     //__________________________________________________________________________ MOVE CAMERA ___________________________
 
@@ -231,23 +238,31 @@ const renderFurniture = (
     let sdepth = document.getElementById("sdepth");
     let sshelves = document.getElementById("sshelves");
 
+    let lwidth = document.getElementById("lwidth");
+    let lheight = document.getElementById("lheight");
+    let ldepth = document.getElementById("ldepth");
+    let lshelves = document.getElementById("lshelves");
+
     width.addEventListener("input", (e) => {
       e.preventDefault();
       swidth.value = width.value;
+      lwidth.innerText = `Widht:${width.value}`;
     });
     height.addEventListener("input", (e) => {
       e.preventDefault();
       slength.value = height.value;
+      lheight.innerText = `Height:${height.value}`;
     });
     depth.addEventListener("input", (e) => {
       e.preventDefault();
       sdepth.value = depth.value;
+      ldepth.innerText = `Depth:${depth.value}`;
     });
     shelves.addEventListener("input", (e) => {
       e.preventDefault();
       sshelves.value = shelves.value;
+      lshelves.innerText = `Shelves:${shelves.value}`;
     });
-
     //__________________________________________________________________________ END____________________________________
   }
 };
