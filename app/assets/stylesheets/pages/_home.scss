@@ -5,12 +5,20 @@ canvas {
   left: 0;
   z-index: -100;
 }
+
 .positionorder {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  padding: 7rem;
 }
+.sizebox {
+  max-height: 60vh;
+  margin: 0px;
+  padding: 0px;
+}
+
 #tablero {
   letter-spacing: 2px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;

@@ -15,7 +15,7 @@
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </p>
-        <a href="#">Create</a>
+        <%= link_to  'Create' , new_furniture_path %>
       </div>
       <ul class="social">
         <li>
@@ -31,9 +31,19 @@
     </section>
     <div class="menu">
       <ul>
-        <li><a href="#">Create</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Create account</a></li>
-        <%= link_to 'createas', new_furniture_path %>
+        <li> <%= link_to  'Create' , new_furniture_path %> </li>
+        <li> <%= link_to "Login", new_user_session_path %> </li>
+        <li> <%= link_to  'Register' ,  new_user_registration_path %> </li>
       </ul>
     </div>
+
+    <script>
+    const menuToggle = document.querySelector(".toggle");
+const showcase = document.querySelector(".showcase");
+
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  showcase.classList.toggle("active");
+});
+
+    </script>
