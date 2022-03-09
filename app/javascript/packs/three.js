@@ -350,4 +350,6 @@ const renderFurniture = () => {
   }
 };
 
+renderFurniture();
+
 export { renderFurniture };
