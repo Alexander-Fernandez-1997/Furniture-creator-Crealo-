@@ -31,6 +31,9 @@
   text-shadow: 0px 0px 3px white;
   font-weight: 600;
 }
+#cajitamax:hover {
+  border-radius: 30px;
+}
 #transparente {
   background: hsl(0, 0%, 100% / 0.1);
   backdrop-filter: blur(0.2rem);
@@ -38,21 +41,22 @@
 }
 #cajitamax:hover h2 {
   background-color: rgba(209, 209, 209, 0.2);
+  border-radius: 40px;
 
-  font-size: 35px;
 }
 #cajitamax:hover #cajita {
   background-color: rgba(209, 209, 209, 0.2);
 }
-#cajitamin:hover {
+#cajita:hover {
   background-color: rgba(84, 84, 86, 0.2);
+  border-radius: 30px;
 }
 #imgsize:hover {
   height: 7rem;
   width: 7rem;
 }
 #cajitamin:hover p {
-  text-shadow: 1px 0 0 black;
+  background-color: rgba(0, 0, 0, 0.0);
 }
 element.style {
   width: 4.5rem;
