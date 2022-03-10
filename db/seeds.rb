@@ -17,3 +17,4 @@ Texture.create(name: "Black", url: "https://www.miliashop.com/img/co/105989.jpg"
 
 Texture.create(name: "Wood", url: "https://sc01.alicdn.com/kf/HTB1_wOuJVXXXXXiaXXXq6xXFXXXy/47811/HTB1_wOuJVXXXXXiaXXXq6xXFXXXy.jpg" )
 
+Texture.create(name: "Red", url: "https://i.pinimg.com/originals/05/b1/0d/05b10df54d54ebd95a86300df6baa4f0.jpg" )
