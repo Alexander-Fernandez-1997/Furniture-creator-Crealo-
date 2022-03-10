@@ -1,4 +1,4 @@
-<h1 class= "text-center"> Welcome to <%= @user.email %>´s profile  </h1>
+<h1 class= "text-center"> Welcome <%= @user.email %></h1>
 <ul class="nav nav-tabs ms-3 profiles" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Furnitures</button>
@@ -9,43 +9,42 @@
 </ul>
 <div class="tab-content ms-3" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
- 
+
 
 <h2 >List of creations</h2>
-<div class=" profilel"  >
-
-<% @user.furnitures.each do |furniture| %>
-<div class="card mt-4" >
-<h3> <%= furniture.category %> </h3>
-<h4>Details:</h4>
-<ol>
-<li> Widht:<%= furniture.width %> </li>
-<li> Lenght:<%= furniture.length %> </li>
-<li> Depth:<%= furniture.depth %> </li>
-<li> Shelves:<%= furniture.shelves %> </li>
-<li> Material:<%= furniture.material %> </li>
-</ol>
-
-</div>
-<% end  %>
-</div>
+  <div class=" profilel"  >
+    <% @user.furnitures.each do |furniture| %>
+      <div class="card mt-4" >
+        <h3> <%= furniture.category %> </h3>
+        <h4>Details:</h4>
+        <ol>
+          <li> Widht:<%= furniture.width %> </li>
+          <li> Lenght:<%= furniture.length %> </li>
+          <li> Depth:<%= furniture.depth %> </li>
+          <li> Shelves:<%= furniture.shelves %> </li>
+          <li> Material:<%= furniture.material %> </li>
+        </ol>
+      </div>
+    <% end  %>
+  </div>
 
 </div>
- <div class="tab-pane fade ms-3 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+<div class="tab-pane fade ms-3 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
 <h2>List of transactions</h2>
 <div class=" profilel">
 
 <% @user.transactions.each do |transaction| %>
-<div class="card mt-4">
-<h3> Date:<%= transaction.created_at %>  </h3>
-<ol>
-<li>Buying : <%= transaction.furniture.category %></li>
-<li>Payment Method: <%= transaction.payment_method %> </li>
-<li>Shipping time: <%= transaction.shipping_time %> </li>
-</ol>
-</div>
+  <div class="card mt-4">
+    <h3> Date:<%= transaction.created_at %>  </h3>
+    <ol>
+      <li>Buying : <%= transaction.furniture.category %></li>
+      <li>Payment Method: <%= transaction.payment_method %> </li>
+      <li>Shipping time: <%= transaction.shipping_time %> </li>
+    </ol>
+  </div>
 <% end %>
 
 </div>
 </div>
+
 
