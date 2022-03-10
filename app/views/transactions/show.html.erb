@@ -5,8 +5,9 @@
     <div class="d-flex justify-content-center row">
         <div class="col-md-10">
             <div class="receipt bg-white p-3 rounded">
-                <%#=image_tag("logo.png") %>
-                <h1>CREALO</h1>
+                <div class="logo">
+                <%=image_tag("logo.png")%>
+                </div>
                 <h4 class="mt-2 mb-3">Your order is confirmed!</h4>
                 <h6 class="name">Hello  <%= @transaction.furniture.user.fullname %>,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span>
                 <hr>
@@ -54,6 +55,10 @@
 <style>
 body {
     background-color: #eee
+}
+
+.logo {
+  width: 200px;
 }
 
 .min-img {
