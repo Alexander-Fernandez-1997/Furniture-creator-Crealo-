@@ -19,5 +19,4 @@ Texture.create(name: "Wood", url: "https://sc01.alicdn.com/kf/HTB1_wOuJVXXXXXiaX
 
 Texture.create(name: "Red", url: "https://i.pinimg.com/originals/05/b1/0d/05b10df54d54ebd95a86300df6baa4f0.jpg" )
 
-Texture.create(name: "Green", url: "https://assets.hongkiat.com/uploads/wood-textures/blue-wood.jpg" )
-
+Texture.create(name: "Cherry", url: "https://st.depositphotos.com/1008653/3668/i/600/depositphotos_36682805-stock-photo-cherry-wood-flooring-board-seamless.jpg" )
