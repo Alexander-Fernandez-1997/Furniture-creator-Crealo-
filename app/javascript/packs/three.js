@@ -170,6 +170,7 @@ const renderFurniture = () => {
     //__________________________________________________________________________ BOOKSHELF MODEL _______________________
 
     function createBookshelf() {
+
       // Variables______________________________________________________________
 
       let mh = 200; // Bookshelf max height
@@ -194,6 +195,7 @@ const renderFurniture = () => {
       );
 
       const back = backMesh.clone();
+      back.name = "back"
       back.position.set(0, -(hd / 2) + sht, bspz);
       meshArray.push(back);
       scene.add(back);
@@ -206,11 +208,13 @@ const renderFurniture = () => {
       );
 
       const rightSide = sideMesh.clone();
+      rightSide.name = "rightSide"
       rightSide.position.set(bsx / 2, -(hd / 2) + sht, bspz);
       meshArray.push(rightSide);
       scene.add(rightSide);
 
       const leftSide = sideMesh.clone();
+      leftSide.name = "leftSide"
       leftSide.position.set(-(bsx / 2), -(hd / 2) + sht, bspz);
       meshArray.push(leftSide);
       scene.add(leftSide);
@@ -227,11 +231,11 @@ const renderFurniture = () => {
 
       for (let i = 0; i < (shelves.value); i++) {
         const shelf = shelfMesh.clone();
+        shelf.name = "shelf"
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
         scene.add(shelf);
         shelfPosition += bsy / (shelves.value - 1);
-
       }
 
       // _______________________________________________________________________
@@ -297,12 +301,6 @@ const renderFurniture = () => {
 
     //__________________________________________________________________________ CREATE FURNITURE ______________________
 
-    // <label for="cars">Furniture:</label>
-    // <select name="furniture" id="furniture">
-    //   <option value="Bookshelf">Bookshelf</option>
-    //   <option value="Table">Table</option>
-    // </select>
-
     let categoryValue;
 
     if (create) {
@@ -312,7 +310,6 @@ const renderFurniture = () => {
     if (show) {
       categoryValue = category;
     }
-
 
     let meshArray = [];
 
@@ -377,53 +374,52 @@ const renderFurniture = () => {
 
     if (create) {
       for (let i = 0; i < (meshArray.length); i++) {
-        meshArray[i].position.y += 8 * (i + 1);
+        scene.children[7 + i].position.y += 8 * (i + 1);
       };
     };
+
+    console.log(scene.children)
 
     function animate() {
       requestAnimationFrame(animate);
 
       if (create) {
-
         const speed = 0.2
 
-        if (meshArray[0].position.y > -0.8) {
-          meshArray[0].position.y -= speed;
+        if (scene.children[7].position.y > -0.8) {
+          scene.children[7].position.y -= speed;
         }
-        if (meshArray[1].position.y > -0.8) {
-          meshArray[1].position.y -= speed;
+        if (scene.children[8].position.y > -0.8) {
+          scene.children[8].position.y -= speed;
         }
-        if (meshArray[2].position.y > -0.8) {
-          meshArray[2].position.y -= speed;
+        if (scene.children[9].position.y > -0.8) {
+          scene.children[9].position.y -= speed;
         }
-        if (meshArray[3].position.y > -9.8) {
-          meshArray[3].position.y -= speed;
+        if (scene.children[10].position.y > -9.8) {
+          scene.children[10].position.y -= speed;
         }
-        if (meshArray[4].position.y > -6.2) {
-          meshArray[4].position.y -= speed;
+        if (scene.children[11].position.y > -6.2) {
+          scene.children[11].position.y -= speed;
         }
-        if (meshArray[5].position.y > -2.6) {
-          meshArray[5].position.y -= speed;
+        if (scene.children[12].position.y > -2.6) {
+          scene.children[12].position.y -= speed;
         }
-        if (meshArray[6].position.y > 1) {
-          meshArray[6].position.y -= speed;
+        if (scene.children[13].position.y > 1) {
+          scene.children[13].position.y -= speed;
         }
-        if (meshArray[7].position.y > 4.6) {
-          meshArray[7].position.y -= speed;
+        if (scene.children[14].position.y > 4.6) {
+          scene.children[14].position.y -= speed;
         }
-        if (meshArray[8].position.y > 8.2) {
-          meshArray[8].position.y -= speed;
+        if (scene.children[15].position.y > 8.2) {
+          scene.children[15].position.y -= speed;
         }
       }
-
-
-
       renderer.render(scene, camera);
     }
 
 
     animate();
+
 
     //__________________________________________________________________________ SLIDERS INPUT__________________________
 
