@@ -340,6 +340,8 @@ const renderFurniture = () => {
       if (categoryValue === "table") {
         createTable();
       }
+
+      console.log(scene.children);
     }
 
     //__________________________________________________________________________ EVENT LISTENERS _______________________
@@ -372,48 +374,47 @@ const renderFurniture = () => {
 
     //__________________________________________________________________________ ANIMATION LOOP ________________________
 
-    if (create) {
-      for (let i = 0; i < (meshArray.length); i++) {
-        scene.children[7 + i].position.y += 8 * (i + 1);
-      };
-    };
-
-    console.log(scene.children)
+    // if (create) {
+    //   for (let i = 0; i < (meshArray.length); i++) {
+    //     scene.children[7 + i].position.y += 8 * (i + 1);
+    //   };
+    // };
 
     function animate() {
       requestAnimationFrame(animate);
 
-      if (create) {
-        const speed = 0.2
+      // if (create) {
+      //   const speed = 0.2
 
-        if (scene.children[7].position.y > -0.8) {
-          scene.children[7].position.y -= speed;
-        }
-        if (scene.children[8].position.y > -0.8) {
-          scene.children[8].position.y -= speed;
-        }
-        if (scene.children[9].position.y > -0.8) {
-          scene.children[9].position.y -= speed;
-        }
-        if (scene.children[10].position.y > -9.8) {
-          scene.children[10].position.y -= speed;
-        }
-        if (scene.children[11].position.y > -6.2) {
-          scene.children[11].position.y -= speed;
-        }
-        if (scene.children[12].position.y > -2.6) {
-          scene.children[12].position.y -= speed;
-        }
-        if (scene.children[13].position.y > 1) {
-          scene.children[13].position.y -= speed;
-        }
-        if (scene.children[14].position.y > 4.6) {
-          scene.children[14].position.y -= speed;
-        }
-        if (scene.children[15].position.y > 8.2) {
-          scene.children[15].position.y -= speed;
-        }
-      }
+      //   if (scene.children[7].position.y > -0.8) {
+      //     scene.children[7].position.y -= speed;
+      //   }
+      //   if (scene.children[8].position.y > -0.8) {
+      //     scene.children[8].position.y -= speed;
+      //   }
+      //   if (scene.children[9].position.y > -0.8) {
+      //     scene.children[9].position.y -= speed;
+      //   }
+      //   if (scene.children[10].position.y > -9.8) {
+      //     scene.children[10].position.y -= speed;
+      //   }
+      //   if (scene.children[11].position.y > -6.2) {
+      //     scene.children[11].position.y -= speed;
+      //   }
+      //   if (scene.children[12].position.y > -2.6) {
+      //     scene.children[12].position.y -= speed;
+      //   }
+      //   if (scene.children[13].position.y > 1) {
+      //     scene.children[13].position.y -= speed;
+      //   }
+      //   if (scene.children[14].position.y > 4.6) {
+      //     scene.children[14].position.y -= speed;
+      //   }
+      //   if (scene.children[15].position.y > 8.2) {
+      //     scene.children[15].position.y -= speed;
+      //   }
+      // }
+
       renderer.render(scene, camera);
     }
 
