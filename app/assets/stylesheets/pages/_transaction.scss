@@ -11,9 +11,9 @@ body {
   background-color: #a9a9a9;
 }
 
-.container {
-  margin: 20px auto;
-  max-width: 1000px;
+.bigrow {
+  // margin: 20px auto;
+  // max-width: 1000px;
   background: linear-gradient(
     -45deg,
     rgba(106, 73, 49, 0.4),
@@ -21,13 +21,16 @@ body {
     rgb(255, 255, 255),
     rgba(0, 0, 0, 0.4)
   );
+  display: flex;
   background-size: 800% 400%;
   transition: all 0.5s ease-in-out;
   animation: gradient 30s infinite cubic-bezier(0.62, 0.28, 0.23, 0.99) both;
-  padding-top: 4rem;
-  margin-top: 7rem;
-  width: 100vh;
-  height: 100vh;
+  // padding-top: 4rem;
+  // margin-top: 7rem;
+  width: fit-content;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  height: 100%;
 }
 
 .form-control {

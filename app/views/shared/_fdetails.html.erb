@@ -1,9 +1,17 @@
-<div class="container">
-  <div class="row m-0">
-    <div class="col-lg-7 pb-5 pe-lg-5">
+<input type="range" max="200" class="form-range d-none" id="showHeight" value="<%= @furniture.length %>"/>
+<input type="range" max="200" class="form-range d-none" id="showWidth" value="<%= @furniture.width %>"/>
+<input type="range" max="200" class="form-range d-none" id="showDepth" value="<%= @furniture.depth %>"/>
+<input type="range" max="20" class="form-range d-none" id="showShelves" value="<%= @furniture.shelves %>"/>
+<p class="d-none" id="showMaterial"><%= @furniture.material %></p>
+<p class="d-none" id="showCategory"><%= @furniture.category %></p>
+
+
+<div class="bigrow sticky-bottom">
+  
+    <div class="col-lg-7">
+
       <div class="row">
-        <div class="col-12 p-5"> <img
-            src="https://woodfurniturestore.co.uk/wp-content/uploads/2020/12/large-bookcase-1.jpg" alt=""> </div>
+        
         <div class="row m-0">
           <div class="col-md-4 col-6 ps-30 pe-0 my-4">
             <p class="text-muted">Width</p>
@@ -93,6 +101,6 @@
         </div>
       </div>
     </div>
-  </div>
+
 </div>
 </div>
