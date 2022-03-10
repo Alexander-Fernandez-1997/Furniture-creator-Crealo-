@@ -63,7 +63,8 @@ const renderFurniture = () => {
       0.1,
       1000
     );
-    camera.position.z = 5;
+    camera.position.z = 2.5;
+    camera.position.y = 1.5;
 
     //__________________________________________________________________________ RENDERER ______________________________
 
@@ -82,71 +83,25 @@ const renderFurniture = () => {
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(pointLight, ambientLight);
 
-    //__________________________________________________________________________ ROOM __________________________________
+    //__________________________________________________________________________ TEXTURES ______________________________
 
-    const roomTexture = new THREE.TextureLoader().load(
-      "https://media.istockphoto.com/photos/laminate-wooden-floor-texture-background-picture-id1083302826?k=20&m=1083302826&s=170667a&w=0&h=bSRz2bpnwImMIWa1qPOw7pRIW4EWd_j1zE3zHrdoDtc="
-    );
-    roomTexture.wrapS = THREE.RepeatWrapping;
-    roomTexture.wrapT = THREE.RepeatWrapping;
-    roomTexture.repeat.x = 1;
-    roomTexture.repeat.y = 1;
-
-    const roomLength = 60;
-
-    const roomMesh = new THREE.Mesh(
-      new THREE.BoxGeometry(roomLength, 0.2, 30),
-      new THREE.MeshPhongMaterial({ color: grey })
+    const woodTexture = new THREE.TextureLoader().load(
+      "https://www.fimodecor.com/uploads/M9101-1.jpg"
     );
 
-    const roof = roomMesh.clone();
-    roof.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
-    roof.position.y += 15;
-    roof.position.z -= 10;
-    scene.add(roof);
-
-    const floor = roomMesh.clone();
-    floor.material = new THREE.MeshPhongMaterial({ color: 0xc4c4c4 });
-    floor.position.set(0, -10, -10);
-    floor.position.x += roomLength / 2 - 30;
-    scene.add(floor);
-
-    const backTexture = new THREE.TextureLoader().load(
-      "https://3docean.img.customer.envatousercontent.com/files/143861565/preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=590&s=107ab7891e3d8698b2fcbf20cd0f873c"
+    const brickTexture = new THREE.TextureLoader().load(
+      "https://www.treehugger.com/thmb/LMdtVI5MhbJgGZAxNXkWdBpadNo=/2127x1196/smart/filters:no_upscale()/GettyImages-1270255134-16ec68c54a124fb99309bbc9be437533.jpg"
     );
 
-    backTexture.wrapS = THREE.RepeatWrapping;
-    backTexture.wrapT = THREE.RepeatWrapping;
-    backTexture.repeat.x = 4;
-    backTexture.repeat.y = 2;
+    brickTexture.wrapS = THREE.RepeatWrapping;
+    brickTexture.wrapT = THREE.RepeatWrapping;
+    brickTexture.repeat.x = 2;
+    brickTexture.repeat.y = 2;
 
-    const backwall = roomMesh.clone();
-    backwall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
-    backwall.position.z -= 20;
-    backwall.rotation.x += 1.57;
-    scene.add(backwall);
-
-    const rSideWall = roomMesh.clone();
-    rSideWall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
-    rSideWall.position.x += roomLength / 2;
-    rSideWall.position.z -= 10;
-    rSideWall.rotation.x += 1.57;
-    rSideWall.rotation.z += 1.57;
-    scene.add(rSideWall);
-
-    const lSideWall = roomMesh.clone();
-    lSideWall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
-    lSideWall.position.x -= roomLength / 2;
-    lSideWall.position.z -= 10;
-    lSideWall.rotation.x += 1.57;
-    lSideWall.rotation.z += 1.57;
-    scene.add(lSideWall);
-
-
-
-    //__________________________________________________________________________ BOOKSHELF MODEL _______________________
-
-    // TEXTURES
+    woodTexture.wrapS = THREE.RepeatWrapping;
+    woodTexture.wrapT = THREE.RepeatWrapping;
+    woodTexture.repeat.x = 30;
+    woodTexture.repeat.y = 2;
 
     let furnitureTexture = new THREE.TextureLoader().load(
       "https://www.fimodecor.com/uploads/M9101-1.jpg"
@@ -168,6 +123,61 @@ const renderFurniture = () => {
       );
     }
 
+    //__________________________________________________________________________ ROOM __________________________________
+
+    const roomLength = 60;
+
+    const roomMesh = new THREE.Mesh(
+      new THREE.BoxGeometry(roomLength, 0.2, 30),
+      new THREE.MeshPhongMaterial({ color: grey })
+    );
+
+    const roof = roomMesh.clone();
+    roof.material = new THREE.MeshPhongMaterial({ map: brickTexture });
+    roof.position.y += 15;
+    roof.position.z -= 10;
+    scene.add(roof);
+
+    const floor = roomMesh.clone();
+    floor.material = new THREE.MeshPhongMaterial({ color: 0x999999 });
+    floor.position.set(roomLength / 2 - 30, -10, -10);
+    scene.add(floor);
+
+    const backTexture = new THREE.TextureLoader().load(
+      "https://3docean.img.customer.envatousercontent.com/files/143861565/preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=590&s=107ab7891e3d8698b2fcbf20cd0f873c"
+    );
+
+    backTexture.wrapS = THREE.RepeatWrapping;
+    backTexture.wrapT = THREE.RepeatWrapping;
+    backTexture.repeat.x = 4;
+    backTexture.repeat.y = 2;
+
+    const backwall = roomMesh.clone();
+    backwall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
+    backwall.position.z -= 20;
+    backwall.rotation.x += 1.57;
+    scene.add(backwall);
+
+    const rSideWall = roomMesh.clone();
+    rSideWall.material = new THREE.MeshPhongMaterial({ map: woodTexture });
+    rSideWall.position.x += roomLength / 2;
+    rSideWall.position.z -= 10;
+    rSideWall.rotation.x += 1.57;
+    rSideWall.rotation.z += 1.57;
+    scene.add(rSideWall);
+
+    const lSideWall = roomMesh.clone();
+    lSideWall.material = new THREE.MeshPhongMaterial({ map: woodTexture });
+    lSideWall.position.x -= roomLength / 2;
+    lSideWall.position.z -= 10;
+    lSideWall.rotation.x += 1.57;
+    lSideWall.rotation.z += 1.57;
+    scene.add(lSideWall);
+
+
+
+    //__________________________________________________________________________ BOOKSHELF MODEL _______________________
+
     function createBookshelf() {
       // Variables______________________________________________________________
 
@@ -176,7 +186,7 @@ const renderFurniture = () => {
       const sht = 0.2; // Shelf thickness
 
       const st = 0.2; // Side thickness
-      const bspz = -15; // Bookshelf z position
+      const bspz = -20 + bt; // Bookshelf z position
 
       let bsx = width.value / 10; // Bookshelf x dimension
       let bsy = height.value / 10; // Bookshelf y dimension
