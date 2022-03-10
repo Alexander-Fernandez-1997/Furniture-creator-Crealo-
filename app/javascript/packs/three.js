@@ -227,17 +227,13 @@ const renderFurniture = () => {
       for (let step = 0; step < (shelves.value); step++) {
 
 
-        eval('var ' + `shelf` + `${shelfNumber}`);
-
-
-
+        // eval('var ' + `shelf` + `${shelfNumber}`);
+        // scene.add(eval(`shelf` + `${osv}`));
 
         const shelf = shelfMesh.clone();
-
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
         scene.add(shelf);
-        scene.add(eval(`shelf` + `${osv}`));
         shelfPosition += bsy / (shelves.value - 1);
       }
 
@@ -381,9 +377,6 @@ const renderFurniture = () => {
 
     function animate() {
       requestAnimationFrame(animate);
-
-      shelf4.position.x += 100;
-
       renderer.render(scene, camera);
     }
 
