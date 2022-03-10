@@ -15,13 +15,9 @@
     </a>
   </div>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
   <div class="form-inputs">
-
-
-
-
 
     <%= f.input :email,
                 required: false,
@@ -36,12 +32,6 @@
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-
-
-
-
-
-
 
     <button class="signin">
       Sign In
@@ -104,6 +94,7 @@
   .active {
     border-bottom: 2px solid darkblue;
     color: white;
+    margin-left: 35px;
   }
 
   .active:hover {
@@ -114,6 +105,7 @@
 
   .nonactive {
     color: rgba(255, 255, 255, 0.6);
+    margin-left: 23px;
   }
 
   .nonactive:hover {
@@ -273,5 +265,3 @@
     text-shadow: 2px 2px 20px 0px white;
   }
 </style>
-
-<%= render "devise/shared/links" %>
