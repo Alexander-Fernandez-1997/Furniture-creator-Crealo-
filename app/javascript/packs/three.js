@@ -234,17 +234,20 @@ const renderFurniture = () => {
       shelfMesh.position.set(0, bspy - hd / 2, bspz);
       let shelfPosition = bspy - hd / 2;
 
-      for (let step = 0; step < (shelves.value); step++) {
+      for (let i = 0; i < (shelves.value); i++) {
 
-
-        // eval('var ' + `shelf` + `${shelfNumber}`);
-        // scene.add(eval(`shelf` + `${osv}`));
+        // eval(`const shelf = shelfMesh.clone()`);
+        // eval(`shelf${i}.position.y = shelfPosition`);
+        // eval(`meshArray.push(shelf${i})`);
+        // scene.add(eval(`shelf` + `${i}`));
+        // shelfPosition += bsy / (shelves.value - 1);
 
         const shelf = shelfMesh.clone();
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
         scene.add(shelf);
         shelfPosition += bsy / (shelves.value - 1);
+
       }
 
       // _______________________________________________________________________
@@ -385,8 +388,15 @@ const renderFurniture = () => {
 
     //__________________________________________________________________________ ANIMATION LOOP ________________________
 
+    console.log(meshArray[1].position.y);
+
+    for (let i = 0; i < (meshArray.length); i++) {
+      meshArray[i].position.y += 10
+    }
+
     function animate() {
       requestAnimationFrame(animate);
+
       renderer.render(scene, camera);
     }
 
