@@ -80,12 +80,12 @@
           </div>
           <div class="row m-0">
             <div class="col-12 mb-4 p-0">
-              <div class="btn btn-primary">Delete<span class="fas fa-trash-alt ps-2"></span> </div>
+              <div class="btn btn-primary"><%= link_to  'Delete' , furniture_path(@furniture),method: :delete , class: "fondo" %><span class="fas fa-trash-alt ps-2"></span> </div>
             </div>
           </div>
           <div class="row m-0">
             <div class="col-12 mb-4 p-0">
-              <div class="btn btn-primary">New<span class="fas fa-plus ps-2"></span> </div>
+              <div class="btn btn-primary"><%= link_to  'New' , new_furniture_path , class: "fondo" %><span class="fas fa-plus ps-2"></span> </div>
             </div>
           </div>
           <div class="row m-0">
