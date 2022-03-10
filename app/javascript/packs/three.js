@@ -106,7 +106,7 @@ const renderFurniture = () => {
     scene.add(roof);
 
     const floor = roomMesh.clone();
-    floor.material = new THREE.MeshPhongMaterial({ color: white });
+    floor.material = new THREE.MeshPhongMaterial({ color: 0xc4c4c4 });
     floor.position.set(0, -10, -10);
     floor.position.x += roomLength / 2 - 30;
     scene.add(floor);
@@ -133,14 +133,6 @@ const renderFurniture = () => {
     rSideWall.rotation.x += 1.57;
     rSideWall.rotation.z += 1.57;
     scene.add(rSideWall);
-
-    const rSideWallWindow = roomMesh.clone();
-    rSideWallWindow.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
-    rSideWallWindow.position.x += roomLength / 2;
-    rSideWallWindow.position.z -= 10;
-    rSideWallWindow.rotation.x += 1.57;
-    rSideWallWindow.rotation.z += 1.57;
-    scene.add(rSideWallWindow);
 
     const lSideWall = roomMesh.clone();
     lSideWall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });

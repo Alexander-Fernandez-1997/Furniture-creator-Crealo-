@@ -22,35 +22,7 @@
                       src="https://woodfurniturestore.co.uk/wp-content/uploads/2020/12/large-bookcase-1.jpg"></div>
                   <div class="col">
                     <div class="row text-muted">furniture</div>
-                    <div class="row"><%= @transaction.furniture.material %>
-                      <%= @transaction.furniture.category.capitalize %></div>
-                  </div>
-                  <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
-                  <div class="col">&dollar; <%= humanized_money_with_symbol @transaction.amount %> <span
-                      class="close">&#10005;</span></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="row main align-items-center">
-                  <div class="col-2"><img class="img-fluid"
-                      src="https://woodfurniturestore.co.uk/wp-content/uploads/2020/12/large-bookcase-1.jpg"></div>
-                  <div class="col">
-                    <div class="row text-muted">forniture</div>
-                    <div class="row"><%= @transaction.furniture.material %>
-                      <%= @transaction.furniture.category.capitalize %></div>
-                  </div>
-                  <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
-                  <div class="col">&dollar; <%= humanized_money_with_symbol @transaction.amount %> <span
-                      class="close">&#10005;</span></div>
-                </div>
-              </div>
-              <div class="row border-top border-bottom">
-                <div class="row main align-items-center">
-                  <div class="col-2"><img class="img-fluid"
-                      src="https://woodfurniturestore.co.uk/wp-content/uploads/2020/12/large-bookcase-1.jpg"></div>
-                  <div class="col">
-                    <div class="row text-muted">forniture</div>
-                    <div class="row"><%= @transaction.furniture.material %>
+                    <div class="row"><%#= @transaction.furniture.material %>
                       <%= @transaction.furniture.category.capitalize %></div>
                   </div>
                   <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
@@ -67,7 +39,7 @@
               </div>
               <hr>
               <div class="row">
-                <div class="col" style="padding-left:0;">ITEMS 3</div>
+                <div class="col" style="padding-left:0;">ITEMS 1</div>
                 <div class="col text-right">&dollar; <%= humanized_money_with_symbol @transaction.amount %></div>
               </div>
               <form>
