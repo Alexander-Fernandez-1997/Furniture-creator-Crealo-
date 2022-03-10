@@ -89,18 +89,9 @@ const renderFurniture = () => {
       "https://www.fimodecor.com/uploads/M9101-1.jpg"
     );
 
-    const brickTexture = new THREE.TextureLoader().load(
-      "https://www.treehugger.com/thmb/LMdtVI5MhbJgGZAxNXkWdBpadNo=/2127x1196/smart/filters:no_upscale()/GettyImages-1270255134-16ec68c54a124fb99309bbc9be437533.jpg"
-    );
-
-    brickTexture.wrapS = THREE.RepeatWrapping;
-    brickTexture.wrapT = THREE.RepeatWrapping;
-    brickTexture.repeat.x = 2;
-    brickTexture.repeat.y = 2;
-
     woodTexture.wrapS = THREE.RepeatWrapping;
     woodTexture.wrapT = THREE.RepeatWrapping;
-    woodTexture.repeat.x = 30;
+    woodTexture.repeat.x = 15;
     woodTexture.repeat.y = 2;
 
     let furnitureTexture = new THREE.TextureLoader().load(
@@ -133,7 +124,7 @@ const renderFurniture = () => {
     );
 
     const roof = roomMesh.clone();
-    roof.material = new THREE.MeshPhongMaterial({ map: brickTexture });
+    roof.material = new THREE.MeshPhongMaterial({ map: woodTexture });
     roof.position.y += 15;
     roof.position.z -= 10;
     scene.add(roof);
@@ -159,7 +150,7 @@ const renderFurniture = () => {
     scene.add(backwall);
 
     const rSideWall = roomMesh.clone();
-    rSideWall.material = new THREE.MeshPhongMaterial({ map: woodTexture });
+    rSideWall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
     rSideWall.position.x += roomLength / 2;
     rSideWall.position.z -= 10;
     rSideWall.rotation.x += 1.57;
@@ -167,7 +158,7 @@ const renderFurniture = () => {
     scene.add(rSideWall);
 
     const lSideWall = roomMesh.clone();
-    lSideWall.material = new THREE.MeshPhongMaterial({ map: woodTexture });
+    lSideWall.material = new THREE.MeshPhongMaterial({ color: 0x7f163f });
     lSideWall.position.x -= roomLength / 2;
     lSideWall.position.z -= 10;
     lSideWall.rotation.x += 1.57;
@@ -235,13 +226,6 @@ const renderFurniture = () => {
       let shelfPosition = bspy - hd / 2;
 
       for (let i = 0; i < (shelves.value); i++) {
-
-        // eval(`const shelf = shelfMesh.clone()`);
-        // eval(`shelf${i}.position.y = shelfPosition`);
-        // eval(`meshArray.push(shelf${i})`);
-        // scene.add(eval(`shelf` + `${i}`));
-        // shelfPosition += bsy / (shelves.value - 1);
-
         const shelf = shelfMesh.clone();
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
@@ -360,6 +344,9 @@ const renderFurniture = () => {
         createTable();
       }
     }
+
+    //__________________________________________________________________________ EVENT LISTENERS _______________________
+
     if (create) {
 
       category.addEventListener("change", (ev) => {
@@ -388,17 +375,53 @@ const renderFurniture = () => {
 
     //__________________________________________________________________________ ANIMATION LOOP ________________________
 
-    console.log(meshArray[1].position.y);
-
-    for (let i = 0; i < (meshArray.length); i++) {
-      meshArray[i].position.y += 10
-    }
+    if (create) {
+      for (let i = 0; i < (meshArray.length); i++) {
+        meshArray[i].position.y += 8 * (i + 1);
+      };
+    };
 
     function animate() {
       requestAnimationFrame(animate);
 
+      if (create) {
+
+        const speed = 0.2
+
+        if (meshArray[0].position.y > -0.8) {
+          meshArray[0].position.y -= speed;
+        }
+        if (meshArray[1].position.y > -0.8) {
+          meshArray[1].position.y -= speed;
+        }
+        if (meshArray[2].position.y > -0.8) {
+          meshArray[2].position.y -= speed;
+        }
+        if (meshArray[3].position.y > -9.8) {
+          meshArray[3].position.y -= speed;
+        }
+        if (meshArray[4].position.y > -6.2) {
+          meshArray[4].position.y -= speed;
+        }
+        if (meshArray[5].position.y > -2.6) {
+          meshArray[5].position.y -= speed;
+        }
+        if (meshArray[6].position.y > 1) {
+          meshArray[6].position.y -= speed;
+        }
+        if (meshArray[7].position.y > 4.6) {
+          meshArray[7].position.y -= speed;
+        }
+        if (meshArray[8].position.y > 8.2) {
+          meshArray[8].position.y -= speed;
+        }
+      }
+
+
+
       renderer.render(scene, camera);
     }
+
 
     animate();
 
