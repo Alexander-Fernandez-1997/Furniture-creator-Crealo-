@@ -1,7 +1,7 @@
 import * as THREE from "three";
+import { ShaderMaterial } from "three";
 
 const renderFurniture = () => {
-
   let create = document.getElementById("create");
   let show = document.getElementById("show");
 
@@ -20,7 +20,7 @@ const renderFurniture = () => {
     shelves = document.getElementById("shelves");
     textures = document.querySelectorAll("#cajitamin");
     category = document.getElementById("select");
-  };
+  }
 
   if (show) {
     height = document.getElementById("showHeight");
@@ -28,7 +28,7 @@ const renderFurniture = () => {
     depth = document.getElementById("showDepth");
     shelves = document.getElementById("showShelves");
     material = document.getElementById("showMaterial").innerText;
-    material = "https://www.fimodecor.com/uploads/M9101-1.jpg"
+    material = "https://www.fimodecor.com/uploads/M9101-1.jpg";
     category = document.getElementById("showCategory").innerText;
 
     console.log(document.getElementById("showHeight"));
@@ -36,7 +36,7 @@ const renderFurniture = () => {
 
     console.log(document.getElementById("showDepth"));
     console.log(depth.value);
-  };
+  }
 
   const canvasFurniture = document.querySelector("canvas#furniture");
 
@@ -99,8 +99,11 @@ const renderFurniture = () => {
     );
 
     if (create) {
+      let smaterial = document.getElementById("smaterial");
       textures.forEach((texture) => {
         texture.addEventListener("click", (ev) => {
+          smaterial.innerText = texture.querySelector("#imgsize").src;
+          console.log(smaterial.innerText);
           furnitureTexture = new THREE.TextureLoader().load(
             `${texture.querySelector("#imgsize").src}`
           );
@@ -109,9 +112,7 @@ const renderFurniture = () => {
     }
 
     if (show) {
-      furnitureTexture = new THREE.TextureLoader().load(
-        material
-      );
+      furnitureTexture = new THREE.TextureLoader().load(material);
     }
 
     //__________________________________________________________________________ ROOM __________________________________
@@ -165,12 +166,9 @@ const renderFurniture = () => {
     lSideWall.rotation.z += 1.57;
     scene.add(lSideWall);
 
-
-
     //__________________________________________________________________________ BOOKSHELF MODEL _______________________
 
     function createBookshelf() {
-
       // Variables______________________________________________________________
 
       let mh = 200; // Bookshelf max height
@@ -195,7 +193,7 @@ const renderFurniture = () => {
       );
 
       const back = backMesh.clone();
-      back.name = "back"
+      back.name = "back";
       back.position.set(0, -(hd / 2) + sht, bspz);
       meshArray.push(back);
       scene.add(back);
@@ -208,13 +206,13 @@ const renderFurniture = () => {
       );
 
       const rightSide = sideMesh.clone();
-      rightSide.name = "rightSide"
+      rightSide.name = "rightSide";
       rightSide.position.set(bsx / 2, -(hd / 2) + sht, bspz);
       meshArray.push(rightSide);
       scene.add(rightSide);
 
       const leftSide = sideMesh.clone();
-      leftSide.name = "leftSide"
+      leftSide.name = "leftSide";
       leftSide.position.set(-(bsx / 2), -(hd / 2) + sht, bspz);
       meshArray.push(leftSide);
       scene.add(leftSide);
@@ -229,9 +227,9 @@ const renderFurniture = () => {
       shelfMesh.position.set(0, bspy - hd / 2, bspz);
       let shelfPosition = bspy - hd / 2;
 
-      for (let i = 0; i < (shelves.value); i++) {
+      for (let i = 0; i < shelves.value; i++) {
         const shelf = shelfMesh.clone();
-        shelf.name = "shelf"
+        shelf.name = "shelf";
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
         scene.add(shelf);
@@ -277,22 +275,38 @@ const renderFurniture = () => {
       );
 
       const legrf = legMesh.clone();
-      legrf.position.set((tsx / 2) - (lt / 2), (tpy + tsy - 10) - (tsy / 2), tpz + (tsz / 2) - (lt / 2));
+      legrf.position.set(
+        tsx / 2 - lt / 2,
+        tpy + tsy - 10 - tsy / 2,
+        tpz + tsz / 2 - lt / 2
+      );
       meshArray.push(legrf);
       scene.add(legrf);
 
       const legrb = legMesh.clone();
-      legrb.position.set((tsx / 2) - (lt / 2), (tpy + tsy - 10) - (tsy / 2), tpz - (tsz / 2) + (lt / 2));
+      legrb.position.set(
+        tsx / 2 - lt / 2,
+        tpy + tsy - 10 - tsy / 2,
+        tpz - tsz / 2 + lt / 2
+      );
       meshArray.push(legrb);
       scene.add(legrb);
 
       const leglf = legMesh.clone();
-      leglf.position.set(-(tsx / 2) + (lt / 2), (tpy + tsy - 10) - (tsy / 2), tpz + (tsz / 2) - (lt / 2));
+      leglf.position.set(
+        -(tsx / 2) + lt / 2,
+        tpy + tsy - 10 - tsy / 2,
+        tpz + tsz / 2 - lt / 2
+      );
       meshArray.push(leglf);
       scene.add(leglf);
 
       const leglb = legMesh.clone();
-      leglb.position.set(-(tsx / 2) + (lt / 2), (tpy + tsy - 10) - (tsy / 2), tpz - (tsz / 2) + (lt / 2));
+      leglb.position.set(
+        -(tsx / 2) + lt / 2,
+        tpy + tsy - 10 - tsy / 2,
+        tpz - tsz / 2 + lt / 2
+      );
       meshArray.push(leglb);
       scene.add(leglb);
 
@@ -347,7 +361,6 @@ const renderFurniture = () => {
     //__________________________________________________________________________ EVENT LISTENERS _______________________
 
     if (create) {
-
       category.addEventListener("change", (ev) => {
         recreateFurniture();
       });
@@ -360,8 +373,7 @@ const renderFurniture = () => {
       document.addEventListener("click", (ev) => {
         recreateFurniture();
       });
-
-    };
+    }
 
     //__________________________________________________________________________ MOVE CAMERA ___________________________
 
@@ -418,9 +430,7 @@ const renderFurniture = () => {
       renderer.render(scene, camera);
     }
 
-
     animate();
-
 
     //__________________________________________________________________________ SLIDERS INPUT__________________________
 
