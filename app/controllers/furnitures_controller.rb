@@ -36,6 +36,8 @@ before_action :set_furniture, only:[:show, :update, :edit, :destroy]
 
   def destroy
     @furniture.destroy
+    authorize @furniture
+    redirect_to user_path(current_user)
   end
 
 private

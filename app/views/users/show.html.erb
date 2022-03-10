@@ -1,4 +1,7 @@
-<h1 class= "text-center"> Welcome <%= @user.email %></h1>
+<%= render "shared/navbar" %>
+
+
+<h1 class= "text-center mt-5 pt-5 mb-5"> Welcome <%= @user.fullname %></h1>
 <ul class="nav nav-tabs ms-3 profiles" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Furnitures</button>
@@ -11,40 +14,98 @@
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
 
-<h2 >List of creations</h2>
+<h2 class="mt-4 mb-4">List of creations</h2>
   <div class=" profilel"  >
     <% @user.furnitures.each do |furniture| %>
-      <div class="card mt-4" >
-        <h3> <%= furniture.category %> </h3>
-        <h4>Details:</h4>
-        <ol>
-          <li> Widht:<%= furniture.width %> </li>
-          <li> Lenght:<%= furniture.length %> </li>
-          <li> Depth:<%= furniture.depth %> </li>
-          <li> Shelves:<%= furniture.shelves %> </li>
-          <li> Material:<%= furniture.material %> </li>
-        </ol>
+        <main role="main">
+  <div class="product">
+    <figure>
+    <%= link_to furniture_path(furniture) do %>
+      <img src="https://woodfurniturestore.co.uk/wp-content/uploads/2020/12/large-bookcase-1.jpg" alt="Product Image" class="product-image">
+      <% end  %>
+        </figure>
+
+      <div class="product-description">
+
+        <div class="info">
+          <h1><%= furniture.category %></h1>
+          <p>
+            Widht:<%= furniture.width %>
+            Lenght:<%= furniture.length %>
+            Depth:<%= furniture.depth %>
+            Shelves:<%= furniture.shelves %>
+
+          </p>
+        </div>
+
+        <div class="price">
+          <%= furniture.price.to_i  %>
+        </div>
       </div>
+
+      <%= link_to root_path do %>
+      <div class="product-sidebar">
+        <button class="buy">
+          <span>BUY ITEM</span>
+        </button>
+        <% end %>
+
+        <%= link_to furniture_path(furniture) do %>
+        <button class="info">
+          <span>MORE INFO</span>
+        </button>
+        <% end %>
+
+        <%= link_to furniture_path(furniture), method: :delete do %>
+        <button class="size">
+          <span>DELETE</span>
+        </button>
+        <% end %>
+
+      </div>
+      </div>
+    </main>
     <% end  %>
   </div>
 
 </div>
 <div class="tab-pane fade ms-3 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-<h2>List of transactions</h2>
+<h2 class="mt-4 mb-4">List of transactions</h2>
 <div class=" profilel">
 
 <% @user.transactions.each do |transaction| %>
-  <div class="card mt-4">
-    <h3> Date:<%= transaction.created_at %>  </h3>
-    <ol>
-      <li>Buying : <%= transaction.furniture.category %></li>
-      <li>Payment Method: <%= transaction.payment_method %> </li>
-      <li>Shipping time: <%= transaction.shipping_time %> </li>
-    </ol>
+<%= link_to transaction_path(transaction) do  %>
+<div class="wrap p-5">
+  <div class="task">
+    <div class="abstract">
+      <h3> Date:<%= transaction.created_at.strftime("%Y-%m-%d") %> </h3>
+      <%# <p>This is what you see by default.</p> %>
+    </div>
+    <div class="details">
+      <div class="details__inner">
+        <h3>Details</h3>
+        <p>Buying : <%= transaction.furniture.category %> </br>
+        Furniture price: <%= transaction.furniture.price %> </br>
+        Shipping time: 2 days
+        </p>
+      </div>
+    </div>
   </div>
+</div>
+<% end  %>
 <% end %>
 
 </div>
 </div>
 
-
+<style>
+body{
+background-color: #0D647F;
+}
+h1{
+  color:white;
+}
+h2{
+  color:white
+}
+</style>
