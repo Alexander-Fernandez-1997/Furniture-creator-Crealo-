@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Texture.create(name: "Light grey", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957431/M9100-4Z_kydirk.jpg" )
 
-Texture.create(name: "Light brown", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957445/M9101-1_osq4mj.jpg" )
+Texture.create(name: "Light brown", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957402/927064ca_bqayoa.jpg" )
 
 Texture.create(name: "Dark brown", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957458/M9101-2_kkx5ds.jpg" )
 
