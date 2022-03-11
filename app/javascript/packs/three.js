@@ -95,7 +95,7 @@ const renderFurniture = () => {
     woodTexture.repeat.y = 2;
 
     let furnitureTexture = new THREE.TextureLoader().load(
-      "https://www.fimodecor.com/uploads/M9101-1.jpg"
+      "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957396/105989_fvvztx.jpg"
     );
 
     if (create) {
