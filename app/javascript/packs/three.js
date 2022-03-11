@@ -94,9 +94,19 @@ const renderFurniture = () => {
     woodTexture.repeat.x = 15;
     woodTexture.repeat.y = 2;
 
-    let furnitureTexture = new THREE.TextureLoader().load(
-      "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957396/105989_fvvztx.jpg"
-    );
+    let furnitureTexture;
+
+    if (create) {
+      furnitureTexture = new THREE.TextureLoader().load(
+        "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957445/M9101-1_osq4mj.jpg"
+      );
+    }
+
+    if (show) {
+      furnitureTexture = new THREE.TextureLoader().load(
+        "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957396/105989_fvvztx.jpg"
+      );
+    }
 
     if (create) {
       let smaterial = document.getElementById("smaterial");
@@ -196,6 +206,7 @@ const renderFurniture = () => {
       back.name = "back";
       back.position.set(0, -(hd / 2) + sht, bspz);
       meshArray.push(back);
+      originalMeshArray.push(back);
       scene.add(back);
 
       // Sides__________________________________________________________________
@@ -209,12 +220,14 @@ const renderFurniture = () => {
       rightSide.name = "rightSide";
       rightSide.position.set(bsx / 2, -(hd / 2) + sht, bspz);
       meshArray.push(rightSide);
+      originalMeshArray.push(rightSide);
       scene.add(rightSide);
 
       const leftSide = sideMesh.clone();
       leftSide.name = "leftSide";
       leftSide.position.set(-(bsx / 2), -(hd / 2) + sht, bspz);
       meshArray.push(leftSide);
+      originalMeshArray.push(leftSide);
       scene.add(leftSide);
 
       // Shelves________________________________________________________________
@@ -232,6 +245,7 @@ const renderFurniture = () => {
         shelf.name = "shelf";
         shelf.position.y = shelfPosition;
         meshArray.push(shelf);
+        originalMeshArray.push(shelf);
         scene.add(shelf);
         shelfPosition += bsy / (shelves.value - 1);
       }
@@ -326,6 +340,7 @@ const renderFurniture = () => {
     }
 
     let meshArray = [];
+    let originalMeshArray = [];
 
     if (categoryValue === "bookshelf") {
       createBookshelf();
@@ -386,46 +401,53 @@ const renderFurniture = () => {
 
     //__________________________________________________________________________ ANIMATION LOOP ________________________
 
-    // if (create) {
-    //   for (let i = 0; i < (meshArray.length); i++) {
-    //     scene.children[7 + i].position.y += 8 * (i + 1);
-    //   };
-    // };
+    if (create) {
+      for (let i = 0; i < (meshArray.length); i++) {
+        originalMeshArray[i].position.y += 8 * (i + 1);
+      };
+    };
 
     function animate() {
       requestAnimationFrame(animate);
 
-      // if (create) {
-      //   const speed = 0.2
+      if (create) {
+        const speed = 0.2
 
-      //   if (scene.children[7].position.y > -0.8) {
-      //     scene.children[7].position.y -= speed;
-      //   }
-      //   if (scene.children[8].position.y > -0.8) {
-      //     scene.children[8].position.y -= speed;
-      //   }
-      //   if (scene.children[9].position.y > -0.8) {
-      //     scene.children[9].position.y -= speed;
-      //   }
-      //   if (scene.children[10].position.y > -9.8) {
-      //     scene.children[10].position.y -= speed;
-      //   }
-      //   if (scene.children[11].position.y > -6.2) {
-      //     scene.children[11].position.y -= speed;
-      //   }
-      //   if (scene.children[12].position.y > -2.6) {
-      //     scene.children[12].position.y -= speed;
-      //   }
-      //   if (scene.children[13].position.y > 1) {
-      //     scene.children[13].position.y -= speed;
-      //   }
-      //   if (scene.children[14].position.y > 4.6) {
-      //     scene.children[14].position.y -= speed;
-      //   }
-      //   if (scene.children[15].position.y > 8.2) {
-      //     scene.children[15].position.y -= speed;
-      //   }
-      // }
+        if (originalMeshArray[0].position.y > -0.8) {
+          originalMeshArray[0].position.y -= speed;
+        }
+        if (originalMeshArray[1].position.y > -0.8) {
+          originalMeshArray[1].position.y -= speed;
+        }
+        if (originalMeshArray[2].position.y > -0.8) {
+          originalMeshArray[2].position.y -= speed;
+        }
+        if (originalMeshArray[3].position.y > -9.8) {
+          originalMeshArray[3].position.y -= speed;
+        }
+        if (originalMeshArray[4].position.y > -6.2) {
+          originalMeshArray[4].position.y -= speed;
+        }
+        if (originalMeshArray[5].position.y > -2.6) {
+          originalMeshArray[5].position.y -= speed;
+        }
+        if (originalMeshArray[6].position.y > 1) {
+          originalMeshArray[6].position.y -= speed;
+        }
+        if (originalMeshArray[7].position.y > 4.6) {
+          originalMeshArray[7].position.y -= speed;
+        }
+        if (originalMeshArray[8].position.y > 8.2) {
+          originalMeshArray[8].position.y -= speed;
+        } else {
+          originalMeshArray.forEach((element) => {
+            scene.remove(element);
+          });
+          meshArray = [];
+          recreateFurniture();
+        };
+
+      }
 
       renderer.render(scene, camera);
     }
