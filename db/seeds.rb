@@ -5,18 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Texture.create(name: "Light grey", url: "https://www.fimodecor.com/uploads/M9100-4Z.jpg" )
+Texture.create(name: "Light grey", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957431/M9100-4Z_kydirk.jpg" )
 
-Texture.create(name: "Light brown", url: "https://www.fimodecor.com/uploads/927064ca.jpg" )
+Texture.create(name: "Light brown", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957445/M9101-1_osq4mj.jpg" )
 
-Texture.create(name: "Dark brown", url: "https://www.fimodecor.com/uploads/M9101-2.jpg" )
+Texture.create(name: "Dark brown", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957458/M9101-2_kkx5ds.jpg" )
 
-Texture.create(name: "Brown", url: "https://www.fimodecor.com/uploads/M9101-1.jpg" )
+Texture.create(name: "Brown", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957445/M9101-1_osq4mj.jpg" )
 
-Texture.create(name: "Black", url: "https://www.miliashop.com/img/co/105989.jpg" )
+Texture.create(name: "Black", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957396/105989_fvvztx.jpg" )
 
-Texture.create(name: "Wood", url: "https://sc01.alicdn.com/kf/HTB1_wOuJVXXXXXiaXXXq6xXFXXXy/47811/HTB1_wOuJVXXXXXiaXXXq6xXFXXXy.jpg" )
+Texture.create(name: "Wood", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957415/HTB1_wOuJVXXXXXiaXXXq6xXFXXXy_xurfwi.jpg" )
 
-Texture.create(name: "Red", url: "https://i.pinimg.com/originals/05/b1/0d/05b10df54d54ebd95a86300df6baa4f0.jpg" )
+Texture.create(name: "Red", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957385/05b10df54d54ebd95a86300df6baa4f0_uw5lmf.jpg" )
 
-Texture.create(name: "Cherry", url: "https://st.depositphotos.com/1008653/3668/i/600/depositphotos_36682805-stock-photo-cherry-wood-flooring-board-seamless.jpg" )
+Texture.create(name: "Cherry", url: "https://res.cloudinary.com/dkj9czugt/image/upload/v1646957407/depositphotos_36682805-stock-photo-cherry-wood-flooring-board-seamless_r98o4v.webp" )
