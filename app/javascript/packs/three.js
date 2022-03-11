@@ -30,18 +30,11 @@ const renderFurniture = () => {
     material = document.getElementById("showMaterial").innerText;
     material = "https://www.fimodecor.com/uploads/M9101-1.jpg";
     category = document.getElementById("showCategory").innerText;
-
-    console.log(document.getElementById("showHeight"));
-    console.log(height.value);
-
-    console.log(document.getElementById("showDepth"));
-    console.log(depth.value);
   }
 
   const canvasFurniture = document.querySelector("canvas#furniture");
 
   if (canvasFurniture) {
-    console.log("running");
     //________________________________________________________________________ COLORS ________________________________
 
     const white = new THREE.Color(0xffffff);
@@ -113,7 +106,6 @@ const renderFurniture = () => {
       textures.forEach((texture) => {
         texture.addEventListener("click", (ev) => {
           smaterial.innerText = texture.querySelector("#imgsize").src;
-          console.log(smaterial.innerText);
           furnitureTexture = new THREE.TextureLoader().load(
             `${texture.querySelector("#imgsize").src}`
           );
@@ -360,8 +352,6 @@ const renderFurniture = () => {
       });
       meshArray = [];
 
-      console.log(categoryValue);
-
       if (categoryValue === "bookshelf") {
         createBookshelf();
       }
@@ -369,8 +359,6 @@ const renderFurniture = () => {
       if (categoryValue === "table") {
         createTable();
       }
-
-      console.log(scene.children);
     }
 
     //__________________________________________________________________________ EVENT LISTENERS _______________________
@@ -401,9 +389,14 @@ const renderFurniture = () => {
 
     //__________________________________________________________________________ ANIMATION LOOP ________________________
 
+
+    for (let i = 0; i < (meshArray.length); i++) {
+      console.log(originalMeshArray[i].position.z);
+    };
+
     if (create) {
       for (let i = 0; i < (meshArray.length); i++) {
-        originalMeshArray[i].position.y += 8 * (i + 1);
+        originalMeshArray[i].position.z += 8 * (i + 1);
       };
     };
 
@@ -413,32 +406,32 @@ const renderFurniture = () => {
       if (create) {
         const speed = 0.2
 
-        if (originalMeshArray[0].position.y > -0.8) {
-          originalMeshArray[0].position.y -= speed;
+        if (originalMeshArray[0].position.z > -19.6) {
+          originalMeshArray[0].position.z -= speed;
         }
-        if (originalMeshArray[1].position.y > -0.8) {
-          originalMeshArray[1].position.y -= speed;
+        if (originalMeshArray[1].position.z > -19.6) {
+          originalMeshArray[1].position.z -= speed;
         }
-        if (originalMeshArray[2].position.y > -0.8) {
-          originalMeshArray[2].position.y -= speed;
+        if (originalMeshArray[2].position.z > -19.6) {
+          originalMeshArray[2].position.z -= speed;
         }
-        if (originalMeshArray[3].position.y > -9.8) {
-          originalMeshArray[3].position.y -= speed;
+        if (originalMeshArray[3].position.z > -19.6) {
+          originalMeshArray[3].position.z -= speed;
         }
-        if (originalMeshArray[4].position.y > -6.2) {
-          originalMeshArray[4].position.y -= speed;
+        if (originalMeshArray[4].position.z > -19.6) {
+          originalMeshArray[4].position.z -= speed;
         }
-        if (originalMeshArray[5].position.y > -2.6) {
-          originalMeshArray[5].position.y -= speed;
+        if (originalMeshArray[5].position.z > -19.6) {
+          originalMeshArray[5].position.z -= speed;
         }
-        if (originalMeshArray[6].position.y > 1) {
-          originalMeshArray[6].position.y -= speed;
+        if (originalMeshArray[6].position.z > -19.6) {
+          originalMeshArray[6].position.z -= speed;
         }
-        if (originalMeshArray[7].position.y > 4.6) {
-          originalMeshArray[7].position.y -= speed;
+        if (originalMeshArray[7].position.z > -19.6) {
+          originalMeshArray[7].position.z -= speed;
         }
-        if (originalMeshArray[8].position.y > 8.2) {
-          originalMeshArray[8].position.y -= speed;
+        if (originalMeshArray[8].position.z > -19.6) {
+          originalMeshArray[8].position.z -= speed;
         } else {
           originalMeshArray.forEach((element) => {
             scene.remove(element);
